@@ -1,0 +1,33 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="3"/>
+  <WindowName>Search</WindowName>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>
+  <PanelList>
+    <Panel Type="header"  />
+    <Panel Type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu">
+      </Module>
+      <Module ID="Gadgets" >
+        <ParamList>
+          <Param Name="HTML">
+            <div id="gadgets-tools-left" class="gadgets-gadget-parent"></div>
+          </Param>
+        </ParamList>
+      </Module>
+    </Panel>
+    <Panel Name="Find People" Type="main">
+      <Module ID="SearchPerson">
+      </Module>
+        <Module ID="SearchMap">
+        </Module>
+      <Module ID="CustomViewCOVID19Pubs">
+      </Module>
+      </Panel>
+    <Panel type="footer" />
+  </PanelList>
+</Presentation>
+

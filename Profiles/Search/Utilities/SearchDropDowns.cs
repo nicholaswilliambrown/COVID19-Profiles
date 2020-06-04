@@ -1,0 +1,52 @@
+﻿using System.Collections.Generic;
+
+using Profiles.Framework.Utilities;
+
+namespace Profiles.Search.Utilities
+{
+    public static class SearchDropDowns
+    {
+
+
+        public static string BuildDropdown(string type, string width, string defaultitem)
+        {
+            Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
+            string output = string.Empty;
+            
+            List<GenericListItem> list = new List<GenericListItem>();
+            /*
+                        switch (type)
+                        {
+                            case "institution":
+                                list = data.GetInstitutions();            
+                                break;
+
+                            case "department":
+                                list = data.GetDepartments();
+                                break;
+                            case "division":
+                                list = data.GetDivisions();
+                                break;
+                        }
+            */
+            list = data.GetCountries();
+
+            //if (defaultitem.IsNullOrEmpty())
+            output += "<option value=\"\">All Countries</option>";
+
+
+            foreach (GenericListItem item in list)
+            {
+                if (!defaultitem.IsNullOrEmpty() && defaultitem == item.Value)
+                    output += "<option selected=\"true\" value=\"" + item.Value + "\">" + item.Text + "</option>";
+                else
+                    output += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+            }
+
+            return "<select title=\"" + type + "\" name=\"" + type + "\" id=\"" + type + "\" style=\"width:" + width + "px\">" + output + "</select>";
+
+        }
+
+    }
+
+}

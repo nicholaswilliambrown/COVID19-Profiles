@@ -1,0 +1,18 @@
+﻿<mapconfig>
+  <Zoom>
+    <CenterLat>0.000</CenterLat>
+    <CenterLong>0.000</CenterLong>
+    <ZoomLevel>1</ZoomLevel>
+    <Label>World</Label>
+    <SortOrder>1</SortOrder>
+    <DefaultLevel>True</DefaultLevel>
+  </Zoom>  
+  <Zoom>
+    <CenterLat>39.000</CenterLat>
+    <CenterLong>-100.000</CenterLong>
+    <ZoomLevel>4</ZoomLevel>
+    <Label>U.S.A.</Label>
+    <SortOrder>2</SortOrder>
+    <DefaultLevel></DefaultLevel>
+  </Zoom>  
+ </mapconfig>

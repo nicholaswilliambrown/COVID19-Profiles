@@ -29,19 +29,19 @@ namespace Profiles.Framework.Utilities
             {
 
                 // If in development mode, return localhost with default vs.net port assignment.
- //               if (HttpContext.Current.Request.Url.Host.ToUpper() == "LOCALHOST")
- //                   return "http://localhost:55956";
+              //  if (HttpContext.Current.Request.Url.Host.ToUpper() == "LOCALHOST")
+                    return "http://localhost:55956";
 
-                DataIO data = new DataIO();
+                //DataIO data = new DataIO();
 
-                string restdomain = data.GetRESTBasePath();
+                //string restdomain = data.GetRESTBasePath();
 
-                if (HttpContext.Current.Request.IsSecureConnection)
-                {
-                    restdomain = restdomain.Replace("http:", "https:");
-                }
+                //if (HttpContext.Current.Request.IsSecureConnection)
+                //{
+                //    restdomain = restdomain.Replace("http:", "https:");
+                //}
 
-                return restdomain;
+                //return restdomain;
             }
         }
 

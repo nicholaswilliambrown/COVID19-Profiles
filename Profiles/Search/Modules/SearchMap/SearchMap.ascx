@@ -36,7 +36,6 @@
         var chart = new google.visualization.GeoChart(document.getElementById("geo-chart-world"));
 
 
-
         function myClickHandler() {
             var selection = chart.getSelection();
             var message = '';
@@ -48,9 +47,9 @@
                 }
             }
             if (message == '') {
-                message = 'nothing';
+                return false;
             }
-
+            
             window.location = "country.aspx?country=" + message;
         }
 
@@ -83,14 +82,11 @@
         this.localcountrycodes = countrycodes;
         if (countrydata.length != 0) {
             google.charts.setOnLoadCallback(geoStats.drawGeoChart_World(countrydata));
-
         }
 
         if (researchers.length != 0) {
-
             geoStats.processResearchers(researcherdata);
         }
-
 
     });
 

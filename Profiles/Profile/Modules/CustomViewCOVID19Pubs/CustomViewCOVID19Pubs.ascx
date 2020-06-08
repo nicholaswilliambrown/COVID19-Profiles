@@ -111,11 +111,7 @@
 <script type="text/javascript">
     var flipped = false;
 
-
-
-
-
-    
+       
     
 
     $("#divDisplayType a").on("click", function () {

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Search.Modules.SearchOptions {
-    
-    
-    public partial class SearchOptions {
-        
+namespace Profiles.Search.Modules.SearchOptions
+{
+
+
+    public partial class SearchOptions
+    {
+
         /// <summary>
         /// litModifySearch control.
         /// </summary>
@@ -20,14 +22,5 @@ namespace Profiles.Search.Modules.SearchOptions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litModifySearch;
-        
-        /// <summary>
-        /// litSearchOtherInstitutions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litSearchOtherInstitutions;
     }
 }

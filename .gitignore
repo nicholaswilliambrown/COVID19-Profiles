@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+#James B Norman added this 
+web.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -64,7 +64,7 @@ namespace Profiles.Search.Modules.SearchOptions
                     searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
             }
 
-            litSearchOtherInstitutions.Text = "<a href='" + Root.Domain + "/direct/default.aspx?keyword=" + searchfor + "&searchrequest=" + base.MasterPage.SearchRequest + "&searchtype=" + Request.QueryString["searchtype"] + "'>" + "Search Other Institutions" + "</a>";
+            
         }
 
         private XmlDocument SearchData { get; set; }

@@ -55,8 +55,13 @@ namespace Profiles.Search.Modules.SearchMap
         protected string googleKey
         {
             get
-            {             
-                return "AIzaSyBt4Bwjyn8-luqh7ePL4I3-yzjFXDjIsQ4";
+            {
+                if (ConfigurationManager.AppSettings["GoogleMapsKey"] != null)
+                {
+                    if (ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim().Length > 0)
+                        return "?key=" + ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim();
+                }
+                return "";
             }
         }
 

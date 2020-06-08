@@ -24,3 +24,13 @@ E:\Profiles\COVID19\Profiles\Profiles\obj\Debug\Profiles.csproj.CoreCompileInput
 E:\Profiles\COVID19\Profiles\Profiles\obj\Debug\Profiles.csproj.CopyComplete
 E:\Profiles\COVID19\Profiles\Profiles\obj\Debug\Profiles.dll
 E:\Profiles\COVID19\Profiles\Profiles\obj\Debug\Profiles.pdb
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\bin\Profiles.dll.config
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\bin\Profiles.dll
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\bin\Profiles.pdb
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\bin\Newtonsoft.Json.dll
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\bin\Newtonsoft.Json.xml
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.csproj.CoreCompileInputs.cache
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.csproj.CopyComplete
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.dll
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.pdb
+C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.csprojAssemblyReference.cache

@@ -158,17 +158,17 @@
                   <tr>
                     <td style="padding-left:45px">
                       <div id="divColSelect" style="border-right: solid 1px gray; border-bottom: solid 1px gray;
-                                                border-left: solid 1px silver; padding-left:3px; margin-left: -5px; margin-top: -1px; height: 100; width: 144px; overflow: auto;
+                                                border-left: solid 1px silver; padding-left:3px; margin-left: -5px; padding-top: 10px; height: 100; width: 144px; overflow: auto;
                                                 background-color: #ffffff;z-index:5;position: absolute;">
                         <xsl:if test="$ShowInstitutions='true'">
                           <br />
                           <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox" title="Institution"/>
-                          <span>Institution</span>
+                          <span style="margin-left:5px;">Institution</span>
                         </xsl:if>
                         <xsl:if test="$ShowDepartments='true'">
                           <br></br>
                           <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox" title="Department"/>
-                          <span>Country</span>
+                          <span style="margin-left:5px;">Country</span>
                         </xsl:if>
                       </div>
                     </td>

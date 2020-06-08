@@ -33,4 +33,3 @@ C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.cspr
 C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.csproj.CopyComplete
 C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.dll
 C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.pdb
-C:\Users\jn75\Documents\GitHub\COVID19-Profiles\Profiles\obj\Debug\Profiles.csprojAssemblyReference.cache

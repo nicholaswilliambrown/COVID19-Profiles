@@ -49,7 +49,7 @@
             if (message == '') {
                 return false;
             }
-            
+
             window.location = "country.aspx?country=" + message;
         }
 
@@ -91,7 +91,7 @@
     });
 
     geoStats.processResearchers = function processResearchers(data) {
-        $("#geo-top-researchers").html('');        
+        $("#geo-top-researchers").html('');
         $(data).each(function (index, item) {
             $("#geo-top-researchers").append("<div style='display:flex;margin-bottom:2px;'><div style='margin-right:5px;width:16px;text-align:center'>" + geoStats.getCountryCode(item.Country) + "</div><div><a href='" + item.URI + "'>" + item.Name + "</a></div></div>");
         });
@@ -110,18 +110,24 @@
     }
 
 
+    setTimeout(function () {
+        if ($("#geo-chart-world").find("#google-visualization-errors-all-1").length == 1) {
+            geoStats.drawGeoChart_World(countries);
+        }
+    }, 3000);
+
 </script>
 
 
 <div style="width: 100%; margin-bottom: 25px; display: inline-flex">
-    <div style="margin-right:100px">
+    <div style="margin-right: 100px">
         <div class="headings">Top researchers</div>
-        <div id="geo-top-researchers" style="margin-right: 15%;width:200px"></div>
+        <div id="geo-top-researchers" style="margin-right: 15%; width: 200px"></div>
     </div>
 
     <div>
         <div class="headings">Browse researchers by country</div>
-        <div id="geo-chart-world" class="geo-chart" style="width:600px;">
+        <div id="geo-chart-world" class="geo-chart" style="width: 600px;">
         </div>
     </div>
 </div>

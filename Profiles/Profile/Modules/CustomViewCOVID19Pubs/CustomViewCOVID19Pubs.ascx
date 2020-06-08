@@ -111,7 +111,10 @@
 <script type="text/javascript">
     var flipped = false;
 
-       
+    $(document).ready(function () {
+        applyFilters();
+
+    });
     
 
     $("#divDisplayType a").on("click", function () {
@@ -219,7 +222,7 @@
 
     setTimeout(function () {
         
-        $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+       // $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
     }, 1000);
 /*
     var altmetricChanged = false;
@@ -255,10 +258,7 @@
     }, 900);
 
 
-    setTimeout(function () {
-
-        applyFilters();
-    }, 2000);
+   
 
 
     function toggleFilter(filterValue) {

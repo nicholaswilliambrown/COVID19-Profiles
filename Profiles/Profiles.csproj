@@ -597,6 +597,9 @@
     <Content Include="Search\Modules\SearchMap\Flags\zw.gif" />
     <Content Include="Search\Modules\SearchMap\SearchMap.ascx" />
     <Content Include="SiteMap.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\Default.aspx.cs">
@@ -2342,6 +2345,12 @@
     <Content Include="Search\Images\search.jpg" />
     <Content Include="SPARQL\Modules\ModuleCatalogue.xml" />
     <Content Include="Search\Modules\SearchMap\countries.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

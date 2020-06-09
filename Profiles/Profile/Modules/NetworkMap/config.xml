@@ -6,7 +6,7 @@
     <Label>World</Label>
     <SortOrder>1</SortOrder>
     <DefaultLevel>True</DefaultLevel>
-  </Zoom>  
+  </Zoom>
   <Zoom>
     <CenterLat>39.000</CenterLat>
     <CenterLong>-100.000</CenterLong>
@@ -14,5 +14,37 @@
     <Label>U.S.A.</Label>
     <SortOrder>2</SortOrder>
     <DefaultLevel></DefaultLevel>
-  </Zoom>  
- </mapconfig>
+  </Zoom>
+  <Zoom>
+    <CenterLat>50.076</CenterLat>
+    <CenterLong>14.444</CenterLong>
+    <ZoomLevel>4</ZoomLevel>
+    <Label>Europe</Label>
+    <SortOrder>3</SortOrder>
+    <DefaultLevel></DefaultLevel>
+  </Zoom>
+  <Zoom>
+    <CenterLat>32.2600</CenterLat>
+    <CenterLong>98.2659</CenterLong>
+    <ZoomLevel>3</ZoomLevel>
+    <Label>Asia</Label>
+    <SortOrder>4</SortOrder>
+    <DefaultLevel></DefaultLevel>
+  </Zoom>
+  <Zoom>
+    <CenterLat>-9.6250</CenterLat>
+    <CenterLong>-59.0353</CenterLong>
+    <ZoomLevel>3</ZoomLevel>
+    <Label>South America</Label>
+    <SortOrder>5</SortOrder>
+    <DefaultLevel></DefaultLevel>
+  </Zoom>
+  <Zoom>
+    <CenterLat>14.9285</CenterLat>
+    <CenterLong>18.8583</CenterLong>
+    <ZoomLevel>3</ZoomLevel>
+    <Label>Africa</Label>
+    <SortOrder>6</SortOrder>
+    <DefaultLevel></DefaultLevel>
+  </Zoom>
+</mapconfig>

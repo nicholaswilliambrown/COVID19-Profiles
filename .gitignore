@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 
-Web.config
+/Profiles/Web.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -340,3 +340,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Profiles/Web.Debug.config
+/Profiles/Web.Release.config
+/Profiles/Web.config

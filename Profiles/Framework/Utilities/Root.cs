@@ -40,8 +40,8 @@ namespace Profiles.Framework.Utilities
                 {
                     restdomain = restdomain.Replace("http:", "https:");
                 }
-               // return "http://localhost:55956";
-                return restdomain;
+                return "http://localhost:55956";
+               // return restdomain;
             }
         }
 

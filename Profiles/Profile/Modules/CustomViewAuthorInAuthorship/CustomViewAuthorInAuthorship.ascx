@@ -230,10 +230,7 @@
         }
     });
 
-    setTimeout(function () {
-        
-        $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
-    }, 1000);
+   
 /*
     var altmetricChanged = false;
 
@@ -349,6 +346,7 @@
         $("#divFiltered").show();
         $("#divPubListDetails").show();
         $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+        
     }
 
 

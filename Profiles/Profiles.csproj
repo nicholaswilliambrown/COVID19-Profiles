@@ -597,9 +597,6 @@
     <Content Include="Search\Modules\SearchMap\Flags\zw.gif" />
     <Content Include="Search\Modules\SearchMap\SearchMap.ascx" />
     <Content Include="SiteMap.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\Default.aspx.cs">

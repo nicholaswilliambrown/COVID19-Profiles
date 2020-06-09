@@ -158,7 +158,7 @@
                   <tr>
                     <td style="padding-left:45px">
                       <div id="divColSelect" style="border-right: solid 1px gray; border-bottom: solid 1px gray;
-                                                border-left: solid 1px silver; padding-left:3px; margin-left: -5px; padding-top: 10px; height: 100; width: 144px; overflow: auto;
+                                                border-left: solid 1px silver; padding-left:3px; margin-left: -5px; padding-top: 10px; width: 144px; overflow: auto;
                                                 background-color: #ffffff;z-index:5;position: absolute;">
                         <xsl:if test="$ShowInstitutions='true'">
                           <br />

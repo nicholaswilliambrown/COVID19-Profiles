@@ -111,8 +111,15 @@
 
 
     setTimeout(function () {
-        if ($("#geo-chart-world").find("#google-visualization-errors-all-1").length == 1) {
+        console.log($("#geo-chart-world").find("#google-visualization-errors-all-1").length);
+        console.log($("#geo-chart-world").html().length);
+        console.log($("#geo-top-researchers").html().length);
+        if ($("#geo-chart-world").find("#google-visualization-errors-all-1").length == 1 ) {
             geoStats.drawGeoChart_World(countries);
+            geoStats.processResearchers(researchers);
+            console.log($("#geo-chart-world").find("#google-visualization-errors-all-1").length);
+            console.log($("#geo-chart-world").html().length);
+            console.log($("#geo-top-researchers").html().length);
         }
     }, 3000);
 

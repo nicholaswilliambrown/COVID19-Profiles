@@ -30,7 +30,7 @@ namespace Profiles.Framework.Utilities
 
                 //If in development mode, return localhost with default vs.net port assignment.
                 //if (HttpContext.Current.Request.Url.Host.ToUpper() == "LOCALHOST")
-                //    return "http://localhost:55956";
+                  //  return "http://localhost:55956";
 
                 DataIO data = new DataIO();
 
@@ -40,8 +40,8 @@ namespace Profiles.Framework.Utilities
                 {
                     restdomain = restdomain.Replace("http:", "https:");
                 }
-
-                return restdomain;
+                return "http://localhost:55956";
+               // return restdomain;
             }
         }
 

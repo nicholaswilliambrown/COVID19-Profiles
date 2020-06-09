@@ -34,7 +34,7 @@
     <form runat="server" id="form1" enctype="multipart/form-data" method="post">
         <asp:ToolkitScriptManager AsyncPostBackTimeout="3600" EnablePartialRendering="true" CombineScripts="false" EnableViewState="true" ID="toolkitScriptMaster" runat="server" />
 
-        <script type="text/javascript">
+<%--        <script type="text/javascript">
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
                     (i[r].q = i[r].q || []).push(arguments)
@@ -44,7 +44,7 @@
             ga('create', 'UA-59825751-1', '.catalyst.harvard.edu', { 'name': 'b' });
             ga('send', 'pageview');
             ga('b.send', 'pageview');
-        </script>
+        </script>--%>
         <div id='page-container'>
             <div class="institutionHeader">
                 <%--  Changed top banner to PNG so transparent logos can be supported--%>

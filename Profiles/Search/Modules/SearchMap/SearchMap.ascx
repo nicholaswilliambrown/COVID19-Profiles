@@ -69,13 +69,12 @@
 
 
 
-    google.charts.load('current', {
-        'packages': ['geochart'],
-        'mapsApiKey': '<%= googleKey %>'
-    });
-
-
     $(window).on('load', function () {
+
+        google.charts.load('current', {
+            'packages': ['geochart'],
+            'mapsApiKey': '<%= googleKey %>'
+        });
 
         var countrydata = countries;
         var researcherdata = researchers;
@@ -114,7 +113,7 @@
         console.log($("#geo-chart-world").find("#google-visualization-errors-all-1").length);
         console.log($("#geo-chart-world").html().length);
         console.log($("#geo-top-researchers").html().length);
-        if ($("#geo-chart-world").find("#google-visualization-errors-all-1").length == 1 ) {
+        if ($("#geo-chart-world").html().length < 12905) {
             geoStats.drawGeoChart_World(countries);
             geoStats.processResearchers(researchers);
             console.log($("#geo-chart-world").find("#google-visualization-errors-all-1").length);

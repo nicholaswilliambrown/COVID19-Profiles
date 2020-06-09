@@ -168,7 +168,7 @@ namespace Profiles.Search
             Literal script = new Literal();
             script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
             Page.Header.Controls.Add(script);
-        
+
 
             HtmlGenericControl stats_jsapi = new HtmlGenericControl("script");
             stats_jsapi.Attributes.Add("type", "text/javascript");

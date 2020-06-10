@@ -21,10 +21,13 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <meta name="apple-mobile-web-app-title" content="Profiles RNS">
-    <meta name="application-name" content="Profiles RNS">
+    <meta name="apple-mobile-web-app-title" content="Profiles RNS Covid Authors">
+    <meta name="application-name" content="Profiles RNS Covid Authors">
     <meta name="msapplication-TileColor" content="#a41c2f">
     <meta name="theme-color" content="#a41c2f">
+    <meta name="description" content="Covid Authors site hosted as an algorithm generated social network system of publications, keywords, co-authors and more.">
+    <meta name="keywords" content="Covid Authors,Covid Publications,Covid Researchers,Social Network Analysis,">
+    <meta name="author" content="Weber Lab (http://weber.hms.harvard.edu/)">
 </head>
 <body id="bodyMaster" runat="server">
     <!-- Google Tag Manager (noscript) -->

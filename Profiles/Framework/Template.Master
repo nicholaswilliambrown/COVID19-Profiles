@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="framework/images/favicon.ico">
+
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
@@ -27,7 +29,7 @@
     <meta name="theme-color" content="#a41c2f">
     <meta name="description" content="Covid Authors site hosted as an algorithm generated social network system of publications, keywords, co-authors and more.">
     <meta name="keywords" content="Covid Authors,Covid Publications,Covid Researchers,Social Network Analysis,">
-    <meta name="author" content="Weber Lab (http://weber.hms.harvard.edu/)">
+    <meta name="author" content="Weber Lab (https://weber.hms.harvard.edu/)">
 </head>
 <body id="bodyMaster" runat="server">
     <!-- Google Tag Manager (noscript) -->

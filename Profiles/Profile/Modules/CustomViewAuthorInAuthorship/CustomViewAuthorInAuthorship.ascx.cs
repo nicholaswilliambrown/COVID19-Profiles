@@ -164,23 +164,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     }
 
                 }
-                string url = "<a href=\"" + Root.Domain + "/profile/" + nodeID.ToString() + "\">";
-                string lblPublicationText = pub.prns_informaitonResourceReference;
-                int indx = lblPublicationText.IndexOf(url);
-                if (indx > -1)
-                {
-                    try
-                    {
-                        lblPublicationText = lblPublicationText.Replace(url, "<b>");
-                        indx = lblPublicationText.IndexOf("</a>", indx);
-                        lblPublicationText = lblPublicationText.Remove(indx, 4);
-                        lblPublicationText = lblPublicationText.Insert(indx, "</b>");
-                    }
-                    catch(Exception)
-                    { lblPublicationText = pub.prns_informaitonResourceReference; }
-
-                }
-                lblPublication.Text = lblPublicationText;
+                lblPublication.Text = pub.prns_informaitonResourceReference;
                 lblPublicationIDs.Text = lblPubTxt;
             }
         }

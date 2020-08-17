@@ -7,20 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
+namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
 {
 
 
-    public partial class CustomViewPersonGeneralInfo
+    public partial class CustomViewAuthorInAuthorshipTimeline
     {
 
         /// <summary>
-        /// litPersonalInfo control.
+        /// timelineBar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litPersonalInfo;
+        protected global::System.Web.UI.HtmlControls.HtmlImage timelineBar;
+
+        /// <summary>
+        /// litTimelineTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTimelineTable;
     }
 }

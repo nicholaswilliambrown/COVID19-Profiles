@@ -84,19 +84,19 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             }
             args.AddParam("nodeid", "", Request.QueryString["Subject"]);
             litPersonalInfo.Text = XslHelper.TransformInMemory(Server.MapPath("~/Profile/Modules/CustomViewPersonGeneralInfo/CustomViewPersonGeneralInfo.xslt"), args, base.BaseData.OuterXml);
-
+/*
             if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces) != null)
             {
                 string imageurl = base.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces).Value;
-                imgPhoto.ImageUrl = imageurl + "&cachekey=" + Guid.NewGuid().ToString();
+                imgPhoto.ImageUrl = imageurl;// + "&cachekey=" + Guid.NewGuid().ToString();
             }
             else
             {
                 imgPhoto.Visible = false;
             }
-
+*/
             // OpenSocial.  Allows gadget developers to show test gadgets if you have them installed
-            string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
+ /*           string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
             OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page);
             if (om.IsVisible() && om.GetUnrecognizedGadgets().Count > 0) 
             {
@@ -112,7 +112,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 // Add this just in case it is needed.
                 new ORNGProfileRPCService(Page, this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces).InnerText, uri);
             }
-        }
+ */       }
 
     }
 

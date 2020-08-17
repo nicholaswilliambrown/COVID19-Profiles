@@ -41,7 +41,7 @@ namespace Profiles.Framework.Utilities
 
             XmlDocument document = new XmlDocument();
 
-            document.LoadXml(property.InnerXml);
+            document.LoadXml(property.OuterXml);
 
             ModulesProcessing mp = new ModulesProcessing();
             return mp.LoadModules(document);

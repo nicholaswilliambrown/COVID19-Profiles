@@ -28,8 +28,31 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
         }
         private void DrawProfilesModule()
         {
-
-
+            DataIO.PublicationsType pt;
+            if (base.Context.Request.RawUrl.Contains("Publications=All"))
+            {
+                pt = DataIO.PublicationsType.All;
+                aAllPubs.HRef = "";
+                aAllPubs.Attributes.Add("class", "selected");
+                aCoronaPubs.HRef = base.Context.Request.Path + "";
+                aCovidPubs.HRef = base.Context.Request.Path + "?Publications=Covid-19";
+            }
+            else if (base.Context.Request.RawUrl.Contains("Publications=Covid-19"))
+            {
+                pt = DataIO.PublicationsType.Covid;
+                aCovidPubs.HRef = "";
+                aCovidPubs.Attributes.Add("class", "selected");
+                aCoronaPubs.HRef = base.Context.Request.Path + "";
+                aAllPubs.HRef = base.Context.Request.Path + "?Publications=All";
+            }
+            else
+            {
+                pt = DataIO.PublicationsType.Coronavirus;
+                aCoronaPubs.HRef = "";
+                aCoronaPubs.Attributes.Add("class", "selected");
+                aAllPubs.HRef = base.Context.Request.Path + "?Publications=All";
+                aCovidPubs.HRef = base.Context.Request.Path + "?Publications=Covid-19";
+            }
             DateTime d = DateTime.Now;
             Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO data = new Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO();
             List<Publication> publication = new List<Publication>();
@@ -42,7 +65,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             if (BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Group']", namespaces) != null)
                 type = Utilities.DataIO.ClassType.Group;
 
-            using (SqlDataReader reader = data.GetPublications(base.RDFTriple, type))
+            using (SqlDataReader reader = data.GetPublications(base.RDFTriple, type, pt))
             {
                 while (reader.Read())
                 {
@@ -55,26 +78,6 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                 rpPublication.DataSource = publication;
                 rpPublication.DataBind();
             }
-
-            // Get timeline bar chart
-            string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
-            if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
-            {
-                while (reader.Read())
-                {
-                    timelineBar.Src = reader["gc"].ToString();
-                    timelineBar.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
-                }
-                reader.Close();
-            }
-
-            if (timelineBar.Src == "")
-            {
-                timelineBar.Visible = false;
-            }
-
 
             if (type == Utilities.DataIO.ClassType.Group) divPubHeaderText.Visible = false;
 

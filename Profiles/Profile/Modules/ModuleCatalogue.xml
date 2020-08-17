@@ -21,6 +21,8 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewInformationResource" FileName="CustomViewInformationResource.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveHeader" FileName="PassiveHeader.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorship" FileName="CustomViewAuthorInAuthorship.ascx" Enabled="true" CSS="CustomViewAuthorInAuthorship.css"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorshipFields" FileName="CustomViewAuthorInAuthorshipFields.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorshipTimeline" FileName="CustomViewAuthorInAuthorshipTimeline.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewConceptSimilarMesh" FileName="CustomViewConceptSimilarMesh.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewConceptTopJournal" FileName="CustomViewConceptTopJournal.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewConceptPublication" FileName="CustomViewConceptPublication.ascx" Enabled="true"/>
@@ -42,5 +44,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedVideos.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="Twitter.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewCOVID19Pubs" FileName="CustomViewCOVID19Pubs.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkCoauthorList" FileName="NetworkCoauthorList.ascx" Enabled="true"/>
 </ModuleList>
 

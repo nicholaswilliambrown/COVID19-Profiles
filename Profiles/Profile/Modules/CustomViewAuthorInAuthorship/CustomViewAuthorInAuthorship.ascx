@@ -2,10 +2,24 @@
 
 
 <div class='publicationList'>
+
+
     <div style="font-weight: bold; color: #888; padding: 5px 0px;" id="divPubHeaderText" visible="true" runat="server">
         Publications listed below are automatically derived from MEDLINE/PubMed and other sources, which might result in incorrect or missing publications. 		
     </div>
+    <table><tr><td>
+    <div class="anchor-tab" id="divPublicationType">
+        <b>Show:</b>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a tabindex="0" id="aAllPubs" href="?Publications=All" runat="server">All coronarirus related publications</a>
+        &nbsp; | &nbsp; 
+        <a tabindex="0" id="aCoronaPubs" href="?Publications=Coronavirus" runat="server">Covid-19 specific publications</a>
+        &nbsp; | &nbsp; 
+        <a tabindex="0" id="aCovidPubs" href="?Publications=Covid-19" runat="server">All publications</a>
+
+    </div>
+    </td></tr><tr><td>
     <div class="anchor-tab" id="divDisplayType">
+        <b>Sort By:</b>&nbsp;&nbsp;&nbsp;&nbsp;
         <a class='selected' tabindex="0" id="aNewest">Newest</a>
         &nbsp; | &nbsp; 
         <a tabindex="0" id="aOldest">Oldest</a>
@@ -13,13 +27,8 @@
         <a tabindex="0" id="aMostCited">Most Cited</a>
         &nbsp; | &nbsp; 
               <a tabindex="0" id="aMostDiscussed">Most Discussed</a>
-        &nbsp; | &nbsp; 
-		<a tabindex="0" id="aTimeline" class="link-visualization">Timeline</a>
-        &nbsp; | &nbsp; 
-              <a tabindex="0" id="aFieldSummary" class="link-visualization">Field Summary</a>
-        &nbsp; | &nbsp;
-		<a tabindex="0" id="aPlainText">Plain Text</a>
     </div>
+    </td></tr></table>
     <div id="divPubListDetails" class="details-text">
         <span class="details-text-highlight">PMC Citations</span> indicate the number of times the publication was cited by articles in PubMed Central, and the <span class="details-text-highlight">Altmetric</span> score represents citations in news articles and social media.
         (Note that publications are often cited in additional ways that are not shown here.)
@@ -58,47 +67,10 @@
         </ol>
     </div>
 
-    <div id="divTimeline" style='display: none; margin-top: 6px;'>
-        
 
 
-		<div id="publicationTimelineGraph">
-            <div class="details-text" style="margin-bottom: 10px;">
-                This graph shows the total number of publications by year. To see the data as text, <a id="divShowTimelineTable" tabindex="0">click here</a>.
-            </div>
-            <img id='timelineBar' runat='server' border='0' />
-        </div>
 
-        <div id="divTimelineTable" class="listTable" style="display: none; margin-top: 12px; margin-bottom: 8px;">
-            <div class="details-text" style="margin-bottom: 10px;">
-                This graph shows the total number of publications by year. To return to the graph, <a id="dirReturnToTimeline" tabindex="0">click here</a>.
-            </div>
-            <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
-        </div>
 
-    </div>
-
-    <div id="divFieldSummary" style='display: none; margin-top: 6px;'>
-        <div class="details-text" style="margin-bottom: 10px;">
-            This graph shows the number and percent of publications by field.
-            Fields are based on how the National Library of Medicine (NLM) classifies the publications' journals and might not represent the specific topics of the publications.
-            Note that an individual publication can be assigned to more than one field. As a result, the publication counts in this graph might add up to more than the number of publications the person has written.
-            To see the data as text, <a onclick="showFieldSummaryAlt()">click here</a>.
-        </div>
-		<div id="publicationJournalHeadings">
-            <div id="piechart" style="width: 580px; height: 400px;"></div>
-        </div>
-    </div>
-    <div id="divFieldSummaryAlt" style='display: none; margin-top: 6px;' class="listTable">
-        <div class="details-text" style="margin-bottom: 10px;">
-            This graph shows the number and percent of publications by field.
-            Fields are based on how the National Library of Medicine (NLM) classifies the publications' journals and might not represent the specific topics of the publications.
-            Note that an individual publication can be assigned to more than one field. As a result, the publication counts in this graph might add up to more than the number of publications the person has written.
-            To see the data as text, <a onclick="showFieldSummary()">click here</a>.
-        </div>
-		<div id="publicationJournalHeadingsAlt">
-        </div>
-    </div>
     <div class="publications-plain-text-options" style="display:none">
        <label class="publications-plain-text-options">Start with:</label>
         <input class="form-check-input" type="radio" checked style="margin-left:5px;margin-right:2px;" id="rdoNewest" name="pubradios" onclick="generatePlainText()"/>newest
@@ -136,12 +108,12 @@
 
             $("#divPlainText").hide();
             $(".publications-plain-text-options").hide();
-            $("#divTimeline").hide();
-            $("#divFieldSummary").hide();
+            //$("#divTimeline").hide();
+            //$("#divFieldSummary").hide();
             $("#divPubList").hide();
             $("#divFiltered").hide();
             $("#divPubListDetails").hide();
-            $("#divFieldSummaryAlt").hide();
+            //$("#divFieldSummaryAlt").hide();
 
             switch ($this.get(0).id) {
                 case "aNewest":
@@ -178,16 +150,6 @@
         }
     });
 
-    function showFieldSummaryAlt()
-    {
-        $("#divFieldSummaryAlt").show();
-        $("#divFieldSummary").hide();
-    }
-
-    function showFieldSummary() {
-        $("#divFieldSummaryAlt").hide();
-        $("#divFieldSummary").show();
-    }
 
     $(".xxxpublicationList .anchor-tab a").bind("keypress", function (e) {
         if (e.keyCode == 13) {
@@ -202,51 +164,12 @@
     });
 
 
-
-    $("#divShowTimelineTable").on("click", function () {
-        $("#divTimelineTable").show();
-        $("#publicationTimelineGraph").hide();
-    });
-
-    jQuery("#divShowTimelineTable").on("keypress", function (e) {
-        if (e.keyCode == 13) {
-            $("#divTimelineTable").show();
-            $("#publicationTimelineGraph").hide();
-        }
-    });
-
-
-
-    $("#dirReturnToTimeline").bind("click", function () {
-
-        $("#divTimelineTable").hide();
-        $("#publicationTimelineGraph").show();
-    });
-
-    jQuery("#dirReturnToTimeline").bind("keypress", function (e) {
-        if (e.keyCode == 13) {
-            $("#divTimelineTable").hide();
-            $("#publicationTimelineGraph").show();
-        }
-    });
-
     setTimeout(function () {
    
         $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
     }, 1000);
-/*
-    var altmetricChanged = false;
 
-    setTimeout(function () {
-        $(function () {
-            $('span.altmetric-embed').on('altmetric:show', function () {
-                altmetricChanged = true;
-                var y = document.getElementsByClassName('hiddenCitationsLabel');
 
-            });
-        });
-    }, 1100);
-    */
     setTimeout(function () {
         $(function () {
             $('span.altmetric-embed').on('altmetric:hide', function () {
@@ -401,37 +324,5 @@
     }
 
 </script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-
-    // Load the Visualization API and the piechart package.
-    google.charts.load('current', { 'packages': ['corechart'] });
-
-    // Set a callback to run when the Google Visualization API is loaded.
-    //google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var jsonData = $.ajax({
-            url: "<%= svcURL %><%= nodeID %>",
-            dataType: "json",
-            async: false
-        }).responseText;
-
-        // Create our data table out of JSON data loaded from server.
-        var data = new google.visualization.DataTable(jsonData);
-
-        var colors = jsonData.substring(jsonData.lastIndexOf('\"colors\": \"[#') + 12, jsonData.indexOf("]", jsonData.lastIndexOf('\"colors\": \"[#') + 12));     
-        var colorArray = colors.split(",");
-        //colorArray = ['#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC'];
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, { width: 680, height: 300, fontSize: 12, colors: colorArray, legend: {alignment: 'center'}, chartArea: {left:20,top:20,width:'90%',height:'90%'}, tooltip: { text: 'percentage' } });
-
-        var altTableText = jsonData.substring(jsonData.lastIndexOf('\"altTxtTable\": \"') + 16, jsonData.indexOf("</table>", jsonData.lastIndexOf('\"altTxtTable\": \"') + 16) + 5);
-        document.getElementById("publicationJournalHeadingsAlt").innerHTML = altTableText;
-
-    }
-
-</script>
 

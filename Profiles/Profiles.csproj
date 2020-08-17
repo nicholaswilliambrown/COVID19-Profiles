@@ -263,6 +263,8 @@
     <Content Include="packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.xml" />
     <Content Include="Profile\CSS\viz.css" />
     <Content Include="Profile\Images\default_img.png" />
+    <Content Include="Profile\Modules\CustomViewAuthorInAuthorshipFields\CustomViewAuthorInAuthorshipFields.ascx" />
+    <Content Include="Profile\Modules\CustomViewAuthorInAuthorshipTimeline\CustomViewAuthorInAuthorshipTimeline.ascx" />
     <Content Include="Profile\Modules\CustomViewAuthorInAuthorship\BibliometricsSvc.aspx" />
     <Content Include="Profile\Modules\CustomViewAuthorInAuthorship\CustomViewAuthorInAuthorship.css" />
     <Content Include="Profile\Modules\CustomViewAuthorInAuthorship\PMC-citations.jpg" />
@@ -304,6 +306,7 @@
     <Content Include="Profile\Modules\NetworkClusterGroup\network_browser_force.swf" />
     <Content Include="Profile\Modules\NetworkCluster\JavaScript\networkClusterLayoutEngine.js" />
     <Content Include="Profile\Modules\NetworkCluster\JavaScript\watchdog.js" />
+    <Content Include="Profile\Modules\NetworkCoauthorList\NetworkCoauthorList.ascx" />
     <Content Include="Profile\Modules\NetworkRadialFlash\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkRadialFlash\Default.aspx" />
     <Content Include="Profile\Modules\NetworkRadialFlash\Images\yui-loading.gif" />
@@ -1339,6 +1342,20 @@
     <Compile Include="ProfilesDisplay.aspx.designer.cs">
       <DependentUpon>ProfilesDisplay.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Profile\Modules\CustomViewAuthorInAuthorshipFields\CustomViewAuthorInAuthorshipFields.ascx.cs">
+      <DependentUpon>CustomViewAuthorInAuthorshipFields.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewAuthorInAuthorshipFields\CustomViewAuthorInAuthorshipFields.ascx.designer.cs">
+      <DependentUpon>CustomViewAuthorInAuthorshipFields.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewAuthorInAuthorshipTimeline\CustomViewAuthorInAuthorshipTimeline.ascx.cs">
+      <DependentUpon>CustomViewAuthorInAuthorshipTimeline.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewAuthorInAuthorshipTimeline\CustomViewAuthorInAuthorshipTimeline.ascx.designer.cs">
+      <DependentUpon>CustomViewAuthorInAuthorshipTimeline.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Modules\CustomViewAuthorInAuthorship\BibliometricsSvc.aspx.cs">
       <DependentUpon>BibliometricsSvc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1507,6 +1524,14 @@
     </Compile>
     <Compile Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx.designer.cs">
       <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkCoauthorList\DataIO.cs" />
+    <Compile Include="Profile\Modules\NetworkCoauthorList\NetworkCoauthorList.ascx.cs">
+      <DependentUpon>NetworkCoauthorList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkCoauthorList\NetworkCoauthorList.ascx.designer.cs">
+      <DependentUpon>NetworkCoauthorList.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

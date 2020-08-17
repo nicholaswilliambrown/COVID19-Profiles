@@ -123,22 +123,14 @@ namespace Profiles.Profile.Modules.PropertyList
                                 }
                                 else if (propertyitem.SelectSingleNode("@CustomDisplay").Value == "true" && propertyitem.SelectNodes("CustomModule").Count > 0)
                                 {
-                                    itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9' />");
-                                    itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif'alt='Expand'  />");
-                                    itembuffer.Append("<div>");
-                                    itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" onkeypress=\"if (event.keyCode == 13) javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" onclick=\"javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" role=\"region\">");
-                                    itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' style='border: none; text-decoration: none !important' border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
-                                    itembuffer.Append(propertyitem.SelectSingleNode("@Label").Value);
-                                    itembuffer.Append("</div>");
-                                    itembuffer.Append("<div class='PropertyGroupData'>");
-                                    itembuffer.Append("<div id='" + propertyitem.SelectSingleNode("@URI").Value + "'>");
+
                                     
                                     foreach(XmlNode node in propertyitem.SelectNodes("CustomModule")){
                                         Framework.Utilities.ModulesProcessing mp = new ModulesProcessing();
                                         XmlDocument modules = new XmlDocument();
                                         modules.LoadXml(node.OuterXml);
 
-                                        foreach (XmlNode module in modules)
+                                        foreach (XmlNode module in modules.GetElementsByTagName("Module"))
                                         {
                                             this.Modules = mp.FetchModules(module);
 
@@ -156,12 +148,29 @@ namespace Profiles.Profile.Modules.PropertyList
 
                                             }
                                             this.Modules = null;
+
+                                            String propertyItemLabel = propertyitem.SelectSingleNode("@Label").Value;
+                                            if (module.Attributes["Label"] != null) propertyItemLabel = module.Attributes["Label"].Value;
+
+                                            itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9' />");
+                                            itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif'alt='Expand'  />");
+                                            itembuffer.Append("<div>");
+                                            itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" onkeypress=\"if (event.keyCode == 13) javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" onclick=\"javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" role=\"region\">");
+                                            itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' style='border: none; text-decoration: none !important' border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
+                                            itembuffer.Append(propertyItemLabel);
+                                            itembuffer.Append("</div>");
+                                            itembuffer.Append("<div class='PropertyGroupData'>");
+                                            itembuffer.Append("<div id='" + propertyitem.SelectSingleNode("@URI").Value + "'>");
+
+                                            itembuffer.Append(base.RenderCustomControl(module.OuterXml, base.BaseData));
+
+                                            itembuffer.Append("</div></div></div>");
                                         }
                                         hasitems = true;
-                                        itembuffer.Append(base.RenderCustomControl(node.OuterXml,base.BaseData));
+                                        
                                     }
 
-                                    itembuffer.Append("</div></div></div>");
+
 
                                 }
 

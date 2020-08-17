@@ -5,16 +5,40 @@
         <td>
             <asp:Literal runat="server" ID="litPersonalInfo"></asp:Literal>
         </td>
-        <td style="width:250px;padding-left:25px" align="right" valign="top">
-            <asp:Image itemprop="image" runat="server" ID="imgPhoto" />
+        <td style="width:300px;height:150px;padding-left:50px" align="left" valign="top">
+            <div id="regions_div" style="width: 300px; height: 150px;"></div>
+   
         </td>
     </tr>
 </table>
+            
+       
 <div id="toc"><ul></ul><div style="clear:both;"></div></div>
-<!-- for testing ORNG gadgets -->
-<asp:Panel runat="server" ID="pnlSandboxGadgets" Visible="false">
-    <div class= "PropertyGroup">Newly found "Sandbox" Gadgets</div>
-    <div class="SupportText">Note that this section is only visible when you login in through the 
-        <asp:HyperLink ID="hlORNG" NavigateUrl="~/ORNG" runat="server">ORNG</asp:HyperLink> interface with new gadgets that you want to test. Unrecognized Gadgets will be rendered in a "sandbox" view</div><p></p>
-    <asp:Literal runat="server" ID="litSandboxGadgets" Visible="false"/>
-</asp:Panel>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+//import { Script } from "vm";
+
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': ''
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', ''],
+          ['United Kingdom', 82]
+        ]);
+
+        var options = {region: '150',
+            legend: 'none',
+            tooltip: { trigger: 'none' },
+                        colorAxis: {colors: ['#B23F45', '#B23F45']}};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+    }
+ </script>

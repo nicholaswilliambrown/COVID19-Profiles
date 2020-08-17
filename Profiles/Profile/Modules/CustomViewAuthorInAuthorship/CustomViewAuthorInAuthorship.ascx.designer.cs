@@ -24,6 +24,33 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPubHeaderText;
 
         /// <summary>
+        /// aAllPubs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aAllPubs;
+
+        /// <summary>
+        /// aCoronaPubs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aCoronaPubs;
+
+        /// <summary>
+        /// aCovidPubs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aCovidPubs;
+
+        /// <summary>
         /// rpPublication control.
         /// </summary>
         /// <remarks>
@@ -31,24 +58,6 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpPublication;
-
-        /// <summary>
-        /// timelineBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage timelineBar;
-
-        /// <summary>
-        /// litTimelineTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTimelineTable;
 
         /// <summary>
         /// supportText control.

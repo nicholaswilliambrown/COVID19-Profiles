@@ -19,6 +19,7 @@ using System.Configuration;
 using System.Web;
 
 using Profiles.Framework.Utilities;
+using Profiles.Profile.Modules.CustomViewCOVID19Pubs;
 
 namespace Profiles.Profile.Utilities
 {
@@ -684,9 +685,14 @@ namespace Profiles.Profile.Utilities
         }
 
         public enum ClassType { Person, Group, Unknown }
-
+        public enum PublicationsType { All, Covid, Coronavirus}
 
         public SqlDataReader GetPublications(RDFTriple request, ClassType type)
+        {
+            return GetPublications(request, type, PublicationsType.All);
+        }
+
+        public SqlDataReader GetPublications(RDFTriple request, ClassType type, PublicationsType publicationsType)
         {
 
             SessionManagement sm = new SessionManagement();
@@ -703,6 +709,8 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
             dbcommand.Parameters.Add(new SqlParameter("@sessionid", sm.Session().SessionID));
+            if (publicationsType == PublicationsType.Covid ) dbcommand.Parameters.Add(new SqlParameter("@covid", 1));
+            if (publicationsType == PublicationsType.Coronavirus) dbcommand.Parameters.Add(new SqlParameter("@corona", 1));
 
             dbcommand.Connection = dbconnection;
 

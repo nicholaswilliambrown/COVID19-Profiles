@@ -15,7 +15,7 @@
     </div>
     <div id="divFieldSummary" style='margin-top: 6px;'>
         <div id="publicationJournalHeadings">
-            <div id="piechart" style="width: 580px; height: 400px;"></div>
+            <div id="piechart"></div>
         </div>
         <div class="details-text" style="margin-bottom: 10px;">
             This graph shows the number and percent of publications by field.

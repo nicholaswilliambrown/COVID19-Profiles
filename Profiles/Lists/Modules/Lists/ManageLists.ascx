@@ -208,7 +208,7 @@
     <div>
         <a id="a-institution" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=institution",Profiles.Framework.Utilities.Root.Domain) %>">Institution Summary</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="a-department" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=department",Profiles.Framework.Utilities.Root.Domain) %>">Department Summary</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="a-facultyrank" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=facultyrank",Profiles.Framework.Utilities.Root.Domain) %>">Faculty Rank Summary</a>
     </div>
-    <div id="piechart" style="width: 580px; height: 340px; margin-top: 16px;"></div>
+    <div id="piechart" style="margin-top: 16px;"></div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

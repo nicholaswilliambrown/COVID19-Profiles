@@ -77,7 +77,7 @@
             To see the data as text, <a onclick="showFieldSummaryAlt()">click here</a>.
         </div>
 		<div id="publicationJournalHeadings">
-            <div id="piechart" style="width: 580px; height: 400px;"></div>
+            <div id="piechart"></div>
         </div>
     </div>
     <div id="divFieldSummaryAlt" style='display: none; margin-top: 6px;' class="listTable">
@@ -418,7 +418,7 @@
         //colorArray = ['#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC'];
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, { width: 680, height: 300, fontSize: 12, colors: colorArray, legend: {alignment: 'center'}, chartArea: {left:20,top:20,width:'90%',height:'90%'}, tooltip: { text: 'percentage' } });
+        chart.draw(data, { fontSize: 12, colors: colorArray, legend: {alignment: 'center'}, chartArea: {left:20,top:20,width:'90%',height:'90%'}, tooltip: { text: 'percentage' } });
 
         var altTableText = jsonData.substring(jsonData.lastIndexOf('\"altTxtTable\": \"') + 16, jsonData.indexOf("</table>", jsonData.lastIndexOf('\"altTxtTable\": \"') + 16) + 5);
         document.getElementById("publicationJournalHeadingsAlt").innerHTML = altTableText;

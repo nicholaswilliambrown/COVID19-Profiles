@@ -10,11 +10,11 @@
     <table><tr><td>
     <div class="anchor-tab" id="divPublicationType">
         <b>Show:</b>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a tabindex="0" id="aAllPubs" href="?Publications=All" runat="server">All coronarirus related publications</a>
+        <a tabindex="0" id="aCoronaPubs" href="?Publications=Coronavirus" runat="server">All coronarirus related publications</a>
         &nbsp; | &nbsp; 
-        <a tabindex="0" id="aCoronaPubs" href="?Publications=Coronavirus" runat="server">Covid-19 specific publications</a>
+        <a tabindex="0" id="aCovidPubs" href="?Publications=Covid-19" runat="server">Covid-19 specific publications</a>
         &nbsp; | &nbsp; 
-        <a tabindex="0" id="aCovidPubs" href="?Publications=Covid-19" runat="server">All publications</a>
+        <a tabindex="0" id="aAllPubs" href="?Publications=All" runat="server">All publications</a>
 
     </div>
     </td></tr><tr><td>

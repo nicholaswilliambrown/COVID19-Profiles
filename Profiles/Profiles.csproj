@@ -1424,6 +1424,7 @@
     <Compile Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx.designer.cs">
       <DependentUpon>CustomViewListProperty.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\DataIO.cs" />
     <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx.cs">
       <DependentUpon>vcard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

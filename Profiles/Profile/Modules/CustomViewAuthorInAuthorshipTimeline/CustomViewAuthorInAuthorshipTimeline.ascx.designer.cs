@@ -15,6 +15,15 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
     {
 
         /// <summary>
+        /// covidTimelineBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage covidTimelineBar;
+
+        /// <summary>
         /// timelineBar control.
         /// </summary>
         /// <remarks>

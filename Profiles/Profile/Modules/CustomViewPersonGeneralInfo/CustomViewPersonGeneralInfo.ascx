@@ -27,12 +27,10 @@
       google.charts.setOnLoadCallback(drawRegionsMap);
 
       function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', ''],
-          ['United Kingdom', 82]
-        ]);
+          var data = google.visualization.arrayToDataTable([['Country', ''], ['<%= mapCountry %>', 82]]);
 
-        var options = {region: '150',
+          var options = {
+              <%= mapRegion %>
             legend: 'none',
             tooltip: { trigger: 'none' },
                         colorAxis: {colors: ['#B23F45', '#B23F45']}};

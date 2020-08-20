@@ -7,6 +7,10 @@
     <div id="divTimeline" style='margin-top: 6px;'>
         
 		<div id="publicationTimelineGraph">
+            <img id='covidTimelineBar' runat='server' border='0' />
+            <div id="divYearTable" style='margin-top: -6px;'>
+                <table><tr><td width="192"></td><td width="148"><span style="color:grey; font-size:smaller">2019</span></td><td><span style="color:grey; font-size:smaller">2020</span></td></tr></table>
+            </div>
             <img id='timelineBar' runat='server' border='0' />
             <div class="details-text" style="margin-bottom: 10px;">
                 This graph shows the total number of publications by year. To see the data as text, <a id="divShowTimelineTable" tabindex="0">click here</a>.

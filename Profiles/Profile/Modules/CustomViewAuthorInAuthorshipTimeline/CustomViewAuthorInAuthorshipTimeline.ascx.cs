@@ -40,7 +40,20 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
             Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO data = new Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO();
 
             // Get timeline bar chart
-            string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
+            string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetCovidData]";
+            if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
+            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
+            {
+                while (reader.Read())
+                {
+                    covidTimelineBar.Src = reader["gc"].ToString();
+                    covidTimelineBar.Alt = reader["alt"].ToString();
+                    litTimelineTable.Text = reader["asText"].ToString();
+                }
+                reader.Close();
+            }
+
+            storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
             if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
             using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
             {
@@ -48,7 +61,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
                 {
                     timelineBar.Src = reader["gc"].ToString();
                     timelineBar.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
+                    litTimelineTable.Text = litTimelineTable.Text + reader["asText"].ToString();
                 }
                 reader.Close();
             }

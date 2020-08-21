@@ -69,13 +69,13 @@ namespace Profiles.Profile.Modules.PropertyList
 
                     if ((propertygroup.SelectNodes("Property/Network/Connection").Count > 0 && propertygroup.SelectNodes("Property[@CustomDisplay='false']").Count > 0) || propertygroup.SelectNodes("Property/CustomModule").Count > 0)
                     {
-                        html.Append("<div class='PropertyGroup' tabindex=\"0\" style='cursor:pointer;' onkeypress=\"if (event.keyCode == 13) javascript:toggleBlock('propertygroup','" + propertygroup.SelectSingleNode("@URI").Value + "');\" onclick=\"javascript:toggleBlock('propertygroup','" + propertygroup.SelectSingleNode("@URI").Value + "');\"  role=\"region\"><br>");
-                        html.Append("<img id=\"propertygroup" + propertygroup.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' style='border: none; text-decoration: none !important' border='0' width='9' height='9'/>&nbsp;"); //add image and onclick here.
-                        html.Append("<input  type='hidden' id=\"imgon" + propertygroup.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' width='9'/>");
-                        html.Append("<input type='hidden' id=\"imgoff" + propertygroup.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif' alt='Expand' />");
+                        //html.Append("<div class='PropertyGroup' tabindex=\"0\" style='cursor:pointer;' onkeypress=\"if (event.keyCode == 13) javascript:toggleBlock('propertygroup','" + propertygroup.SelectSingleNode("@URI").Value + "');\" onclick=\"javascript:toggleBlock('propertygroup','" + propertygroup.SelectSingleNode("@URI").Value + "');\"  role=\"region\"><br>");
+                        //html.Append("<img id=\"propertygroup" + propertygroup.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' style='border: none; text-decoration: none !important' border='0' width='9' height='9'/>&nbsp;"); //add image and onclick here.
+                        //html.Append("<input  type='hidden' id=\"imgon" + propertygroup.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' width='9'/>");
+                        //html.Append("<input type='hidden' id=\"imgoff" + propertygroup.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif' alt='Expand' />");
                         
-                        html.Append(propertygroup.SelectSingleNode("@Label").Value);
-                        html.Append("&nbsp;<br></div>");
+                        //html.Append(propertygroup.SelectSingleNode("@Label").Value);
+                        //html.Append("&nbsp;<br></div>");
                         html.Append("<div class='PropertyGroupItem'  id='" + propertygroup.SelectSingleNode("@URI").Value + "'>");
 
                         foreach (XmlNode propertyitem in propertygroup.SelectNodes("Property"))
@@ -87,11 +87,11 @@ namespace Profiles.Profile.Modules.PropertyList
                                 {
                                     hasitems = false;
 
-                                    itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9'/>");
-                                    itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif' alt='Expand' />");
+                                   // itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9'/>");
+                                   // itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif' alt='Expand' />");
                                     itembuffer.Append("<div>");
-                                    itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" onkeypress=\"if (event.keyCode == 13)javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" onclick=\"javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" role=\"region\">");
-                                    itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
+                                    itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" role=\"region\">");
+                                    //itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
                                     itembuffer.Append(propertyitem.SelectSingleNode("@Label").Value);
                                     itembuffer.Append("</div>");
                                     itembuffer.Append("<div class='PropertyGroupData'>");
@@ -152,11 +152,11 @@ namespace Profiles.Profile.Modules.PropertyList
                                             String propertyItemLabel = propertyitem.SelectSingleNode("@Label").Value;
                                             if (module.Attributes["Label"] != null) propertyItemLabel = module.Attributes["Label"].Value;
 
-                                            itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9' />");
-                                            itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif'alt='Expand'  />");
+                                          //  itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9' />");
+                                           // itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif'alt='Expand'  />");
                                             itembuffer.Append("<div>");
-                                            itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" onkeypress=\"if (event.keyCode == 13) javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" onclick=\"javascript:toggleBlock('propertyitem','" + propertyitem.SelectSingleNode("@URI").Value + "');\" role=\"region\">");
-                                            itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' style='border: none; text-decoration: none !important' border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
+                                            itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" role=\"region\">");
+                                          //  itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse' style='border: none; text-decoration: none !important' border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
                                             itembuffer.Append(propertyItemLabel);
                                             itembuffer.Append("</div>");
                                             itembuffer.Append("<div class='PropertyGroupData'>");

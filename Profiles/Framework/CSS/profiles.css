@@ -223,9 +223,9 @@ div#catalyst-footer {
     font-size: 15px;
     color: #993333;
     padding: 5px;
-    text-align: left;
-    cursor: pointer;
+    text-align: left;    
     background-color: #EEE;
+    margin-top:26px;
 }
 
     .PropertyItemHeader a {
@@ -247,8 +247,7 @@ div#catalyst-footer {
     font-weight: normal;
     color: #666;
     font-size: 13px;
-    text-align: left;
-    border: 1px solid #ccc !important;
+    text-align: left;   
 }
 
 .PropertyGroupData {
@@ -259,7 +258,9 @@ div#catalyst-footer {
     color: #000;
     border: none !important;
 }
-
+#divYearTable{
+    margin-top:26px;
+}
 .institutionHeader {
     background-color: #000;
     text-align: center;

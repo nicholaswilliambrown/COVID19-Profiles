@@ -11,8 +11,10 @@
 --%>
 
 
+<asp:Literal runat="server" ID="litJS"></asp:Literal>
 
 <script>
+
 
     window.geoStats = window.geoStats || {};
     var localcountrycodes;
@@ -32,7 +34,7 @@
             },
         };
 
-
+       
         var chart = new google.visualization.GeoChart(document.getElementById("geo-chart-world"));
 
 
@@ -71,6 +73,7 @@
 
     $(window).on('load', function () {
 
+
         google.charts.load('current', {
             'packages': ['geochart'],
             'mapsApiKey': '<%= googleKey %>'
@@ -79,13 +82,15 @@
         var countrydata = countries;
         var researcherdata = researchers;
         this.localcountrycodes = countrycodes;
+        if (researchers.length != 0) {
+            geoStats.processResearchers(researcherdata);
+        }
+
         if (countrydata.length != 0) {
             google.charts.setOnLoadCallback(geoStats.drawGeoChart_World(countrydata));
         }
 
-        if (researchers.length != 0) {
-            geoStats.processResearchers(researcherdata);
-        }
+      
 
     });
 
@@ -110,17 +115,12 @@
 
 
     setTimeout(function () {
-        console.log($("#geo-chart-world").find("#google-visualization-errors-all-1").length);
-        console.log($("#geo-chart-world").html().length);
-        console.log($("#geo-top-researchers").html().length);
-        if ($("#geo-chart-world").html().length < 12905) {
+      
+        $("#loader-gif").hide();
             geoStats.drawGeoChart_World(countries);
-            geoStats.processResearchers(researchers);
-            console.log($("#geo-chart-world").find("#google-visualization-errors-all-1").length);
-            console.log($("#geo-chart-world").html().length);
-            console.log($("#geo-top-researchers").html().length);
-        }
-    }, 3000);
+      
+      
+    }, 2000);
 
 </script>
 
@@ -133,8 +133,8 @@
 
     <div>
         <div class="headings">Browse researchers by country</div>
-        <div id="geo-chart-world" class="geo-chart" style="width: 600px;">
+        <div id="geo-chart-world" class="geo-chart" style="width: 600px;">           
         </div>
+         <img src="/search/Images/loader.gif" id="loader-gif" />
     </div>
 </div>
-<asp:Literal runat="server" ID="litJS"></asp:Literal>

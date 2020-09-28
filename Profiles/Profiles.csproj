@@ -127,10 +127,13 @@
     <Content Include="Framework\Images\arrowLeft.png" />
     <Content Include="Framework\Images\arrowRight.png" />
     <Content Include="Framework\Images\blackMagnifyGlass.png" />
+    <Content Include="Framework\Images\CovidAuthorsHeader.png" />
+    <Content Include="Framework\Images\CovidAuthorsLogo.png" />
     <Content Include="Framework\Images\listen.jpg" />
     <Content Include="Framework\Images\orcid_16x16%281%29.gif" />
     <Content Include="Framework\Images\Orcid_Logo_rgb.png" />
     <Content Include="Framework\Images\Orcid_symbol_rgb.png" />
+    <Content Include="Framework\Images\SearchIcon.png" />
     <Content Include="Framework\Modules\MainMenu\default.aspx" />
     <Content Include="Framework\Modules\MainMenu\MyActiveNetwork.ascx" />
     <Content Include="Framework\Modules\MainMenu\MyLists.ascx" />

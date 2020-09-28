@@ -8,9 +8,7 @@
   <PanelList>
     <Panel Type="header"  />
     <Panel Type="page" />
-    <Panel Type="active">
-      <Module ID="MainMenu">
-      </Module>
+    <Panel Type="active">      
       <Module ID="Gadgets" >
         <ParamList>
           <Param Name="HTML">
@@ -19,9 +17,7 @@
         </ParamList>
       </Module>
     </Panel>
-    <Panel Name="Find People" Type="main">
-      <Module ID="SearchPerson">
-      </Module>
+    <Panel Name="Find People" Type="main">   
         <Module ID="SearchMap">
         </Module>
       <Module ID="CustomViewCOVID19Pubs">

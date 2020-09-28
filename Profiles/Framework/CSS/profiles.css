@@ -1,29 +1,4 @@
-/********************************************/
-/* New Search button - edit the colours to match your branding*/
-/********************************************/
-/*Dont touch this container as it provides spacing on top of CSS search button*/
-.profiles .search-button-container 
-{ 
-	margin-top: 10px;
-}
-.profiles a.search-button 
-{
-	background-color: #B23F45;
-	color: #ffffff;
-	background-image: url(../images/search.png);
-	background-repeat: no-repeat;
-	background-position: 5% 50%;
-	background-size: 18px;
-	padding: 5px 15px 5px 28px;
-	font-size: 16px;
-	border-radius: 5px;
-	border: 2px solid #b23f45;
-}
-.profiles a.search-button:hover 
-{
-	text-decoration: none;
-	box-shadow: 0 0 2px 2px #b23f45;
-}
+
 
 /*Replacing inline styles for the form headings in the main app*/
 .profiles .profilesPage .headings 
@@ -35,15 +10,108 @@
 }
 
 
-header._ci_shared_asset.tool-page .inner .title-container h1 { 
-margin: 18px 0 6px 0; 
-} 
-
-body {
+body, form, table, tr, td, p {
     padding: 0px;
     margin: 0px;
+    font-family: Arial;
 }
 
+body {
+    background-color: #606366;
+    font-size: 15px;
+    color: #444;
+}
+
+#header {
+    background-color: #005080;
+    height: 80px;
+    margin: 0 auto;
+}
+
+#headerBox {
+    width: 968px;
+    height: 80px;
+    background-image: url("../images/CovidAuthorsHeader.png");
+    text-align: left;
+}
+
+#headerLogo {
+    float: left;
+    height: 80px;
+    width: 120px;
+}
+
+#headerTitle {
+    float: left;
+    height: 80px;    
+}
+
+#headerSearch {
+    float: right;
+    height: 80px;
+    padding-top: 23px;
+}
+
+.searchBox-textbox {
+    border: none;
+    outline: none;
+    width: 93%;
+}
+
+
+
+
+#searchBox {
+    border: 2px solid #9CF;
+    background-color: #FFF;
+    height: 35px;
+    width: 400px;
+    border-radius: 16px;
+    text-align: left;
+    padding: 5px 8px 0px 16px;
+    color: #005080;
+}
+
+#main {
+    padding: 16px 0px;
+    background-color: #FFF;
+}
+
+#footer {
+}
+
+.TopText {
+    margin-bottom: 20px;
+}
+
+    .TopText td {
+        width: 1000px;
+        text-align: justify;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+.emphasis {
+    color: #005080;
+    font-weight: bold;
+}
+
+.BottomText {
+    margin: 16px 0px;
+}
+
+    .BottomText td {
+        width: 1000px;
+        text-align: justify;
+        font-size: 15px;
+        line-height: 22px;
+        color: #FFF;
+    }
+
+    .BottomText a {
+        color: #FFD;
+        text-decoration: underline;
+    }
 form {
     padding: 0px;
     margin: 0px;
@@ -261,12 +329,6 @@ div#catalyst-footer {
 #divYearTable{
     margin-top:26px;
 }
-.institutionHeader {
-    background-color: #000;
-    text-align: center;
-    padding: 20px 0px 20px 0px;
-    border-bottom: 8px solid #B23F45;
-}
 
 
 #page-container {
@@ -293,22 +355,20 @@ div#catalyst-footer {
     padding: 3px;
 }
 
-.profiles {
-    padding-top: 15px;   
-    display: inline-block;
-    width: 968px;
-    max-width: 968px;
-    overflow-y: visible;
-    text-align: center;
+.profiles {    
+    padding: 16px 0px;
+    background-color: #FFF;
+    text-align:center !important;
+
 }
 
     .profiles .profilesHeader {
-        width: 968px;
+        xwidth: 968px;
         text-align: left;
     }
 
     .profiles .profilesPage {
-        width: 968px;
+        xwidth: 968px;
         margin: 0 auto;
         overflow-y: visible;
         left: 0;

@@ -757,22 +757,6 @@ namespace Profiles.Profile.Utilities
 
         }
 
-        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc)
-        {
-            SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-            var db = new SqlConnection(connstr);
-
-            db.Open();
-
-            SqlCommand dbcommand = new SqlCommand(storedproc, db);
-            dbcommand.CommandType = CommandType.StoredProcedure;
-            dbcommand.CommandTimeout = base.GetCommandTimeout();
-            // Add parameters
-            dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
-            // Return reader
-            return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
-        }
 
         public SqlDataReader GetPublicationSupportHtml(RDFTriple request, bool editMode)
         {

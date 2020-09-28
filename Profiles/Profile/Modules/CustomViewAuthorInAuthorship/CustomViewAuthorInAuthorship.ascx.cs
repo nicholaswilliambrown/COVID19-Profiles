@@ -6,7 +6,7 @@ using System.Xml;
 using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
-
+using System.Text;
 
 namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
 {
@@ -95,12 +95,17 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
                 System.Web.UI.HtmlControls.HtmlGenericControl liPublication = ((System.Web.UI.HtmlControls.HtmlGenericControl)(e.Item.FindControl("liPublication")));
 
-                string lblPubTxt = "";// = pub.prns_informaitonResourceReference;
+                StringBuilder lblPubTxt = new StringBuilder();// = pub.prns_informaitonResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
 
 
-                    lblPubTxt = lblPubTxt + " PMID: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>" + pub.bibo_pmid + "</a>";
+                    lblPubTxt.Append(" PMID: <a href='//www.ncbi.nlm.nih.gov/pubmed/");
+                    lblPubTxt.Append(pub.bibo_pmid);
+                    lblPubTxt.Append("' target='_blank'>");
+                    lblPubTxt.Append(pub.bibo_pmid);
+                    lblPubTxt.Append("</a>");
+
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
                     liPublication.Attributes["data-citations"] = "" + pub.PMCCitations;
                     // liPublication.Attributes["data-Fields"] = pub.Fields;
@@ -117,23 +122,45 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                             string pmcid = pub.vivo_pmcid;
                             int len = pmcid.IndexOf(' ');
                             if (len != -1) pmcid = pmcid.Substring(0, len);
-                            lblPubTxt = lblPubTxt + "; PMCID: <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>" + pmcid + "</a>";
+                            lblPubTxt.Append("; PMCID: <a href='//www.ncbi.nlm.nih.gov/pmc/articles/");
+                            lblPubTxt.Append(pmcid);
+                            lblPubTxt.Append("' target='_blank'>");
+                            lblPubTxt.Append(pmcid);
+                            lblPubTxt.Append("</a>");
                             //litViewIn.Text = litViewIn.Text + ", <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>PubMed Central</a>";
                         }
                         else if (pub.vivo_pmcid.Contains("NIHMS"))
                         {
-                            lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
+                            lblPubTxt.Append("; NIHMSID: ");
+                            lblPubTxt.Append(pub.vivo_pmcid);
                         }
                     }
-                    lblPubTxt = lblPubTxt + ".";
-
+                    lblPubTxt.Append(".");
+                    StringBuilder litViewInText = new StringBuilder();
                     //if (pub.PMCCitations <= 0) litViewIn.Text = "Citations: <span class=\"PMC-citations\"><span class=\"PMC-citation-count\">0</span></span>";
-                    if (pub.PMCCitations <= 0) litViewIn.Text = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
-                    else litViewIn.Text = "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid + "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" + pub.PMCCitations + "</span></a>" +
-                       "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span></span>&nbsp;&nbsp;&nbsp;";
+                    if (pub.PMCCitations <= 0)
+                    {
+                        litViewInText.Append("<span id='spnHideOnNoAltmetric");
+                        litViewInText.Append(pub.bibo_pmid);
+                        litViewInText.Append("'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='");
+                        litViewInText.Append(pub.bibo_pmid);
+                        litViewInText.Append("'></span>&nbsp;&nbsp;&nbsp;</span>");
+                    }
+                    else 
+                    {
+                        litViewInText.Append("Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/");
+                        litViewInText.Append(pub.bibo_pmid);
+                        litViewInText.Append("/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">");
+                        litViewInText.Append(pub.PMCCitations);
+                        litViewInText.Append("</span></a><span id='spnHideOnNoAltmetric");
+                        litViewInText.Append(pub.bibo_pmid);
+                        litViewInText.Append("'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='");
+                        litViewInText.Append(pub.bibo_pmid);
+                        litViewInText.Append("'></span></span>&nbsp;&nbsp;&nbsp;"); 
+                    }
                     if (!pub.Fields.Equals(""))
                     {
-                        litViewIn.Text = litViewIn.Text + "Fields:&nbsp;<div style='display:inline-flex'>";
+                        litViewInText.Append("Fields:&nbsp;<div style='display:inline-flex'>");
                         string[] tmparray = pub.Fields.Split('|');
                         for (int i = 0; i < tmparray.Length; i++)
                         {
@@ -141,21 +168,33 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                             string colour = tmparray[i].Split(',')[1];
                             string displayName = tmparray[i].Split(',')[2];
                             liPublication.Attributes["data-Field" + colour] = "1";
-                            litViewIn.Text += "<a class='publication-filter' style='border:1px solid #" + colour + ";' data-color=\"#" + colour + "\" OnClick=\"toggleFilter('data-Field" + colour + "')\">" + field + "<span class='tooltiptext' style='background-color:#" + colour + ";'> " + displayName + "</span></a>";
+                            litViewInText.Append("<a class='publication-filter' style='border:1px solid #");
+                            litViewInText.Append(colour);
+                            litViewInText.Append(";' data-color=\"#");
+                            litViewInText.Append(colour);
+                            litViewInText.Append("\" OnClick=\"toggleFilter('data-Field");
+                            litViewInText.Append(colour);
+                            litViewInText.Append("')\">");
+                            litViewInText.Append(field);
+                            litViewInText.Append("<span class='tooltiptext' style='background-color:#");
+                            litViewInText.Append(colour);
+                            litViewInText.Append(";'> ");
+                            litViewInText.Append(displayName);
+                            litViewInText.Append("</span></a>");
                         }
-                        litViewIn.Text = litViewIn.Text + "</div>&nbsp;&nbsp;&nbsp;";
+                        litViewInText.Append("</div>&nbsp;&nbsp;&nbsp;");
                     }
 
                     if (pub.TranslationHumans + pub.TranslationAnimals + pub.TranslationCells + pub.TranslationPublicHealth + pub.TranslationClinicalTrial > 0)
                     {
-                        litViewIn.Text = litViewIn.Text + "Translation:";
-                        if (pub.TranslationHumans == 1) litViewIn.Text = litViewIn.Text + "<a class='publication-filter publication-humans' data-color='#3333CC' OnClick=\"toggleFilter('data-TranslationHumans')\">Humans</a>";
-                        if (pub.TranslationAnimals == 1) litViewIn.Text = litViewIn.Text + "<a class='publication-filter publication-animals' data-color='#33AA33' OnClick=\"toggleFilter('data-TranslationAnimals')\">Animals</a>";
-                        if (pub.TranslationCells == 1) litViewIn.Text = litViewIn.Text + "<a class='publication-filter publication-cells' data-color='#BB3333' OnClick=\"toggleFilter('data-TranslationCells')\">Cells</a>";
-                        if (pub.TranslationPublicHealth == 1) litViewIn.Text = litViewIn.Text + "<a class='publication-filter publication-public-health' data-color='#609' OnClick=\"toggleFilter('data-TranslationPublicHealth')\">PH<span class='tooltiptext' style='background-color:#609;'>Public Health</span></a>";
-                        if (pub.TranslationClinicalTrial == 1) litViewIn.Text = litViewIn.Text + "<a class='publication-filter publication-clinical-trial' data-color='#00C' OnClick=\"toggleFilter('data-TranslationClinicalTrial')\">CT<span class='tooltiptext' style='background-color:#00C;'>Clinical Trials</span></a>";
+                        litViewInText.Append("Translation:");
+                        if (pub.TranslationHumans == 1) litViewInText.Append("<a class='publication-filter publication-humans' data-color='#3333CC' OnClick=\"toggleFilter('data-TranslationHumans')\">Humans</a>");
+                        if (pub.TranslationAnimals == 1) litViewInText.Append("<a class='publication-filter publication-animals' data-color='#33AA33' OnClick=\"toggleFilter('data-TranslationAnimals')\">Animals</a>");
+                        if (pub.TranslationCells == 1) litViewInText.Append("<a class='publication-filter publication-cells' data-color='#BB3333' OnClick=\"toggleFilter('data-TranslationCells')\">Cells</a>");
+                        if (pub.TranslationPublicHealth == 1) litViewInText.Append("<a class='publication-filter publication-public-health' data-color='#609' OnClick=\"toggleFilter('data-TranslationPublicHealth')\">PH<span class='tooltiptext' style='background-color:#609;'>Public Health</span></a>");
+                        if (pub.TranslationClinicalTrial == 1) litViewInText.Append("<a class='publication-filter publication-clinical-trial' data-color='#00C' OnClick=\"toggleFilter('data-TranslationClinicalTrial')\">CT<span class='tooltiptext' style='background-color:#00C;'>Clinical Trials</span></a>");
                     }
-
+                    litViewIn.Text = litViewInText.ToString();
                 }
                 else
                 {
@@ -163,12 +202,15 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     
                     if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
                     {
-                        lblPubTxt = "<a href='" + pub.vivo_webpage + "' target='_blank'>View Publication</a>.";
+                        lblPubTxt.Append("<a href='");
+                        lblPubTxt.Append(pub.vivo_webpage);
+                        lblPubTxt.Append("' target='_blank'>View Publication</a>.");
                     }
 
                 }
+                
                 lblPublication.Text = pub.prns_informaitonResourceReference;
-                lblPublicationIDs.Text = lblPubTxt;
+                lblPublicationIDs.Text = lblPubTxt.ToString();
             }
         }
         public class Publication

@@ -990,5 +990,60 @@ namespace Profiles.Framework.Utilities
 
 
         #endregion
+
+        public string GetSiteMap(string pageType, int offset)
+        {
+
+            string connstr = GetConnectionString();
+            SessionManagement sm = new SessionManagement();
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+
+            SqlParameter[] param;
+
+            param = new SqlParameter[2];
+
+            param[0] = new SqlParameter("@PageType", pageType);
+            param[1] = new SqlParameter("@Offset", offset);
+
+            SqlCommand dbcommand = GetDBCommand(ref dbconnection, "[Profile.Data].[GetSiteMap]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
+            string xmlstr = "";
+            using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
+            {
+                while (dbreader.Read())
+                {
+                    xmlstr += dbreader[0].ToString();
+                }
+
+                if (!dbreader.IsClosed)
+                    dbreader.Close();
+            }
+
+            return xmlstr;
+        }
+
+        public string GetSiteMapIndex()
+        {
+
+            string connstr = GetConnectionString();
+            SessionManagement sm = new SessionManagement();
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+
+            SqlCommand dbcommand = GetDBCommand(ref dbconnection, "[Profile.Data].[GetSiteMapIndex]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, null);
+            string xmlstr = "";
+            using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
+            {
+                while (dbreader.Read())
+                {
+                    xmlstr += dbreader[0].ToString();
+                }
+
+                if (!dbreader.IsClosed)
+                    dbreader.Close();
+            }
+
+            return xmlstr;
+        }
     }
 }

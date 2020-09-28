@@ -45,5 +45,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="Twitter.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewCOVID19Pubs" FileName="CustomViewCOVID19Pubs.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkCoauthorList" FileName="NetworkCoauthorList.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkDetails" FileName="NetworkDetails.ascx" Enabled="true"/>
 </ModuleList>
 

@@ -29,19 +29,15 @@ namespace Profiles.Profile.Modules
 
 		public void DrawProfilesModule()
 		{
-			var dataIO = new Profiles.Profile.Utilities.DataIO();
+			Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO dataIO = new Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO();
 
 			// Get concept publication timeline
-			using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
-			{
-				while (reader.Read())
-				{
-					timeline.Src = reader["gc"].ToString();
-                    timeline.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
-				}
-				reader.Close();
-			}
+			Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vil = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]");
+			timeline.Src = vil.src;
+			timeline.Alt = vil.alt;
+			litTimelineTable.Text = vil.asText;
+
+
 			/* Reader returns multiple result sets in the following order
 			 * 1) Cited publications
 			 * 2) Newest publication

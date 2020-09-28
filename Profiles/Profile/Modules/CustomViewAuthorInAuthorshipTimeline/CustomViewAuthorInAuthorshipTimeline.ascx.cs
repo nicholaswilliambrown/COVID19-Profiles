@@ -37,34 +37,26 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
                 type = Utilities.DataIO.ClassType.Group;
 
             DateTime d = DateTime.Now;
-            Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO data = new Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO();
+            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO data = new Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO();
 
             // Get timeline bar chart
             string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetCovidData]";
             if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
-            {
-                while (reader.Read())
-                {
-                    covidTimelineBar.Src = reader["gc"].ToString();
-                    covidTimelineBar.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
-                }
-                reader.Close();
-            }
+
+            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vil = data.GetGoogleTimeline(base.RDFTriple, storedproc);
+            covidTimelineBar.Src = vil.src;
+            covidTimelineBar.Alt = vil.alt;
+            litTimelineTable.Text = vil.asText;
+
 
             storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
             if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
-            {
-                while (reader.Read())
-                {
-                    timelineBar.Src = reader["gc"].ToString();
-                    timelineBar.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = litTimelineTable.Text + reader["asText"].ToString();
-                }
-                reader.Close();
-            }
+            vil = data.GetGoogleTimeline(base.RDFTriple, storedproc);
+
+            timelineBar.Src = vil.src;
+            timelineBar.Alt = vil.alt;
+            litTimelineTable.Text = vil.asText;
+
 
             if (timelineBar.Src == "")
             {

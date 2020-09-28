@@ -307,6 +307,7 @@
     <Content Include="Profile\Modules\NetworkCluster\JavaScript\networkClusterLayoutEngine.js" />
     <Content Include="Profile\Modules\NetworkCluster\JavaScript\watchdog.js" />
     <Content Include="Profile\Modules\NetworkCoauthorList\NetworkCoauthorList.ascx" />
+    <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx" />
     <Content Include="Profile\Modules\NetworkRadialFlash\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkRadialFlash\Default.aspx" />
     <Content Include="Profile\Modules\NetworkRadialFlash\Images\yui-loading.gif" />
@@ -599,7 +600,6 @@
     <Content Include="Search\Modules\SearchMap\Flags\zm.gif" />
     <Content Include="Search\Modules\SearchMap\Flags\zw.gif" />
     <Content Include="Search\Modules\SearchMap\SearchMap.ascx" />
-    <Content Include="SiteMap.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1356,6 +1356,7 @@
     <Compile Include="Profile\Modules\CustomViewAuthorInAuthorshipTimeline\CustomViewAuthorInAuthorshipTimeline.ascx.designer.cs">
       <DependentUpon>CustomViewAuthorInAuthorshipTimeline.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Profile\Modules\CustomViewAuthorInAuthorshipTimeline\DataIO.cs" />
     <Compile Include="Profile\Modules\CustomViewAuthorInAuthorship\BibliometricsSvc.aspx.cs">
       <DependentUpon>BibliometricsSvc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1533,6 +1534,14 @@
     </Compile>
     <Compile Include="Profile\Modules\NetworkCoauthorList\NetworkCoauthorList.ascx.designer.cs">
       <DependentUpon>NetworkCoauthorList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkDetails\DataIO.cs" />
+    <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.cs">
+      <DependentUpon>NetworkDetails.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.designer.cs">
+      <DependentUpon>NetworkDetails.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1968,12 +1977,8 @@
     <Compile Include="Search\Utilities\DisallowedSearchException.cs" />
     <Compile Include="Search\Utilities\SearchDropDowns.cs" />
     <Compile Include="Search\Utilities\TopResearchers.cs" />
-    <Compile Include="SiteMap.aspx.cs">
-      <DependentUpon>SiteMap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SiteMap.aspx.designer.cs">
-      <DependentUpon>SiteMap.aspx</DependentUpon>
+    <Compile Include="SiteMap.ashx.cs">
+      <DependentUpon>SiteMap.ashx</DependentUpon>
     </Compile>
     <Compile Include="SPARQL\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -2371,6 +2376,7 @@
     <Content Include="Search\Images\search.jpg" />
     <Content Include="SPARQL\Modules\ModuleCatalogue.xml" />
     <Content Include="Search\Modules\SearchMap\countries.json" />
+    <Content Include="SiteMap.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,7 +31,7 @@ namespace Profiles.Profile.Modules.CustomViewCOVID19Pubs
 
 
             DateTime d = DateTime.Now;
-            Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO data = new Profiles.Profile.Modules.CustomViewAuthorInAuthorship.DataIO();
+            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO data = new Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO();
             List<Publication> publication = new List<Publication>();
 
             Utilities.DataIO.ClassType type = Utilities.DataIO.ClassType.Unknown;
@@ -59,16 +59,11 @@ namespace Profiles.Profile.Modules.CustomViewCOVID19Pubs
             // Get timeline bar chart
             string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
             if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
-            using (SqlDataReader reader = data.GetGoogleTimeline(new RDFTriple(Convert.ToInt64(System.Configuration.ConfigurationManager.AppSettings["Search.PublicationsNodeID2"].ToString())), storedproc))
-            {
-                while (reader.Read())
-                {
-                    timelineBar.Src = reader["gc"].ToString();
-                    timelineBar.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
-                }
-                reader.Close();
-            }
+
+            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vil = data.GetGoogleTimeline(new RDFTriple(Convert.ToInt64(System.Configuration.ConfigurationManager.AppSettings["Search.PublicationsNodeID2"].ToString())), storedproc);
+            timelineBar.Src = vil.src;
+            timelineBar.Alt = vil.alt;
+            litTimelineTable.Text = vil.asText;
 
             if (timelineBar.Src == "")
             {

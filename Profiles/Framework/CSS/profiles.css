@@ -28,11 +28,12 @@ body {
     margin: 0 auto;
 }
 
-#headerBox {
-    width: 968px;
+#headerBox {    
     height: 80px;
     background-image: url("../images/CovidAuthorsHeader.png");
     text-align: left;
+    max-width:1150px;
+    min-width:882px;
 }
 
 #headerLogo {
@@ -70,6 +71,7 @@ body {
     text-align: left;
     padding: 5px 8px 0px 16px;
     color: #005080;
+    margin-right:15px;
 }
 
 #main {
@@ -334,6 +336,7 @@ div#catalyst-footer {
 #page-container {
     text-align: center;
     vertical-align: middle;
+    background-color:#fff;
 }
 
 
@@ -359,6 +362,7 @@ div#catalyst-footer {
     padding: 16px 0px;
     background-color: #FFF;
     text-align:center !important;
+    max-width:1150px;
 
 }
 
@@ -418,7 +422,7 @@ div#catalyst-footer {
 /********************************************/
 
 .profilesMaxWidth {
-    max-width: 968px;
+    max-width: 1150px;
 }
 
 .profiles .profilesContentMain {

@@ -1,12 +1,13 @@
 
-
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 /*Replacing inline styles for the form headings in the main app*/
-.profiles .profilesPage .headings 
-{
-	font-size: 18px; 
-	color: #b23f45; 
-	font-weight: bold; 
-	margin-bottom: 3px;
+.profiles .profilesPage .headings {
+    font-size: 22px;
+    color: #b23f45;    
+    margin-bottom: 6px;
 }
 
 
@@ -28,12 +29,12 @@ body {
     margin: 0 auto;
 }
 
-#headerBox {    
+#headerBox {
     height: 80px;
     background-image: url("../images/CovidAuthorsHeader.png");
     text-align: left;
-    max-width:1150px;
-    min-width:882px;
+    max-width: 995px;
+    min-width: 882px;
 }
 
 #headerLogo {
@@ -44,7 +45,7 @@ body {
 
 #headerTitle {
     float: left;
-    height: 80px;    
+    height: 80px;
 }
 
 #headerSearch {
@@ -60,7 +61,9 @@ body {
 }
 
 
-
+#img-mag-glass {
+    cursor: pointer;
+}
 
 #searchBox {
     border: 2px solid #9CF;
@@ -71,7 +74,7 @@ body {
     text-align: left;
     padding: 5px 8px 0px 16px;
     color: #005080;
-    margin-right:15px;
+    margin-right: 15px;
 }
 
 #main {
@@ -84,14 +87,10 @@ body {
 
 .TopText {
     margin-bottom: 20px;
+    text-align: justify !important;
+    font-size: 17px;
+    line-height: 24px;
 }
-
-    .TopText td {
-        width: 1000px;
-        text-align: justify;
-        font-size: 17px;
-        line-height: 24px;
-    }
 
 .emphasis {
     color: #005080;
@@ -100,20 +99,17 @@ body {
 
 .BottomText {
     margin: 16px 0px;
+    text-align: justify;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFF;
+    max-width:995px;
 }
-
-    .BottomText td {
-        width: 1000px;
-        text-align: justify;
-        font-size: 15px;
-        line-height: 22px;
-        color: #FFF;
-    }
-
     .BottomText a {
         color: #FFD;
         text-decoration: underline;
     }
+
 form {
     padding: 0px;
     margin: 0px;
@@ -124,9 +120,9 @@ header._ci_shared_asset.tool-page .inner .title-container h1 {
 }
 
 header._ci_shared_asset.tool-page .inner .title-container {
-    float:none !important;
+    float: none !important;
     min-width: 1140px;
-     margin-left: 255px !important; 
+    margin-left: 255px !important;
 }
 
 header._ci_shared_asset.tool-page .inner a.main-logo {
@@ -148,12 +144,11 @@ header._ci_shared_asset.tool-page .inner a.main-logo {
 
 .title-container {
     opacity: 1 !important;
-
 }
 
     .title-container:hover {
         opacity: .6 !important;
-       -webkit-transition: all 1s ease-in;
+        -webkit-transition: all 1s ease-in;
         -moz-transition: all 1s ease-in;
         -o-transition: all 1s ease-in;
         -ms-transition: all 1s ease-in;
@@ -161,8 +156,7 @@ header._ci_shared_asset.tool-page .inner a.main-logo {
     }
 
     .title-container::after {
-        opacity: 1  !important;
-     
+        opacity: 1 !important;
     }
 
 .container {
@@ -293,9 +287,9 @@ div#catalyst-footer {
     font-size: 15px;
     color: #993333;
     padding: 5px;
-    text-align: left;    
+    text-align: left;
     background-color: #EEE;
-    margin-top:26px;
+    margin-top: 26px;
 }
 
     .PropertyItemHeader a {
@@ -317,7 +311,7 @@ div#catalyst-footer {
     font-weight: normal;
     color: #666;
     font-size: 13px;
-    text-align: left;   
+    text-align: left;
 }
 
 .PropertyGroupData {
@@ -328,15 +322,16 @@ div#catalyst-footer {
     color: #000;
     border: none !important;
 }
-#divYearTable{
-    margin-top:26px;
+
+#divYearTable {
+    margin-top: 26px;
 }
 
 
 #page-container {
     text-align: center;
     vertical-align: middle;
-    background-color:#fff;
+    background-color: #fff;
 }
 
 
@@ -358,21 +353,20 @@ div#catalyst-footer {
     padding: 3px;
 }
 
-.profiles {    
+.profiles {
     padding: 16px 0px;
     background-color: #FFF;
-    text-align:center !important;
-    max-width:1150px;
-
+    text-align: center !important;
+    max-width: 995px;
 }
 
     .profiles .profilesHeader {
-        xwidth: 968px;
+        xwidth: 995px;
         text-align: left;
     }
 
     .profiles .profilesPage {
-        xwidth: 968px;
+        xwidth: 995px;
         margin: 0 auto;
         overflow-y: visible;
         left: 0;
@@ -386,7 +380,7 @@ div#catalyst-footer {
     display: table-cell;
     text-align: left;
     max-width: 160px;
-    padding-right:10px;
+    padding-right: 10px;
     padding-top: 30px;
     vertical-align: top;
 }
@@ -422,7 +416,7 @@ div#catalyst-footer {
 /********************************************/
 
 .profilesMaxWidth {
-    max-width: 1150px;
+    max-width: 995px;
 }
 
 .profiles .profilesContentMain {
@@ -492,7 +486,7 @@ div#catalyst-footer {
 .panelMain {
     width: 100%;
     clear: both;
-    margin-top:5px;
+    margin-top: 5px;
 }
 
     .panelMain div {
@@ -510,6 +504,7 @@ div#catalyst-footer {
     border-bottom: 1px dotted #999;
     text-align: left;
 }
+
 .profiles .profilesContentMain .keywordCategories td, .profiles .profilesContentMain .keywordCategories th {
     font-size: 12px;
     padding: 2px 5px;
@@ -852,9 +847,9 @@ div#catalyst-footer {
         cursor: pointer;
     }
 
-    .anchor-tab a.link-visualization {
-	color:#090;
-}
+        .anchor-tab a.link-visualization {
+            color: #090;
+        }
 
 .ui-autocomplete {
     position: absolute;
@@ -1097,108 +1092,100 @@ div#catalyst-footer {
 /********************************************/
 /*        Edit Page                         */
 /********************************************/
-.editPage h2
-{
-	color: #AC1B30;
-	font-size: 13px;
-}
-.editPage table
-{
-	padding-left: 5px;
-}
-.oddRow td, .evenRow td
-{
-	border-color: #808080;
-}
-.oddRow
-{
-	background-color: #FFFFFF;
-}
-.evenRow
-{
-	background-color: #F0F4F6;
-}
-.padding
-{
-	padding-left: 6px;
+.editPage h2 {
+    color: #AC1B30;
+    font-size: 13px;
 }
 
-.edittable
-{
-	border: solid 1px #ccc;
+.editPage table {
+    padding-left: 5px;
 }
 
-.edittable tr
-{
-	padding: 5px;
+.oddRow td, .evenRow td {
+    border-color: #808080;
 }
 
-.colItemCnt, .colSecurity
-{
-	text-align: center;
-	width: 124px;
+.oddRow {
+    background-color: #FFFFFF;
 }
 
-table tbody .height25
-{
-	height: 25px;
+.evenRow {
+    background-color: #F0F4F6;
 }
 
-.editDisplayRow
-{
-	padding-top: 6px;
-	padding-left: 6px;
-	padding-right: 6px;
-	padding-bottom: 6px;
-	border-bottom: solid 1px #ccc;
-}
-.editPageDiv
-{
-	border-left: solid 1px #ccc;
-	border-right: solid 1px #ccc;
-	border-bottom: solid 1px #ccc;
-	border-top: solid 1px #ccc;
+.padding {
+    padding-left: 6px;
 }
 
-.editPage .topRow td
-{
-	background-color: #EEEBE5;
-	font-weight: bold;
-	color: #666;
-	font-size: 13px;
-	height: 24px;
-	padding-left: 6px;
+.edittable {
+    border: solid 1px #ccc;
 }
-.topRow
-{
-	background-color: #EEEBE5;
-	font-weight: bold;
-	color: #666;
-	font-size: 13px;
-	height: 24px;
-	padding-left: 6px;
-	width: 100%;
+
+    .edittable tr {
+        padding: 5px;
+    }
+
+.colItemCnt, .colSecurity {
+    text-align: center;
+    width: 124px;
 }
-.EditMenuTopRow
-{
-	background-color: #EEEBE5;
-	color: #666;
-	font-size: 13px;
-	height: 24px;
-	padding-left: 6px;
-	width: 100%;
+
+table tbody .height25 {
+    height: 25px;
 }
-.editPage td
-{
-	height: 24px;
+
+.editDisplayRow {
+    padding-top: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    border-bottom: solid 1px #ccc;
 }
-.firstCol
-{
-	padding-left: 6px;
+
+.editPageDiv {
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+}
+
+.editPage .topRow td {
+    background-color: #EEEBE5;
+    font-weight: bold;
+    color: #666;
+    font-size: 13px;
+    height: 24px;
+    padding-left: 6px;
+}
+
+.topRow {
+    background-color: #EEEBE5;
+    font-weight: bold;
+    color: #666;
+    font-size: 13px;
+    height: 24px;
+    padding-left: 6px;
+    width: 100%;
+}
+
+.EditMenuTopRow {
+    background-color: #EEEBE5;
+    color: #666;
+    font-size: 13px;
+    height: 24px;
+    padding-left: 6px;
+    width: 100%;
+}
+
+.editPage td {
+    height: 24px;
+}
+
+.firstCol {
+    padding-left: 6px;
 }
 
 
-.editPage tr
-{
-	height: 24px;
+.editPage tr {
+    height: 24px;
 }

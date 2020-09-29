@@ -52,109 +52,119 @@
 
         <div id='page-container'>
             <center>
-            <div id="header">
+                <div id="header">
 
-                <div id="headerBox">
-                    <div id="headerLogo">
-                        <a href="http://covidauthors.org">
-                            <img src="<%=GetURLDomain()%>/Framework/Images/CovidAuthorsLogo.png" /></a>
-                    </div>
-                    <div id="headerTitle">
-                        <p><a href="http://covidauthors.org" style="color: #FFF; font-size: 36px; text-decoration: none;">COVID A<span style="font-size: 30px;">UTHORS</span></a></p>
-                        <p><a href="http://covidauthors.org" style="color: #9CF; font-size: 18px; text-decoration: none;">Online profiles of coronavirus experts</a></p>
-                    </div>
-                    <div id="headerSearch">
-                        <div id="searchBox">
-                           <input type="text" class="searchBox-textbox" value="" placeholder="search..." />
-                            <div style="float: right;">
-                                <img src="<%=GetURLDomain()%>/Framework/Images/SearchIcon.png" />
+                    <div id="headerBox">
+                        <div id="headerLogo">
+                            <a href="http://covidauthors.org">
+                                <img src="<%=GetURLDomain()%>/Framework/Images/CovidAuthorsLogo.png" /></a>
+                        </div>
+                        <div id="headerTitle">
+                            <p><a href="http://covidauthors.org" style="color: #FFF; font-size: 36px; text-decoration: none;">COVID A<span style="font-size: 30px;">UTHORS</span></a></p>
+                            <p><a href="http://covidauthors.org" style="color: #9CF; font-size: 18px; text-decoration: none;">Online profiles of coronavirus experts</a></p>
+                        </div>
+                        <div id="headerSearch">
+                            <div id="searchBox">
+                                <input type="text" id="menu-search" class="searchBox-textbox" value="" placeholder="search..." />
+                                <div style="float: right;">
+                                    <img id="img-mag-glass" src="<%=GetURLDomain()%>/Framework/Images/SearchIcon.png" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
 
-            <div class="profiles">
-                <div class="profilesHeader" runat="server" id="divProfilesHeader">
-                    <div class="panelHeader">
-                        <asp:ContentPlaceHolder ID="ContentHeader" runat="server">
-                            <asp:Repeater runat="server" ID="rptHeader" OnItemDataBound="DrawModule">
-                                <ItemTemplate>
-                                    <asp:PlaceHolder ID="phHeader" runat="server"></asp:PlaceHolder>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </asp:ContentPlaceHolder>
-                    </div>
-                </div>
-                <asp:ContentPlaceHolder ID="ContentActive" runat="server">
-                    <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
-                        <ItemTemplate>
-                            <asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </asp:ContentPlaceHolder>
-                <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
-                    <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
-                </div>
-                <div class="profilesPage">
-                    <button type="button" style="color: #000000;" onclick="javascript:topFunction();" id="rtnBtn" title="Go to top">Return to Top</button>
-                    <div id="profilesMainRow" class="MainRow">
-                        <div id="divContentLeft" class="profilesLeftCol" runat="server">
-                            <asp:ContentPlaceHolder ID="Contentleft" runat="server">
-                                <asp:Repeater runat="server" ID="rptLeft" OnItemDataBound="DrawModule">
+                <div class="profiles">
+                    <div class="profilesHeader" runat="server" id="divProfilesHeader">
+                        <div class="panelHeader">
+                            <asp:ContentPlaceHolder ID="ContentHeader" runat="server">
+                                <asp:Repeater runat="server" ID="rptHeader" OnItemDataBound="DrawModule">
                                     <ItemTemplate>
-                                        <asp:PlaceHolder ID="phLeft" runat="server"></asp:PlaceHolder>
+                                        <asp:PlaceHolder ID="phHeader" runat="server"></asp:PlaceHolder>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </asp:ContentPlaceHolder>
                         </div>
-                        <div id="divProfilesContentMain" class="profilesContentMain profilesMaxWidth" runat="server">
-                            <div id="divTopMainRow" style="width: 100%" runat="server">
-                                <asp:Literal runat="server" ID="litPageTitle"></asp:Literal>
-                            </div>
-                            <asp:Literal runat="server" ID="litPageSubTitle"></asp:Literal>
-                            <div class="backLink">
-                                <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
-                            </div>
-                            <div class="pageDescription">
-                                <asp:Literal runat="server" ID="litPageDescription"></asp:Literal>
-                            </div>
-                            <div class="prns-screen-search" id="prns-content">
-                                <div class="content-main">
-                                    <asp:Literal runat="server" ID="litTabs"></asp:Literal>
-                                </div>
-                            </div>
-                            <div class="panelMain">
-                                <asp:ContentPlaceHolder ID="ContentMain" runat="server">
-                                    <asp:Repeater runat="server" ID="rptMain" OnItemDataBound="DrawModule">
+                    </div>
+                    <asp:ContentPlaceHolder ID="ContentActive" runat="server">
+                        <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
+                            <ItemTemplate>
+                                <asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </asp:ContentPlaceHolder>
+                    <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
+                        <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
+                    </div>
+                    <div class="profilesPage">
+                        <button type="button" style="color: #000000;" onclick="javascript:topFunction();" id="rtnBtn" title="Go to top">Return to Top</button>
+                        <div id="profilesMainRow" class="MainRow">
+                            <div id="divContentLeft" class="profilesLeftCol" runat="server">
+                                <asp:ContentPlaceHolder ID="Contentleft" runat="server">
+                                    <asp:Repeater runat="server" ID="rptLeft" OnItemDataBound="DrawModule">
                                         <ItemTemplate>
-                                            <asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>
+                                            <asp:PlaceHolder ID="phLeft" runat="server"></asp:PlaceHolder>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </asp:ContentPlaceHolder>
-                                <div style="font-size: 10px; color: #444; height: 200px; text-align: left;" id="catfooter">
-                                    <div>Powered by <a href="http://profiles.catalyst.harvard.edu/">Profiles Research Networking Software</a></div>
+                            </div>
+                            <div id="divProfilesContentMain" class="profilesContentMain profilesMaxWidth" runat="server">
+                                <div id="divTopMainRow" style="width: 100%" runat="server">
+                                    <asp:Literal runat="server" ID="litPageTitle"></asp:Literal>
+                                </div>
+                                <asp:Literal runat="server" ID="litPageSubTitle"></asp:Literal>
+                                <div class="backLink">
+                                    <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
+                                </div>
+                                <div class="pageDescription">
+                                    <asp:Literal runat="server" ID="litPageDescription"></asp:Literal>
+                                </div>
+                                <div class="prns-screen-search" id="prns-content">
+                                    <div class="content-main">
+                                        <asp:Literal runat="server" ID="litTabs"></asp:Literal>
+                                    </div>
+                                </div>
+                                <div class="panelMain">
+                                    <asp:ContentPlaceHolder ID="ContentMain" runat="server">
+                                        <asp:Repeater runat="server" ID="rptMain" OnItemDataBound="DrawModule">
+                                            <ItemTemplate>
+                                                <asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </asp:ContentPlaceHolder>
                                 </div>
                             </div>
-                        </div>
-                        <div class="profilesContentPassive">
-                            <div class="panelPassive">
-                                <asp:ContentPlaceHolder ID="ContentPassive" runat="server">
-                                    <asp:Repeater runat="server" ID="rptPassive" OnItemDataBound="DrawModule">
-                                        <ItemTemplate>
-                                            <asp:PlaceHolder ID="phPassive" runat="server"></asp:PlaceHolder>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </asp:ContentPlaceHolder>
+                            <div class="profilesContentPassive">
+                                <div class="panelPassive">
+                                    <asp:ContentPlaceHolder ID="ContentPassive" runat="server">
+                                        <asp:Repeater runat="server" ID="rptPassive" OnItemDataBound="DrawModule">
+                                            <ItemTemplate>
+                                                <asp:PlaceHolder ID="phPassive" runat="server"></asp:PlaceHolder>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </asp:ContentPlaceHolder>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                </center>
-            <%--Catalyst Footer--%>
+            </center>
+        </div>
+        <div id="footer">
+            <center>
+                <div class="BottomText">
+                    <div>
+                        COVID Authors was created by the <a href="http://weber.hms.harvard.edu">Weber Lab</a> at Harvard Medical School and powered by <a href="http://profiles.catalyst.harvard.edu">Profiles Research Networking Software</a>.
+Data for this website came from <a href="https://www.ncbi.nlm.nih.gov/research/coronavirus/">LitCovid</a> [Chen Q, Allot A, Lu Z. Keep up with the latest coronavirus research. <i>Nature</i>. 2020;579(7798):193]
+and the <a href="http://er.tacc.utexas.edu/datasets/ped">PubMed Knowledge Graph</a> [Xu J, Kim S, Song M, et al. Building a PubMed knowledge graph. <i>Sci Data</i>. 2020 Jun 26;7(1):205].
+This website is not intended to be used to make medical decisions.
+Author profiles are generated by an automated algorithm. The accuracy of the information on those profiles is not guaranteed to be accurate.
+For more information about this website contact Griffin M Weber, MD, PhD, at <a href="mailto:weber@hms.harvard.edu">weber@hms.harvard.edu</a>.                            
+                    </div>
+                </div>
+            </center>
         </div>
     </form>
     <script type="text/javascript">
@@ -210,16 +220,30 @@
             return true;
         }
 
-        $(document).ready(function () {
-            $(".lnk-edit-arrow").on("click", function () {
-                var img = $(this).find("img");
-                var current = img.attr("src");
-                var newsrc = img.attr("data-swap");
-                $("#" + $(this).attr("data-item")).toggle();
-                img.attr("src", newsrc).attr("data-swap", current);
-            });
+       
+
+   $(document).ready(function () {
+        $("#searchBox").on("keypress", function (e) {
+            if (e.which == 13) {
+                minisearch();
+                return false;
+            }
+            return true;
         });
 
+        $("#img-mag-glass").on("click", function () {
+            minisearch();
+            return true;
+        });
+    });
+    function minisearch() {
+        var keyword = $("#menu-search").val();
+        var classuri = 'http://xmlns.com/foaf/0.1/Person';
+        document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=people&searchfor=' + keyword + '&classuri=' + classuri + '&new=true';
+        return true;
+    }
+
+    $(document).ready(function () { $(".SupportText").remove(); });
 
     </script>
     <%="<script type=\"text/javascript\">"%>

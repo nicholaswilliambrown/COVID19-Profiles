@@ -6,7 +6,7 @@
 /*Replacing inline styles for the form headings in the main app*/
 .profiles .profilesPage .headings {
     font-size: 22px;
-    color: #b23f45;    
+    color: #444;    
     margin-bottom: 6px;
 }
 
@@ -600,7 +600,7 @@ div#catalyst-footer {
     }
 
 .passiveHeader {
-    color: #b23f45;
+    color: #444;
     font-weight: bold;
     text-align: left;
     padding-bottom: 2px;

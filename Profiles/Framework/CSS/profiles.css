@@ -284,28 +284,16 @@ div#catalyst-footer {
 .PropertyItemHeader {
     font-family: Arial;
     font-weight: bold;
-    font-size: 15px;
-    color: #993333;
+    font-size: 20px;
+    color:#444 !important;
     padding: 5px;
     text-align: left;
-    background-color: #EEE;
+    
     margin-top: 26px;
 }
 
-    .PropertyItemHeader a {
-        color: #666 !important;
-        text-decoration: none !important;
-    }
 
-        .PropertyItemHeader a:hover {
-            color: #666 !important;
-            text-decoration: none !important;
-        }
 
-.PropertyGroup a:hover {
-    color: #666 !important;
-    text-decoration: none !important;
-}
 
 .PropertyGroupItem {
     font-weight: normal;
@@ -451,9 +439,9 @@ div#catalyst-footer {
 
     .profiles .profilesContentMain .pageTitle h2 {
         text-align: left;
-        color: #AC1B30;
+        color: #444;
         font-size: 28px;
-        font-weight: normal;
+        font-weight: bold;
         margin: 0px !important;
     }
 
@@ -667,8 +655,7 @@ div#catalyst-footer {
 
 .connectionLineToArrow {
     display: table-cell;
-    vertical-align: middle;
-    padding-top: 5px;
+    vertical-align: middle;    
 }
 
     .connectionLineToArrow hr {

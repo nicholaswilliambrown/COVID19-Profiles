@@ -89,7 +89,7 @@ namespace Profiles.Profile.Modules.PropertyList
 
                                    // itembuffer.Append("<input type='hidden' id=\"imgon" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  width='9' height='9'/>");
                                    // itembuffer.Append("<input type='hidden' id=\"imgoff" + propertyitem.SelectSingleNode("@URI").Value + "\" value='" + Root.Domain + "/Profile/Modules/PropertyList/images/plusSign.gif' alt='Expand' />");
-                                    itembuffer.Append("<div>");
+                                    itembuffer.Append("<div class='PropertyItemHeader-wrapper'>");
                                     itembuffer.Append("<div class='PropertyItemHeader' style='cursor:pointer;' tabindex=\"0\" role=\"region\">");
                                     //itembuffer.Append("<img id=\"propertyitem" + propertyitem.SelectSingleNode("@URI").Value + "\" src='" + Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif' alt='Collapse'  border='0' width='9' height='9' />&nbsp;"); //add image and onclick here.
                                     itembuffer.Append(propertyitem.SelectSingleNode("@Label").Value);
@@ -153,7 +153,7 @@ namespace Profiles.Profile.Modules.PropertyList
                                             if (module.Attributes["Label"] != null) propertyItemLabel = module.Attributes["Label"].Value;
 
                                           
-                                            itembuffer.Append("<div>");
+                                            itembuffer.Append("<div class='PropertyItemHeader-wrapper'>");
                                             itembuffer.Append("<div class='PropertyItemHeader' role=\"region\">");
                                           
                                             itembuffer.Append(propertyItemLabel);

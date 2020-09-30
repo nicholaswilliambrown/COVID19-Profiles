@@ -26,7 +26,7 @@
         <asp:Literal runat="server" ID="litPersonURI"></asp:Literal>
     </div>
     <div>
-        <asp:GridView Width="100%" ID="gvConnectionDetails" AutoGenerateColumns="false" GridLines="Both"
+        <asp:GridView  ID="gvConnectionDetails" AutoGenerateColumns="false" GridLines="Both"
             CellSpacing="-1" runat="server" OnRowDataBound="gvConnectionDetails_OnRowDataBound" CssClass="listTable">
             <HeaderStyle CssClass="topRow" BorderStyle="None" />
             <RowStyle CssClass="oddRow"/>
@@ -53,7 +53,7 @@
         <asp:Literal runat="server" ID="litSubjectName"></asp:Literal>
     </div>
     <div>
-        <asp:GridView Width="100%" ID="gvIndirectConnectionDetails" AutoGenerateColumns="false"
+        <asp:GridView  ID="gvIndirectConnectionDetails" AutoGenerateColumns="false"
             GridLines="Both" CellSpacing="-1" runat="server" OnRowDataBound="gvIndirectConnectionDetails_OnRowDataBound" CssClass="listTable">
             <HeaderStyle CssClass="topRow" BorderStyle="None" />
             <RowStyle CssClass="oddRow" />

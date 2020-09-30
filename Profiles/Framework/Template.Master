@@ -241,7 +241,19 @@ For more information about this website contact Griffin M Weber, MD, PhD, at <a 
         return true;
     }
 
-    $(document).ready(function () { $(".SupportText").remove(); });
+        $(document).ready(function () { $(".SupportText").remove(); });
+
+        $(document).ready(function () {
+
+            if (screen.width < 600) {
+                $(".PropertyGroupItem").find('div:first').remove();
+            }
+            else {
+
+                $(".PropertyGroupItem").find('div:first').show();
+            }
+
+        });
 
     </script>
     <%="<script type=\"text/javascript\">"%>

@@ -1,8 +1,7 @@
 ﻿<%@ Control Language="C#" EnableViewState="true" AutoEventWireup="True" CodeBehind="CustomViewAuthorInAuthorshipTimeline.ascx.cs" Inherits="Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.CustomViewAuthorInAuthorshipTimeline" %>
 
 
-<div class='publicationList'>
-
+<div id="bar-histo-publication-list" class='publicationList'>
 
     <div id="divTimeline" style='margin-top: 6px;'>
         

@@ -13,8 +13,37 @@
 
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
+    .connectionLineToArrow {
+        width: 200px !important;
+    }
 
+        .connectionLineToArrow hr {
+            width: auto !important;
+        }
+
+    #headerLogo img {
+        width: 90px;
+    }
+
+    .listTable {
+        width: auto !important;
+    }
+
+        .listTable table {
+            width: fit-content !important;
+        }
+
+    #page-container {
+    }
+
+    .profilesContentPassive {
+        display: none !important;
+    }
+
+    #geo-top-researchers {
+        width: 300px !important;
+    }
 
     #regions_div {
         display: none;
@@ -31,8 +60,15 @@
     .profiles {
         padding-left: 25px !important;
         padding-right: 25px !important;
+        font-size: medium !important;
     }
+    .profiles .profilesContentMain{
 
+        padding-right:16px !important;
+    }
+    .profiles .profilesContentMain .backLink{
+        margin-top:15px !important;
+    }
     #headerBox {
         min-width: 1px !important;
     }
@@ -47,19 +83,28 @@
             font-size: 26px;
         }
 
-        #headerTitle h2{
-            font-size: 20px;
+        #headerTitle h2 {
+            font-size: 20px !important;
         }
 
         #headerTitle h4 {
             font-size: 14px;
-            margin-top:inherit;
+            margin-top: inherit;
         }
 
+    #headerTitle-2 {
+        width: fit-content !important;
+        top:38px !important;
+    }
+
+    #headerTitle-1 {
+        min-width: 340px !important;
+    }
 
     .BottomText {
         font-size: 11px !important;
         margin: 16px 13px !important;
+        line-height: normal;
     }
 
     .profiles ul, .profiles ol {
@@ -67,7 +112,7 @@
     }
 
     .PropertyGroupItem {
-        width: 300px !important;
+        width: auto !important;
     }
 
     #searchBox {
@@ -77,10 +122,22 @@
     #headerSearch {
         float: left !important;
         padding-left: 16px !important;
+        height: auto !important;
+        padding-top: 5px !important;
+        position: absolute;
+        top: 60px;
     }
 
     .searchBox-textbox {
         width: auto !important;
+    }
+
+    .publicationList {
+        width: fit-content !important;
+    }
+
+    #rtnBtn {
+        right: auto !important;
     }
 }
 

@@ -57,7 +57,6 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
             timelineBar.Alt = vil.alt;
             litTimelineTable.Text = vil.asText;
 
-
             if (timelineBar.Src == "")
             {
                 timelineBar.Visible = false;

@@ -243,7 +243,7 @@ For more information about this website contact Griffin M Weber, MD, PhD, at <a 
 
         $(document).ready(function () { $(".SupportText").remove(); });
 
-        $(document).ready(function () {
+        $(window).resize(function () {
 
             if (screen.width < 600) {
                 $(".PropertyGroupItem").find('div:first').remove();

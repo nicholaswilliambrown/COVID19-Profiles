@@ -15,6 +15,11 @@
 
 @media screen and (max-width: 500px) {
 
+
+    #regions_div {
+        display: none;
+    }
+
     .TopText {
         display: none !important;
     }

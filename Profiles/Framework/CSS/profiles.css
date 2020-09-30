@@ -6,9 +6,79 @@
 /*Replacing inline styles for the form headings in the main app*/
 .profiles .profilesPage .headings {
     font-size: 22px;
-    color: #444;    
+    color: #444;
     margin-bottom: 6px;
 }
+
+
+
+
+@media screen and (max-width: 500px) {
+
+    .TopText {
+        display: none !important;
+    }
+
+    .headings-authors-by-country {
+        display: none !important;
+    }
+
+    .profiles {
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+    }
+
+    #headerBox {
+        min-width: 1px !important;
+    }
+
+    #headerTitle {
+        float: none !important;
+        height: auto !important;
+        display: flex;
+    }
+
+        #headerTitle h1 {
+            font-size: 26px;
+        }
+
+        #headerTitle h2{
+            font-size: 20px;
+        }
+
+        #headerTitle h4 {
+            font-size: 14px;
+            margin-top:inherit;
+        }
+
+
+    .BottomText {
+        font-size: 11px !important;
+        margin: 16px 13px !important;
+    }
+
+    .profiles ul, .profiles ol {
+        padding-left: 0px !important;
+    }
+
+    .PropertyGroupItem {
+        width: 300px !important;
+    }
+
+    #searchBox {
+        width: auto !important;
+    }
+
+    #headerSearch {
+        float: left !important;
+        padding-left: 16px !important;
+    }
+
+    .searchBox-textbox {
+        width: auto !important;
+    }
+}
+
 
 
 body, form, table, tr, td, p {
@@ -34,9 +104,6 @@ body {
     background-image: url("../images/CovidAuthorsHeader.png");
     text-align: left;
     max-width: 995px;
-    min-width: 882px;
-    width:device-width;
-
 }
 
 #headerLogo {
@@ -48,6 +115,22 @@ body {
 #headerTitle {
     float: left;
     height: 80px;
+}
+
+    #headerTitle h1, h2 {
+        margin-top: 6px !important;
+    }
+
+#headerTitle-1 {
+    display: inline-flex;
+    color: #fff;
+    align-items: baseline;
+}
+
+#headerTitle-2 {
+    color: rgb(153, 204, 255);
+    position: absolute;
+    top: 44px;
 }
 
 #headerSearch {
@@ -105,8 +188,9 @@ body {
     font-size: 15px;
     line-height: 22px;
     color: #FFF;
-    max-width:995px;
+    max-width: 995px;
 }
+
     .BottomText a {
         color: #FFD;
         text-decoration: underline;
@@ -123,7 +207,6 @@ header._ci_shared_asset.tool-page .inner .title-container h1 {
 
 header._ci_shared_asset.tool-page .inner .title-container {
     float: none !important;
-    min-width: 1140px;
     margin-left: 255px !important;
 }
 
@@ -140,7 +223,6 @@ header._ci_shared_asset.tool-page .inner a.main-logo {
 
 .title-container h4 {
     top: -10px !important;
-    xwidth: 400px !important;
     position: relative !important;
 }
 
@@ -287,10 +369,9 @@ div#catalyst-footer {
     font-family: Arial;
     font-weight: bold;
     font-size: 20px;
-    color:#444 !important;
+    color: #444 !important;
     padding: 5px;
     text-align: left;
-    
     margin-top: 26px;
 }
 
@@ -341,6 +422,8 @@ div#catalyst-footer {
     background-color: #FF9;
     text-align: center;
     padding: 3px;
+    margin-top: 8px;
+    font-weight: bold;
 }
 
 .profiles {
@@ -657,7 +740,7 @@ div#catalyst-footer {
 
 .connectionLineToArrow {
     display: table-cell;
-    vertical-align: middle;    
+    vertical-align: middle;
 }
 
     .connectionLineToArrow hr {

@@ -9,6 +9,7 @@
     <title>Profiles RNS</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/framework/images/favicon.ico">
 
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
@@ -58,9 +59,9 @@
                             <a href="http://covidauthors.org">
                                 <img src="<%=GetURLDomain()%>/Framework/Images/CovidAuthorsLogo.png" /></a>
                         </div>
-                        <div id="headerTitle">
-                            <p><a href="http://covidauthors.org" style="color: #FFF; font-size: 36px; text-decoration: none;">COVID A<span style="font-size: 30px;">UTHORS</span></a></p>
-                            <p><a href="http://covidauthors.org" style="color: #9CF; font-size: 18px; text-decoration: none;">Online profiles of coronavirus experts</a></p>
+                        <div id="headerTitle" onclick="window.location.href='http://covidauthors.org'">
+                            <div id="headerTitle-1"><h1>COVID A</h1><h2>UTHORS</h2></div>
+                            <div id="headerTitle-2"><h4>Online profiles of coronavirus experts</h4></div>
                         </div>
                         <div id="headerSearch">
                             <div id="searchBox">
@@ -72,8 +73,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 <div class="profiles">
                     <div class="profilesHeader" runat="server" id="divProfilesHeader">
@@ -94,7 +93,7 @@
                             </ItemTemplate>
                         </asp:Repeater>
                     </asp:ContentPlaceHolder>
-                    <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
+                    <div id="ProfilesNotification" visible="false" runat="server">
                         <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
                     </div>
                     <div class="profilesPage">

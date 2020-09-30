@@ -126,12 +126,12 @@
 
 
 <div style="width: 100%; margin-bottom: 25px; display: inline-flex">
-    <div style="margin-right: 100px">
+    <div class="headings-top-authors" style="margin-right: 100px">
         <div class="headings">Top authors</div>
         <div id="geo-top-researchers" style="margin-right: 15%; width: 200px"></div>
     </div>
 
-    <div>
+    <div class="headings-authors-by-country">
         <div class="headings">Browse authors by country</div>
         <div id="geo-chart-world" class="geo-chart" style="width: 600px;">           
         </div>

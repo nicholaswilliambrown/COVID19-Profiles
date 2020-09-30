@@ -35,6 +35,8 @@ body {
     text-align: left;
     max-width: 995px;
     min-width: 882px;
+    width:device-width;
+
 }
 
 #headerLogo {

@@ -603,6 +603,7 @@
     <Content Include="Search\Modules\SearchMap\Flags\zm.gif" />
     <Content Include="Search\Modules\SearchMap\Flags\zw.gif" />
     <Content Include="Search\Modules\SearchMap\SearchMap.ascx" />
+    <Content Include="Search\Modules\TopText\TopText.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1973,6 +1974,13 @@
     </Compile>
     <Compile Include="Search\Modules\SearchOptions\SearchOptions.ascx.designer.cs">
       <DependentUpon>SearchOptions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Search\Modules\TopText\TopText.ascx.cs">
+      <DependentUpon>TopText.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Modules\TopText\TopText.ascx.designer.cs">
+      <DependentUpon>TopText.ascx</DependentUpon>
     </Compile>
     <Compile Include="Search\Utilities\CacheWrapper.cs" />
     <Compile Include="Search\Utilities\CountryViz.cs" />

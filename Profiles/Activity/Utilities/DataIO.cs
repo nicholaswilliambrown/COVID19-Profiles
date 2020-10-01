@@ -331,6 +331,11 @@ namespace Profiles.Activity.Utilities
             return GetCount("SELECT [_NumberOfNodes] FROM [Ontology.].[ClassGroupClass] with (nolock) where ClassGroupURI='http://profiles.catalyst.harvard.edu/ontology/prns#ClassGroupPeople' and ClassURI='http://xmlns.com/foaf/0.1/Person'");
         }
 
+        public int GetCovidPublicationCount()
+        {
+            return GetCount("SELECT count (*) FROM [Profile.Data].[Publication.Entity.InformationResource] where corona = 1 or covid = 1");
+        }
+
         public int GetPublicationsCount()
         {
             string sql = "SELECT [_NumberOfNodes] FROM [Ontology.].[ClassGroupClass] with (nolock) where classuri = 'http://purl.org/ontology/bibo/AcademicArticle' and classgroupuri = 'http://profiles.catalyst.harvard.edu/ontology/prns#ClassGroupResearch'";

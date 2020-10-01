@@ -18,16 +18,7 @@
       </Module>
     </Panel>
     <Panel Name="Find People" Type="main">
-      <Module ID="HTMLBlock">
-        <ParamList>
-          <Param Name="HTML">
-            <div class="TopText">
-              COVID Authors contains searchable online profiles of the <span class="emphasis">220,000</span> authors who have written <span class="emphasis">55,000</span> articles in PubMed related to COVID-19 and other coronaviruses.
-              Discover the top experts by research topic or geographic region. See which authors have written articles together.
-              Learn how scientists from many different disciplines have come together to study this worldwide pandemic.
-            </div>
-          </Param>
-        </ParamList>
+      <Module ID="TopText">
       </Module>
         <Module ID="SearchMap">
         </Module>

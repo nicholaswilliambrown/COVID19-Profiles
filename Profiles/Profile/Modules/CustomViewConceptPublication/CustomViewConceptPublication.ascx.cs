@@ -13,10 +13,8 @@ namespace Profiles.Profile.Modules
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			DrawProfilesModule();
-			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
+			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;			
 			
-			// Add plus image
-			plusImage.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
 		}
 
 		public CustomViewConceptPublication() : base() { }

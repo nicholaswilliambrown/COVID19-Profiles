@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchConnection.ascx.cs"
     Inherits="Profiles.Search.Modules.SearchConnection" %>
-
+<script> jQuery(document).ready(function (e) { setTimeout(() => { jQuery('.body-page').show(); }, 100); }) </script>
 <div class="connectionTable">
     <div class="connectionTableRow">
         <div class="connectionContainerItem">
@@ -76,7 +76,7 @@
 </asp:Panel>
 
 <script type="text/javascript">
-    var url = $('.masterpage-backlink').attr('href');
+    var url = jQuery('.masterpage-backlink').attr('href');
     url = url.replace("[[[discovertab]]]", GetParameterValues('tab'));    
 
 

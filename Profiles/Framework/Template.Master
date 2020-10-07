@@ -8,8 +8,8 @@
 
     <title>Profiles RNS</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="/framework/images/favicon.ico">
 
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-    <!-- Latest compiled and minified JavaScript -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />    <!-- Latest compiled and minified JavaScript -->
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -31,7 +30,7 @@
     <meta name="keywords" content="Covid Authors,Covid Publications,Covid Researchers,Social Network Analysis,">
     <meta name="author" content="Weber Lab (https://weber.hms.harvard.edu/)">
 </head>
-<body id="bodyMaster" runat="server">
+<body id="bodyMaster" class="body-page" runat="server">
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXSD37"
@@ -48,6 +47,9 @@
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
             gtag('config', 'UA-169019502-1');
+
+     
+
         </script>
 
         <div id='page-container'>
@@ -60,8 +62,13 @@
                                 <img src="<%=GetURLDomain()%>/Framework/Images/CovidAuthorsLogo.png" /></a>
                         </div>
                         <div id="headerTitle" onclick="window.location.href='http://covidauthors.org'">
-                            <div id="headerTitle-1"><h1>COVID A</h1><h2>UTHORS</h2></div>
-                            <div id="headerTitle-2"><h4>Online profiles of coronavirus experts</h4></div>
+                            <div id="headerTitle-1">
+                                <h1>COVID A</h1>
+                                <h2>UTHORS</h2>
+                            </div>
+                            <div id="headerTitle-2">
+                                <h4>Online profiles of coronavirus experts</h4>
+                            </div>
                         </div>
                         <div id="headerSearch">
                             <div id="searchBox">
@@ -166,37 +173,55 @@ For more information about this website contact Griffin M Weber, MD, PhD, at <a 
         </div>
     </form>
     <script type="text/javascript">
-        $(document).ready(function () {
+        jQuery(document).ready(function () {
+            
 
+            if (screen.width < 600) {
+                jQuery(".PropertyGroupItem").find('div:first').hide();
+            }
+            else {
+                jQuery(".PropertyGroupItem").find('div:first').show();
+            }
 
-            $("#page-container a").css("cursor", "pointer");
-            $(".title-container").css("cursor", "pointer");
-            $('.title-container').hover(function () {
-                $(".title-container").css("opacity", ".5");
-            });
-
-            $(".title-container").click(function () {
-                //  window.location.href = "https://staging.connects.catalyst.harvard.edu/profiles/search";
-            });
-
-            $(".questionImage").on("click", function (event) {
-                event.stopPropagation();
-                event.stopImmediatePropagation();
-                $(this).parent().siblings(".passiveSectionHeadDescription").toggle();
-                event.preventDefault();
-            });
-
-            $('input[type="text"]').on("focusout", function (event) {
-                $(this).val($.trim($(this).val()));
+            jQuery("#searchBox").on("keypress", function (e) {
+                if (e.which == 13) {
+                    minisearch();
+                    return false;
+                }
                 return true;
             });
 
-            if ($(".panelPassive").text().trim().length == 0) { $(".panelPassive").remove(); }
-            if ($(".profilesContentPassive").text().trim().length == 0) { $(".profilesContentPassive").remove(); }
-            if ($(".content-main").text().trim().length == 0) { $(".content-main").remove(); }
-            if ($(".prns-screen-search").text().trim().length == 0) { $(".prns-screen-search").remove(); }
-            if ($(".profilesHeader").text().trim().length == 0) { $(".profilesHeader").remove(); }
-            if ($(".panelHeader").text().trim().length == 0) { $(".panelHeader").remove(); }
+            jQuery("#img-mag-glass").on("click", function () {
+                minisearch();
+                return true;
+            });
+
+            jQuery(".SupportText").remove();
+            jQuery("#page-container a").css("cursor", "pointer");
+            jQuery(".title-container").css("cursor", "pointer");
+            jQuery('.title-container').hover(function () {
+               jQuery(".title-container").css("opacity", ".5");
+            });
+            
+
+            jQuery(".questionImage").on("click", function (event) {
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                jQuery(this).parent().siblings(".passiveSectionHeadDescription").toggle();
+                event.preventDefault();
+            });
+
+            jQuery('input[type="text"]').on("focusout", function (event) {
+                jQuery(this).val(jQuery.trim($(this).val()));
+                return true;
+            });
+
+            if (jQuery(".panelPassive").text().trim().length == 0) { jQuery(".panelPassive").remove(); }
+            if (jQuery(".profilesContentPassive").text().trim().length == 0) { jQuery(".profilesContentPassive").remove(); }
+            if (jQuery(".content-main").text().trim().length == 0) { jQuery(".content-main").remove(); }
+            if (jQuery(".prns-screen-search").text().trim().length == 0) { jQuery(".prns-screen-search").remove(); }
+            if (jQuery(".profilesHeader").text().trim().length == 0) { jQuery(".profilesHeader").remove(); }
+            if (jQuery(".panelHeader").text().trim().length == 0) { jQuery(".panelHeader").remove(); }
 
         });
 
@@ -218,42 +243,15 @@ For more information about this website contact Griffin M Weber, MD, PhD, at <a 
             return true;
         }
 
-       
-
-   $(document).ready(function () {
-        $("#searchBox").on("keypress", function (e) {
-            if (e.which == 13) {
-                minisearch();
-                return false;
-            }
+        function minisearch() {
+            var keyword = jQuery("#menu-search").val();
+            var classuri = 'http://xmlns.com/foaf/0.1/Person';
+            document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=people&searchfor=' + keyword + '&classuri=' + classuri + '&new=true';
             return true;
-        });
+        }
 
-        $("#img-mag-glass").on("click", function () {
-            minisearch();
-            return true;
-        });
-    });
-    function minisearch() {
-        var keyword = $("#menu-search").val();
-        var classuri = 'http://xmlns.com/foaf/0.1/Person';
-        document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=people&searchfor=' + keyword + '&classuri=' + classuri + '&new=true';
-        return true;
-    }
 
-        $(document).ready(function () { $(".SupportText").remove(); });
 
-        $(window).resize(function () {
-
-            if (screen.width < 600) {
-                $(".PropertyGroupItem").find('div:first').remove();
-            }
-            else {
-
-                $(".PropertyGroupItem").find('div:first').show();
-            }
-
-        });
 
     </script>
     <%="<script type=\"text/javascript\">"%>

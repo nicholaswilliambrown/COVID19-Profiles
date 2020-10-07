@@ -70,57 +70,50 @@
     <xsl:choose>
       <xsl:when test="number(rdf:RDF/rdf:Description/prns:numberOfConnections)">
         <xsl:variable name="document" select="rdf:RDF"></xsl:variable>
+        <div style="float:right">
+          Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
+            <option value="">Query Relevance</option>
+            <xsl:choose>
+              <xsl:when test="$currentsort='name'">
+                <xsl:choose>
+                  <xsl:when test="$currentsortdirection='desc'">
+                    <option selected="true" value="name_desc">Name (A-Z)</option>
+                    <option value="name_asc">Name (Z-A)</option>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <option value="name_desc">Name (A-Z)</option>
+                    <option selected="true" value="name_asc">Name (Z-A)</option>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>
+                <option value="name_desc">Name (A-Z)</option>
+                <option value="name_asc">Name (Z-A)</option>
+              </xsl:otherwise>
+            </xsl:choose>
 
-        <table>
-          <tr>
-            <td style="width:33%;">              
-                  <div style="width:150px"></div>              
-            </td>
-            <td style="width:33%;">
-              <div style="float:right">
-                Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
-                  <option value="">Query Relevance</option>
+
+            <xsl:if test="$institution='true'">
+              <xsl:choose>
+                <xsl:when test="$currentsort='institution'">
                   <xsl:choose>
-                    <xsl:when test="$currentsort='name'">
-                      <xsl:choose>
-                        <xsl:when test="$currentsortdirection='desc'">
-                          <option selected="true" value="name_desc">Name (A-Z)</option>
-                          <option value="name_asc">Name (Z-A)</option>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <option value="name_desc">Name (A-Z)</option>
-                          <option selected="true" value="name_asc">Name (Z-A)</option>
-                        </xsl:otherwise>
-                      </xsl:choose>
+                    <xsl:when test="$currentsortdirection='desc'">
+                      <option selected="true" value="institution_desc">Institution (A-Z)</option>
+                      <option value="institution_asc">Institution (Z-A)</option>
                     </xsl:when>
                     <xsl:otherwise>
-                      <option value="name_desc">Name (A-Z)</option>
-                      <option value="name_asc">Name (Z-A)</option>
+                      <option value="institution_desc">Institution (A-Z)</option>
+                      <option selected="true" value="institution_asc">Institution (Z-A)</option>
                     </xsl:otherwise>
                   </xsl:choose>
-
-
-                  <xsl:if test="$institution='true'">
-                    <xsl:choose>
-                      <xsl:when test="$currentsort='institution'">
-                        <xsl:choose>
-                          <xsl:when test="$currentsortdirection='desc'">
-                            <option selected="true" value="institution_desc">Institution (A-Z)</option>
-                            <option value="institution_asc">Institution (Z-A)</option>
-                          </xsl:when>
-                          <xsl:otherwise>
-                            <option value="institution_desc">Institution (A-Z)</option>
-                            <option selected="true" value="institution_asc">Institution (Z-A)</option>
-                          </xsl:otherwise>
-                        </xsl:choose>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <option value="institution_desc">Institution (A-Z)</option>
-                        <option value="institution_asc">Institution (Z-A)</option>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:if>
-<!--
+                </xsl:when>
+                <xsl:otherwise>
+                  <option value="institution_desc">Institution (A-Z)</option>
+                  <option value="institution_asc">Institution (Z-A)</option>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:if>
+            <!--
                   <xsl:if test="$department='true'">
                     <xsl:choose>
                       <xsl:when test="$currentsort='department'">
@@ -144,45 +137,37 @@
 -->
 
 
-                </select>
-              </div>
-            </td>
-            <td style="width:33%;">
-              <div style="float: right;">
-                <input type="hidden" id="hiddenToggle" value="off" />
-                Show&#160;
-                <select id="selColSelect" title="choose columns" style="width: 149px">
-                  <option value="">(choose columns)</option>
-                </select>
-                <table>
-                  <tr>
-                    <td style="padding-left:45px">
-                      <div id="divColSelect" style="border-right: solid 1px gray; border-bottom: solid 1px gray;
+          </select>
+        </div>
+
+        <div style="float: right;">
+          <input type="hidden" id="hiddenToggle" value="off" />
+          Show&#160;
+          <select id="selColSelect" title="choose columns" style="width: 149px">
+            <option value="">(choose columns)</option>
+          </select>
+          <table>
+            <tr>
+              <td style="padding-left:45px">
+                <div id="divColSelect" style="border-right: solid 1px gray; border-bottom: solid 1px gray;
                                                 border-left: solid 1px silver; padding-left:3px; margin-left: -5px; padding-top: 10px; width: 144px; overflow: auto;
                                                 background-color: #ffffff;z-index:5;position: absolute;">
-                        <xsl:if test="$ShowInstitutions='true'">
-                          <br />
-                          <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox" title="Institution"/>
-                          <span style="margin-left:5px;">Institution</span>
-                        </xsl:if>
-                        <xsl:if test="$ShowDepartments='true'">
-                          <br></br>
-                          <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox" title="Department"/>
-                          <span style="margin-left:5px;">Country</span>
-                        </xsl:if>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3" height="10">
-              <xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>nbsp;
-            </td>
-          </tr>
-
+                  <xsl:if test="$ShowInstitutions='true'">
+                    <br />
+                    <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox" title="Institution"/>
+                    <span style="margin-left:5px;">Institution</span>
+                  </xsl:if>
+                  <xsl:if test="$ShowDepartments='true'">
+                    <br></br>
+                    <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox" title="Department"/>
+                    <span style="margin-left:5px;">Country</span>
+                  </xsl:if>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <table>
           <tr>
             <td colspan="3">
               <div class="listTable" style="margin-top:0px;">
@@ -207,7 +192,7 @@
                         </a>
                       </th>
                       <xsl:if test="$institution='true'">
-                         <th class="alignLeft">
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('institution');">
                             Institution
                             <xsl:choose>
@@ -226,7 +211,7 @@
                         </th>
                       </xsl:if>
                       <xsl:if test="$department='true'">
-                         <th class="alignLeft">
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('department');">
                             Country
                             <xsl:choose>
@@ -285,10 +270,10 @@
                                 <xsl:attribute name="onblur">HideDetails(this,1)</xsl:attribute>
                                 <xsl:attribute name="onmouseover">
                                   ShowDetails('<xsl:value-of select="$nodeURI"/>',this)
-                                  </xsl:attribute>
+                                </xsl:attribute>
                                 <xsl:attribute name="onfocus">
                                   ShowDetails('<xsl:value-of select="$nodeURI"/>',this)
-                                  </xsl:attribute>
+                                </xsl:attribute>
                                 <xsl:attribute name="tabindex">0</xsl:attribute>
                               </xsl:when>
                               <xsl:otherwise>
@@ -664,8 +649,8 @@
 
       function HideDetails(obj,ord){
 
-     doListTableRowOut(obj,ord);
-     document.getElementById('divItemDetails').innerHTML = '';
+      doListTableRowOut(obj,ord);
+      document.getElementById('divItemDetails').innerHTML = '';
       }
 
 
@@ -856,7 +841,7 @@
 
     <xsl:if test="$institution='true'">
 
-      <td class="alignLeft" style="width:250px">
+      <td id="institution-why-col" class="alignLeft" >
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
       </td>
     </xsl:if>
@@ -921,17 +906,15 @@
 
     </td>
     <xsl:if test="$institution='true'">
-      <td class="alignLeft" style="width:250px">
+      <td id="institution-why-col" class="alignLeft">
 
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
 
       </td>
     </xsl:if>
     <xsl:if test="$department='true'">
-      <td class="alignLeft" style="width:250px">
-
+      <td id="department-why-col" class="alignLeft">
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
-
       </td>
     </xsl:if>
 

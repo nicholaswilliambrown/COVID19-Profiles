@@ -26,8 +26,14 @@ namespace Profiles.Search.Modules.SearchMap
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DrawProfilesModule();
+           
         }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+          DrawProfilesModule();
+        }
+
 
         public SearchMap() { }
 

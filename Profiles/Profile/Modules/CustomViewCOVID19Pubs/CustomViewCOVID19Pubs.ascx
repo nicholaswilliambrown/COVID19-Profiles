@@ -1,23 +1,17 @@
 ﻿<%@ Control Language="C#" EnableViewState="true" AutoEventWireup="True" CodeBehind="CustomViewCOVID19Pubs.ascx.cs" Inherits="Profiles.Profile.Modules.CustomViewCOVID19Pubs.CustomViewCOVID19Pubs" %>
 
-                            <div class="headings">
-                               Coronavirus publications
-                            </div>
+<div class="headings">
+    Coronavirus publications
+</div>
 <div class='publicationList'>
-    <div class="anchor-tab" id="divDisplayType">
-        <a class='selected' tabindex="0" id="aNewest">Newest</a>
-        <!--&nbsp; | &nbsp; 
-        <a tabindex="0" id="aOldest">Oldest</a>-->
-        &nbsp; | &nbsp; 
-        <a tabindex="0" id="aMostCited">Most Cited</a>
-        &nbsp; | &nbsp; 
-              <a tabindex="0" id="aMostDiscussed">Most Discussed</a>
-        &nbsp; | &nbsp; 
-		<a tabindex="0" id="aTimeline" class="link-visualization">Timeline</a>
-        &nbsp; | &nbsp; 
-              <a tabindex="0" id="aFieldSummary" class="link-visualization">Field Summary</a>
-        <!--&nbsp; | &nbsp;
-		<a tabindex="0" id="aPlainText">Plain Text</a>-->
+    <div style="display:-webkit-inline-box" id="divDisplayType">
+        <div class="anchor-tab" >
+            <div><a class='selected' tabindex="0" id="aNewest">Newest</a></div>
+            <div><a tabindex="0" id="aMostCited">Most Cited</a></div>
+            <div><a tabindex="0" id="aMostDiscussed">Most Discussed</a></div>
+            <div><a tabindex="0" id="aTimeline" class="link-visualization">Timeline</a></div>
+        </div>
+        <div class="anchor-tab-last"><a tabindex="0" id="aFieldSummary" class="link-visualization">Field Summary</a></div>
     </div>
     <div id="divPubList">
         <asp:Repeater ID="rpPublication" runat="server" OnItemDataBound="rpPublication_OnDataBound">
@@ -42,31 +36,27 @@
 			    </div>				
             </FooterTemplate>
         </asp:Repeater>
-
     </div>
+
+
     <div id="divFiltered" style='display: none; margin-top: 6px;' class="publications">
         <ol id="ulFiltered">
         </ol>
     </div>
 
     <div id="divTimeline" style='display: none; margin-top: 6px;'>
-        
-
-
-		<div id="publicationTimelineGraph">
+        <div id="publicationTimelineGraph">
             <div class="details-text" style="margin-bottom: 10px;">
                 This graph shows the total number of publications by year. To see the data as text, <a id="divShowTimelineTable" tabindex="0">click here</a>.
             </div>
             <img id='timelineBar' runat='server' border='0' />
         </div>
-
         <div id="divTimelineTable" class="listTable" style="display: none; margin-top: 12px; margin-bottom: 8px;">
             <div class="details-text" style="margin-bottom: 10px;">
                 This graph shows the total number of publications by year. To return to the graph, <a id="dirReturnToTimeline" tabindex="0">click here</a>.
             </div>
             <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
         </div>
-
     </div>
 
     <div id="divFieldSummary" style='display: none; margin-top: 6px;'>
@@ -76,7 +66,7 @@
             Note that an individual publication can be assigned to more than one field. As a result, the publication counts in this graph might add up to more than the number of publications the person has written.
             To see the data as text, <a onclick="showFieldSummaryAlt()">click here</a>.
         </div>
-		<div id="publicationJournalHeadings">
+        <div id="publicationJournalHeadings">
             <div id="piechart"></div>
         </div>
     </div>
@@ -87,42 +77,45 @@
             Note that an individual publication can be assigned to more than one field. As a result, the publication counts in this graph might add up to more than the number of publications the person has written.
             To see the data as text, <a onclick="showFieldSummary()">click here</a>.
         </div>
-		<div id="publicationJournalHeadingsAlt">
+        <div id="publicationJournalHeadingsAlt">
         </div>
     </div>
-    <div class="publications-plain-text-options" style="display:none">
-       <label class="publications-plain-text-options">Start with:</label>
-        <input class="form-check-input" type="radio" checked style="margin-left:5px;margin-right:2px;" id="rdoNewest" name="pubradios" onclick="generatePlainText()"/>newest
-        <input class="form-check-input" type="radio" style="margin-left:5px;margin-right:2px;" id="rdoOldest" name="pubradios" onclick="generatePlainText()"/>oldest
-        <label style="margin-left:30px;">Include:</label>
-        <input class="form-check-input" type="checkbox" style="margin-left:5px;margin-right:2px;" id="chkLineNumbers" onclick="generatePlainText()" checked />line numbers
-        <input class="form-check-input" type="checkbox" style="margin-left:5px;margin-right:2px;" id="chkDoubleSpacing" onclick="generatePlainText()" checked />double spacing
-        <input class="form-check-input" type="checkbox" style="margin-left:5px;margin-right:2px;" id="chkAllAuthors" onclick="generatePlainText()" checked />all authors
-        <input class="form-check-input" type="checkbox" style="margin-left:5px;margin-right:2px;" id="chkPubIDs" onclick="generatePlainText()" checked />publication IDs
-        <textarea id="txtPublications-text-options" style="margin-top:10px;" rows="24" cols="100" readonly></textarea>
+    <div class="publications-plain-text-options" style="display: none">
+        <label class="publications-plain-text-options">Start with:</label>
+        <input class="form-check-input" type="radio" checked style="margin-left: 5px; margin-right: 2px;" id="rdoNewest" name="pubradios" onclick="generatePlainText()" />newest
+        <input class="form-check-input" type="radio" style="margin-left: 5px; margin-right: 2px;" id="rdoOldest" name="pubradios" onclick="generatePlainText()" />oldest
+        <label style="margin-left: 30px;">Include:</label>
+        <input class="form-check-input" type="checkbox" style="margin-left: 5px; margin-right: 2px;" id="chkLineNumbers" onclick="generatePlainText()" checked />line numbers
+        <input class="form-check-input" type="checkbox" style="margin-left: 5px; margin-right: 2px;" id="chkDoubleSpacing" onclick="generatePlainText()" checked />double spacing
+        <input class="form-check-input" type="checkbox" style="margin-left: 5px; margin-right: 2px;" id="chkAllAuthors" onclick="generatePlainText()" checked />all authors
+        <input class="form-check-input" type="checkbox" style="margin-left: 5px; margin-right: 2px;" id="chkPubIDs" onclick="generatePlainText()" checked />publication IDs
+        <textarea id="txtPublications-text-options" style="margin-top: 10px;" rows="24" cols="100" readonly></textarea>
+
+        <div id="divPlainText"></div>
     </div>
-    <div id="divPlainText"></div>
+
+
+
+    <div class="SupportText">
+        <asp:Literal runat='server' ID='supportText'></asp:Literal>
+    </div>
+
 </div>
 
-<div class="SupportText">
-    <asp:Literal runat='server' ID='supportText'></asp:Literal>
-</div>
+
+
+
+
 
 <script type="text/javascript">
-    var flipped = false;
-
-    $(document).ready(function () {
-        applyFilters();
-
-    });
     
-
     $("#divDisplayType a").on("click", function () {
-        
+
         var $this = $(this);
         if ($this.get(0).className != "selected") {
+            $(".anchor-tab").children().find("a").removeClass("selected")
+            $("#divDisplayType").children().find("a").removeClass("selected")
             $this.addClass("selected");
-            $this.siblings("a").removeClass("selected");
 
             $("#divPlainText").hide();
             $(".publications-plain-text-options").hide();
@@ -151,7 +144,7 @@
                     applyFilters();
                     break;
                 case "aTimeline":
-                    $("#divTimeline").show();                    
+                    $("#divTimeline").show();
                     break;
                 case "aFieldSummary":
                     $("#divFieldSummary").show();
@@ -160,7 +153,7 @@
                 case "aPlainText":
                     generatePlainText();
                     $("#divPlainText").show();
-                    $(".publications-plain-text-options").show();                    
+                    $(".publications-plain-text-options").show();
                     break;
             }
 
@@ -168,8 +161,7 @@
         }
     });
 
-    function showFieldSummaryAlt()
-    {
+    function showFieldSummaryAlt() {
         $("#divFieldSummaryAlt").show();
         $("#divFieldSummary").hide();
     }
@@ -220,23 +212,7 @@
         }
     });
 
-    setTimeout(function () {
-        
-       // $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
-    }, 1000);
-/*
-    var altmetricChanged = false;
 
-    setTimeout(function () {
-        $(function () {
-            $('span.altmetric-embed').on('altmetric:show', function () {
-                altmetricChanged = true;
-                var y = document.getElementsByClassName('hiddenCitationsLabel');
-
-            });
-        });
-    }, 1100);
-    */
     setTimeout(function () {
         $(function () {
             $('span.altmetric-embed').on('altmetric:hide', function () {
@@ -251,14 +227,14 @@
                     //y.classList.remove('altmetric-embed');
                     spn.innerHTML = '';
                 }
-            });           
-            
+            });
+
         });
 
     }, 900);
 
 
-   
+
 
 
     function toggleFilter(filterValue) {
@@ -302,18 +278,16 @@
             try {
                 pmcCitations = item.attributes["data-citations"].value;
             }
-            catch (err) {}
+            catch (err) { }
             if (filterArray.length > 0) {
                 for (var j = 0; j < filterArray.length; j++) {
                     try {
                         var tmp = item.attributes[filterArray[j]].value;
                         if (tmp != 1) break;
                         var links = item.getElementsByTagName("a")
-                        for (var k = 0; k < links.length; k++)
-                        {
+                        for (var k = 0; k < links.length; k++) {
                             try {
-                                if (links[k].getAttribute("onclick").indexOf(filterArray[j]) !== -1)
-                                {
+                                if (links[k].getAttribute("onclick").indexOf(filterArray[j]) !== -1) {
                                     var colour = links[k].attributes["data-color"].value;
                                     links[k].setAttribute("style", "border-color:" + colour + ";background-color:" + colour + ";color:#FFF");
                                 }
@@ -372,7 +346,7 @@
                     if (comma > 0) comma = authors.indexOf(",", comma + 1)
                     if (comma > 0) comma = authors.indexOf(",", comma + 1)
                     if (comma > 0/* && comma != authors.lastIndexOf(',')*/) authors = authors.substring(0, comma) + ", et al";
-                    
+
                 }
                 var title = pubReference.substring(pubReference.indexOf('.') + 2, pubReference.length);
 
@@ -389,21 +363,16 @@
             var item = lis[i].cloneNode(true);
         }
         document.getElementById("txtPublications-text-options").textContent = text;
-        
+
     }
 
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
 
-    // Load the Visualization API and the piechart package.
-    google.charts.load('current', { 'packages': ['corechart'] });
+ 
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    //google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
+    function drawCovidAuthorsChart() {
         var jsonData = $.ajax({
             url: "<%= svcURL %><%= nodeID %>",
             dataType: "json",
@@ -413,17 +382,59 @@
         // Create our data table out of JSON data loaded from server.
         var data = new google.visualization.DataTable(jsonData);
 
-        var colors = jsonData.substring(jsonData.lastIndexOf('\"colors\": \"[#') + 12, jsonData.indexOf("]", jsonData.lastIndexOf('\"colors\": \"[#') + 12));     
+        var colors = jsonData.substring(jsonData.lastIndexOf('\"colors\": \"[#') + 12, jsonData.indexOf("]", jsonData.lastIndexOf('\"colors\": \"[#') + 12));
         var colorArray = colors.split(",");
         //colorArray = ['#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC'];
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, { fontSize: 12, colors: colorArray, legend: {alignment: 'center'}, chartArea: {left:20,top:20}, tooltip: { text: 'percentage' } });
+        chart.draw(data, { width: 680, height: 300, fontSize: 12, colors: colorArray, legend: { alignment: 'center'}, chartArea: { left: 20, top: 20, width: '90%', height: '90%' }, tooltip: { text: 'percentage' } });
 
         var altTableText = jsonData.substring(jsonData.lastIndexOf('\"altTxtTable\": \"') + 16, jsonData.indexOf("</table>", jsonData.lastIndexOf('\"altTxtTable\": \"') + 16) + 5);
         document.getElementById("publicationJournalHeadingsAlt").innerHTML = altTableText;
 
     }
 
-</script>
+    function drawMobileCovidAuthorsChart() {
+        var jsonData = $.ajax({
+            url: "<%= svcURL %><%= nodeID %>",
+            dataType: "json",
+            async: false
+        }).responseText;
 
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+
+        var colors = jsonData.substring(jsonData.lastIndexOf('\"colors\": \"[#') + 12, jsonData.indexOf("]", jsonData.lastIndexOf('\"colors\": \"[#') + 12));
+        var colorArray = colors.split(",");
+        //colorArray = ['#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC'];
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, { width: 300, height: 300, fontSize: 12, colors: colorArray, legend: { alignment: 'center' }, chartArea: { left: 5, top: 20, width: '90%', height: '90%' }, tooltip: { text: 'percentage' } });
+
+
+        var altTableText = jsonData.substring(jsonData.lastIndexOf('\"altTxtTable\": \"') + 16, jsonData.indexOf("</table>", jsonData.lastIndexOf('\"altTxtTable\": \"') + 16) + 5);
+        document.getElementById("publicationJournalHeadingsAlt").innerHTML = altTableText;
+
+    }
+
+
+    $(document).ready(function () {
+        applyFilters();
+        // Load the Visualization API and the piechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawCovidAuthorsChart);
+
+        if (screen.width < 600) {
+            google.charts.setOnLoadCallback(drawMobileCovidAuthorsChart);
+            $(".anchor-tab-last").appendTo(".anchor-tab");
+        }
+        else {
+            google.charts.setOnLoadCallback(drawCovidAuthorsChart);
+        }
+
+
+    });
+
+</script>

@@ -353,6 +353,7 @@
     <Content Include="Profile\XSLT\Website.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\country.aspx" />
+    <Content Include="Search\Modules\HomePage\HomePage.ascx" />
     <Content Include="Search\Modules\SearchMap\Flags\ad.gif" />
     <Content Include="Search\Modules\SearchMap\Flags\ae.gif" />
     <Content Include="Search\Modules\SearchMap\Flags\af.gif" />
@@ -1900,6 +1901,13 @@
     <Compile Include="Search\country.aspx.cs">
       <DependentUpon>country.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Modules\HomePage\HomePage.ascx.cs">
+      <DependentUpon>HomePage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Modules\HomePage\HomePage.ascx.designer.cs">
+      <DependentUpon>HomePage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.ascx.cs">
       <DependentUpon>SearchEverythingFacets.ascx</DependentUpon>

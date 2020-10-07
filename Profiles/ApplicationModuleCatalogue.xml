@@ -13,22 +13,22 @@ For details, see: LICENSE.txt
 -->
 <ApplicationList>  
   <Application ApplicaitonPath="Framework" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="SPARQL" ModulePath="Modules" Enabled="true"/>
+  <Application ApplicaitonPath="SPARQL" ModulePath="Modules" Enabled="false"/>
   <Application ApplicaitonPath="Search" ModulePath="Modules" Enabled="true"/>
   <Application ApplicaitonPath="Profile" ModulePath="Modules" Enabled="true"/>  
   <Application ApplicaitonPath="Error" ModulePath="Modules" Enabled="true"/>  
-  <Application ApplicaitonPath="Edit" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="Proxy" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="ActiveNetwork" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="DIRECT" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="History" ModulePath="Modules" Enabled="true"/>
+  <Application ApplicaitonPath="Edit" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="Proxy" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="ActiveNetwork" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="DIRECT" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="History" ModulePath="Modules" Enabled="false"/>
   <Application ApplicaitonPath="About" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="Login" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="ORNG" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="ORCID" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="Activity" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="GroupAdmin" ModulePath="Modules" Enabled="true"/>
-  <Application ApplicaitonPath="Lists" ModulePath="Modules" Enabled="true"/>
+  <Application ApplicaitonPath="Login" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="ORNG" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="ORCID" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="Activity" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="GroupAdmin" ModulePath="Modules" Enabled="false"/>
+  <Application ApplicaitonPath="Lists" ModulePath="Modules" Enabled="false"/>
 </ApplicationList>
 
 

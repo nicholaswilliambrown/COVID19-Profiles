@@ -61,7 +61,7 @@ namespace Profiles.Framework
                 }
 
                 if (!Framework.Utilities.Root.AbsolutePath.Contains("/search"))
-                    litJS.Text += "$('#catfooter').remove()";
+                    litJS.Text += "jQuery(document).ready(function(e) {  setTimeout(() => { jQuery('.body-page').show(); }, 100);})"; 
 
             }
             catch (Exception ex)
@@ -115,18 +115,19 @@ namespace Profiles.Framework
             head.Controls.Add(PRNSthemeMenusTop);
 
             Framework.Utilities.DataIO data = new DataIO();
-/*
-            if (data.CheckSystemMessage() != "")
-            {
-                ProfilesNotification.Visible = true;
-                litSystemNotice.Visible = true;
-                litSystemNotice.Text = data.CheckSystemMessage();
-            }
-            else
-            {
- */               ProfilesNotification.Visible = false;
-                litSystemNotice.Visible = false;
- //           }
+            /*
+                        if (data.CheckSystemMessage() != "")
+                        {
+                            ProfilesNotification.Visible = true;
+                            litSystemNotice.Visible = true;
+                            litSystemNotice.Text = data.CheckSystemMessage();
+                        }
+                        else
+                        {
+             */
+            ProfilesNotification.Visible = false;
+            litSystemNotice.Visible = false;
+            //           }
 
         }
         /// <summary>

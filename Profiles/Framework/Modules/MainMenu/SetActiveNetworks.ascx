@@ -5,7 +5,7 @@
 <script type="text/javascript">
     
     function toggleSelectionRepeater(obj) {
-        debugger;
+        
         var check_text = $("label[for='" + $(obj).attr("id") + "']").text();
         var subject = $("#<%=hdSubject.ClientID%>").val();
         $.ajax({

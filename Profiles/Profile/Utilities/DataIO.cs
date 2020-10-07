@@ -732,8 +732,8 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@subject", request.Subject));
-            dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
             // Return reader
+            dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
 

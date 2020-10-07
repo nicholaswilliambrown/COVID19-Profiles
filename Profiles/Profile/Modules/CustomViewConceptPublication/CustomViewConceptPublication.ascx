@@ -1,10 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CustomViewConceptPublication.ascx.cs" Inherits="Profiles.Profile.Modules.CustomViewConceptPublication" %>
 
 <div class="PropertyGroupItem"  style='margin-bottom: 10px;'>
-	<div class="PropertyItemHeader">
-		<a href="javascript:toggleBlock('propertyitem','conceptPub')"> 
-			<img id='plusImage' runat='server' style="border: none; text-decoration: none !important" border="0" alt="expand / collapse" /></a>
-			publications
+	<div class="PropertyItemHeader">		
+			Publications
 	</div>
 	<div class="PropertyGroupData">
 		<div id="conceptPub" class='publicationList'>
@@ -31,7 +29,7 @@
 				</div>
                 <div id="divTimelineTable" class="listTable" style="display:none;margin-top:12px;margin-bottom:8px;">
 		            <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
-                    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a>
+                   <span id="return-to-timeline">To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a></span>
                 </div>
 			</div>	
 			
@@ -130,5 +128,19 @@
             }
         });
     });
+
+    if (screen.width < 600) {
+        $("#divTimelineTable").show();
+        $("#publicationTimelineGraph").hide();
+        $("#return-to-timeline").hide()
+
+
+    }
+    else {
+        $("#divTimelineTable").hide();
+        $("#publicationTimelineGraph").show();
+        $("#return-to-timeline").show()
+    }
+ 
 </script>
        

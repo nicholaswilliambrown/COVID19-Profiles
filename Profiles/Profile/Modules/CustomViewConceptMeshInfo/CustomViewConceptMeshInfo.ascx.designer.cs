@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Profile.Modules {
-    
-    
-    public partial class CustomViewConceptMeshInfo {
-        
-        /// <summary>
-        /// plusImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage plusImage;
-        
+namespace Profiles.Profile.Modules
+{
+
+
+    public partial class CustomViewConceptMeshInfo
+    {
+
         /// <summary>
         /// definitionLink control.
         /// </summary>
@@ -29,7 +22,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor definitionLink;
-        
+
         /// <summary>
         /// detailsLink control.
         /// </summary>
@@ -38,7 +31,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor detailsLink;
-        
+
         /// <summary>
         /// generalConceptLink control.
         /// </summary>
@@ -47,7 +40,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor generalConceptLink;
-        
+
         /// <summary>
         /// relatedConceptLink control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor relatedConceptLink;
-        
+
         /// <summary>
         /// specificConceptLink control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor specificConceptLink;
-        
+
         /// <summary>
         /// litDefinition control.
         /// </summary>
@@ -74,7 +67,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDefinition;
-        
+
         /// <summary>
         /// litDescriptorId control.
         /// </summary>
@@ -83,7 +76,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDescriptorId;
-        
+
         /// <summary>
         /// litMeshNumbers control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litMeshNumbers;
-        
+
         /// <summary>
         /// litConceptTerms control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litConceptTerms;
-        
+
         /// <summary>
         /// litGeneralConcepts control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litGeneralConcepts;
-        
+
         /// <summary>
         /// litRelatedConcepts control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litRelatedConcepts;
-        
+
         /// <summary>
         /// litSpecificConcepts control.
         /// </summary>

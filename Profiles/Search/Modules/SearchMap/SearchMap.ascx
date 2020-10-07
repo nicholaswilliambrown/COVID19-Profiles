@@ -15,33 +15,30 @@
 
 <script>
 
-
     window.geoStats = window.geoStats || {};
-    var localcountrycodes;
-    geoStats.drawGeoChart_World = function drawGeoChart_World(data) {
+   
+    geoStats.drawGeoChart_World = function drawGeoChart_World() {
+        
+        var data = countries;
 
         var data_table = new google.visualization.DataTable();
 
         data_table.addColumn('string', 'Country');
         data_table.addColumn('number', 'Researchers');
 
-
-        geoStats.populateDataTable_GeoChart(data_table, data);
+        geoStats.populateDataTable_GeoChart(data_table, data);        
 
         var options = {
             colorAxis: {
                 colors: ["#cbdcf2", "#77a3e0"]
-            },
-        };
+            }
+        }; 
 
-       
         var chart = new google.visualization.GeoChart(document.getElementById("geo-chart-world"));
-
 
         function myClickHandler() {
             var selection = chart.getSelection();
             var message = '';
-
             for (var i = 0; i < selection.length; i++) {
                 var item = selection[i];
                 if (item.row != null) {
@@ -51,12 +48,10 @@
             if (message == '') {
                 return false;
             }
-
             window.location = "country.aspx?country=" + message;
         }
 
         google.visualization.events.addListener(chart, 'select', myClickHandler);
-
 
         chart.draw(data_table, options);
     }
@@ -69,32 +64,8 @@
         }
     }
 
-
-
-    $(window).on('load', function () {
-
-
-        google.charts.load('current', {
-            'packages': ['geochart'],
-            'mapsApiKey': '<%= googleKey %>'
-        });
-
-        var countrydata = countries;
-        var researcherdata = researchers;
-        this.localcountrycodes = countrycodes;
-        if (researchers.length != 0) {
-            geoStats.processResearchers(researcherdata);
-        }
-
-        if (countrydata.length != 0) {
-            google.charts.setOnLoadCallback(geoStats.drawGeoChart_World(countrydata));
-        }
-
-      
-
-    });
-
     geoStats.processResearchers = function processResearchers(data) {
+        
         $("#geo-top-researchers").html('');
         $(data).each(function (index, item) {
             $("#geo-top-researchers").append("<div style='display:flex;margin-bottom:2px;'><div style='margin-right:5px;width:16px;text-align:center'>" + geoStats.getCountryCode(item.Country) + "</div><div><a href='" + item.URI + "'>" + item.Name + "</a></div></div>");
@@ -104,7 +75,9 @@
     }
     geoStats.getCountryCode = function getCountryCode(countryName) {
         var returnValue = "";
-        var filteredList = localcountrycodes.filter(function (item) {
+        
+        //var countrycodes is loaded from the server into a litJS control. 
+        var filteredList = countrycodes.filter(function (item) {
             return item.name === countryName;
         });
         if (filteredList[0]) {
@@ -114,19 +87,29 @@
     }
 
 
-    setTimeout(function () {
-      
-        $("#loader-gif").hide();
-            geoStats.drawGeoChart_World(countries);
-      
-      
-    }, 2000);
+    $(document).ready(function () {
+        
+
+        google.charts.load('current', {
+            'callback': geoStats.drawGeoChart_World,
+            'packages': ['geochart'],           
+            'mapsApiKey': '<%= googleKey %>'
+         });
+        var researcherdata = researchers;        
+        
+        geoStats.processResearchers(researcherdata);
+
+        
+        
+
+    });
+
 
 </script>
 
 
 <div style="width: 100%; margin-bottom: 25px; display: inline-flex">
-    <div class="headings-top-authors" style="margin-right: 100px">
+    <div class="headings-top-authors">
         <div class="headings">Top authors</div>
         <div id="geo-top-researchers" style="margin-right: 15%; width: 200px"></div>
     </div>
@@ -134,7 +117,6 @@
     <div class="headings-authors-by-country">
         <div class="headings">Browse authors by country</div>
         <div id="geo-chart-world" class="geo-chart" style="width: 600px;">           
-        </div>
-         <img src="/search/Images/loader.gif" id="loader-gif" />
+        </div>        
     </div>
 </div>

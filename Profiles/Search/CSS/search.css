@@ -10,11 +10,16 @@
     For details, see: LICENSE.txt 
   
 */
-
-.search-row-details{
-   font-size:12px;
-   text-align:left;
-   margin-top:14px;
+#institution-why-col {
+    width:250px;
+}
+#department-why-col{
+    width:250px;
+}
+.search-row-details {
+    font-size: 12px;
+    text-align: left;
+    margin-top: 14px;
 }
 .pageTitle h2{ 
     text-align: left;

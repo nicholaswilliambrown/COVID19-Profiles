@@ -67,7 +67,7 @@
         }
 
         function removeselected() {
-            debugger;
+            
             var selected = "";
             $('input[type=checkbox]:checked').each(function () {
                 selected += ($(this).parent().attr('name')) + ',';

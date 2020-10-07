@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Profile.Modules {
-    
-    
-    public partial class CustomViewConceptPublication {
-        
-        /// <summary>
-        /// plusImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage plusImage;
-        
+namespace Profiles.Profile.Modules
+{
+
+
+    public partial class CustomViewConceptPublication
+    {
+
         /// <summary>
         /// timeline control.
         /// </summary>
@@ -29,7 +22,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage timeline;
-        
+
         /// <summary>
         /// litTimelineTable control.
         /// </summary>
@@ -38,7 +31,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litTimelineTable;
-        
+
         /// <summary>
         /// cited control.
         /// </summary>
@@ -47,7 +40,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal cited;
-        
+
         /// <summary>
         /// newest control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace Profiles.Profile.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal newest;
-        
+
         /// <summary>
         /// oldest control.
         /// </summary>

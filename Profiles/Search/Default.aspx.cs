@@ -159,10 +159,10 @@ namespace Profiles.Search
             publicationscss.Attributes["media"] = "all";
             Page.Header.Controls.Add(publicationscss);
 
-            HtmlGenericControl jsscript = new HtmlGenericControl("script");
-            jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Root.Domain + "/Search/JavaScript/comboTreeCheck.js");
-            Page.Header.Controls.Add(jsscript);
+            //HtmlGenericControl jsscript = new HtmlGenericControl("script");
+            //jsscript.Attributes.Add("type", "text/javascript");
+            //jsscript.Attributes.Add("src", Root.Domain + "/Search/JavaScript/comboTreeCheck.js");
+            //Page.Header.Controls.Add(jsscript);
 
             // Inject script into HEADER
             Literal script = new Literal();

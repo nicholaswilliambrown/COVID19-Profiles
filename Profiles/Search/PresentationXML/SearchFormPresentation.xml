@@ -8,22 +8,11 @@
   <PanelList>
     <Panel Type="header"  />
     <Panel Type="page" />
-    <Panel Type="active">      
-      <Module ID="Gadgets" >
-        <ParamList>
-          <Param Name="HTML">
-            <div id="gadgets-tools-left" class="gadgets-gadget-parent"></div>
-          </Param>
-        </ParamList>
-      </Module>
+    <Panel Type="active">            
     </Panel>
     <Panel Name="Find People" Type="main">
-      <Module ID="TopText">
-      </Module>
-        <Module ID="SearchMap">
-        </Module>
-      <Module ID="CustomViewCOVID19Pubs">
-      </Module>
+      <Module ID="HomePage">
+      </Module>        
       </Panel>
     <Panel type="footer" />
   </PanelList>

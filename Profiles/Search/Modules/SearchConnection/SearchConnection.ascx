@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchConnection.ascx.cs"
     Inherits="Profiles.Search.Modules.SearchConnection" %>
-<script> jQuery(document).ready(function (e) { setTimeout(() => { jQuery('.body-page').show(); }, 100); }) </script>
+<script> jQuery(document).ready(function (e) { jQuery('.body-page').show(); }) </script>
 <div class="connectionTable">
     <div class="connectionTableRow">
         <div class="connectionContainerItem">

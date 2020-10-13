@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
+using System.Net.Http;
+using System.Reflection.Emit;
 using System.Web.UI.WebControls;
 using System.Xml;
 using Profiles.Framework.Utilities;
@@ -46,16 +48,19 @@ namespace Profiles.Framework.Modules.HomePage
             DrawProfilesModule();
 
         }
-
-
-
+        
         public void DrawProfilesModule()
         {
+
+
             string countrycodes = string.Empty;
             DataIOMap dataIO = new Search.Utilities.DataIOMap();
 
             string researchers = Newtonsoft.Json.JsonConvert.SerializeObject(dataIO.GetTopGeoResearchers());
             string countries = Newtonsoft.Json.JsonConvert.SerializeObject(dataIO.GetCountryCounts());
+
+
+
 
 
             using (StreamReader sr = new StreamReader(Server.MapPath("~/Search/Modules/SearchMap/countries.json")))
@@ -110,7 +115,7 @@ namespace Profiles.Framework.Modules.HomePage
 
             //if (type == Utilities.DataIO.ClassType.Group) divPubHeaderText.Visible = false;
 
-          
+
         }
 
         protected void rpPublication_OnDataBound(object sender, RepeaterItemEventArgs e)
@@ -118,9 +123,9 @@ namespace Profiles.Framework.Modules.HomePage
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Publication pub = (Publication)e.Item.DataItem;
-                Label lblNum = (Label)e.Item.FindControl("lblNum");
-                Label lblPublication = (Label)e.Item.FindControl("lblPublication");
-                Label lblPublicationIDs = (Label)e.Item.FindControl("lblPublicationIDs");
+                System.Web.UI.WebControls.Label lblNum = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblNum");
+                System.Web.UI.WebControls.Label lblPublication = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblPublication");
+                System.Web.UI.WebControls.Label lblPublicationIDs = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblPublicationIDs");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
                 System.Web.UI.HtmlControls.HtmlGenericControl liPublication = ((System.Web.UI.HtmlControls.HtmlGenericControl)(e.Item.FindControl("liPublication")));
 

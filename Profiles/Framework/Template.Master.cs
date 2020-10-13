@@ -61,7 +61,7 @@ namespace Profiles.Framework
                 }
 
                 if (!Framework.Utilities.Root.AbsolutePath.Contains("/search"))
-                    litJS.Text += "jQuery(document).ready(function(e) {  setTimeout(() => { jQuery('.body-page').show(); }, 100);})"; 
+                    litJS.Text += "jQuery(document).ready(function(e) { jQuery('.body-page').show();});"; 
 
             }
             catch (Exception ex)
@@ -337,7 +337,7 @@ namespace Profiles.Framework
             {
                 divTopMainRow.Visible = false;
                 litPageTitle.Visible = false;
-                js += "$(document).ready(function () {$('#divTopMainRow').remove();});";
+                js += "$(document).ready(function () {jQuery('#divTopMainRow').remove();});";
             }
 
             // PageSubTitle
@@ -357,7 +357,7 @@ namespace Profiles.Framework
             else
             {
                 litPageDescription.Visible = false;
-                js += "$(document).ready(function () {$('.pageDescription').remove();});";
+                js += "$(document).ready(function () {jQuery('.pageDescription').remove();});";
             }
 
             // PageBackLink
@@ -378,13 +378,11 @@ namespace Profiles.Framework
             }
             else
             {
-                js += "$(document).ready(function () {$('.backLink').remove();});";
+                js += "jQuery(document).ready(function () {$('.backLink').remove();});";
             }
 
-            // Window Title
-            buffer = GetStringFromPresentationXML("Presentation/WindowName");
+         
 
-            Page.Header.Title = buffer + " | Profiles RNS";
             litJS.Text += js;
 
         }

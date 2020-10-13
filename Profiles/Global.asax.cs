@@ -38,8 +38,21 @@ namespace Profiles
         {
             RegisterRoutes(RouteTable.Routes);
             LoadModuleCatalogue();
+            LoadHomePage();
         }
+        protected void LoadHomePage()
+        {
 
+            string html = string.Empty;
+            
+
+
+            Framework.Utilities.Cache.SetWithTimeout("HOMEPAGE", html, 900000);
+
+
+
+
+        }
 
         //***************************************************************************************************************************************
         /// <summary>

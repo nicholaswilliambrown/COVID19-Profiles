@@ -1,4 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HomePage.ascx.cs" Inherits="Profiles.Framework.Modules.HomePage.HomePage" %>
+﻿
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HomePage.ascx.cs" Inherits="Profiles.Framework.Modules.HomePage.HomePage" %>
 <%--
     Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
     Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
@@ -9,11 +10,7 @@
     Code licensed under a BSD License. 
     For details, see: LICENSE.txt 
 --%>
-
-
-
     <asp:Literal runat="server" ID="litJS"></asp:Literal>
-
 
     <div class="TopText">
         COVID Authors contains searchable online profiles of the <span class="emphasis">

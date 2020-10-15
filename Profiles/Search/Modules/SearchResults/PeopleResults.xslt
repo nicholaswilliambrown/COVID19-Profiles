@@ -70,7 +70,7 @@
     <xsl:choose>
       <xsl:when test="number(rdf:RDF/rdf:Description/prns:numberOfConnections)">
         <xsl:variable name="document" select="rdf:RDF"></xsl:variable>
-        <div style="float:right">
+        <div style="float:right;margin-left:6px;">
           Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
             <option value="">Query Relevance</option>
             <xsl:choose>
@@ -113,34 +113,10 @@
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:if>
-            <!--
-                  <xsl:if test="$department='true'">
-                    <xsl:choose>
-                      <xsl:when test="$currentsort='department'">
-                        <xsl:choose>
-                          <xsl:when test="$currentsortdirection='desc'">
-                            <option selected="true" value="department_desc">Country (A-Z)</option>
-                            <option value="department_asc">Country (Z-A)</option>
-                          </xsl:when>
-                          <xsl:otherwise>
-                            <option value="department_desc">Country (A-Z)</option>
-                            <option selected="true" value="department_asc">Country (Z-A)</option>
-                          </xsl:otherwise>
-                        </xsl:choose>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <option value="department_desc">Country (A-Z)</option>
-                        <option value="department_asc">Country (Z-A)</option>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:if>
--->
-
-
           </select>
         </div>
 
-        <div style="float: right;">
+        <div style="float: right;margin-bottom:16px;">
           <input type="hidden" id="hiddenToggle" value="off" />
           Show&#160;
           <select id="selColSelect" title="choose columns" style="width: 149px">

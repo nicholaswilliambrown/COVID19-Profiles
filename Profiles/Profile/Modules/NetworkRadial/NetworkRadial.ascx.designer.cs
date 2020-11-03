@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Profile.Modules.NetworkRadial {
-    
-    
-    public partial class NetworkRadial {
-        
+namespace Profiles.Profile.Modules.NetworkRadial
+{
+
+
+    public partial class NetworkRadial
+    {
+
         /// <summary>
         /// lblProfileName control.
         /// </summary>
@@ -20,16 +22,16 @@ namespace Profiles.Profile.Modules.NetworkRadial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProfileName;
-        
+
         /// <summary>
-        /// div1 control.
+        /// divSwfScript control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSwfScript;
+
         /// <summary>
         /// litNetworkText control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Profile.Modules.NetworkRadial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litNetworkText;
-        
+
         /// <summary>
         /// iFrameFlashGraph control.
         /// </summary>
@@ -47,5 +49,14 @@ namespace Profiles.Profile.Modules.NetworkRadial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlIframe iFrameFlashGraph;
+
+        /// <summary>
+        /// litJS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litJS;
     }
 }

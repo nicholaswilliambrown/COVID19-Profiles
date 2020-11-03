@@ -11,9 +11,6 @@
 --%>
 
 
-
-<%--<div style="position: absolute; z-index: 999;">--%>
-
     <div>
 
 
@@ -35,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div runat="server" id="div1" style="height: 610px;" class="clusterView">
+    <div runat="server" id="divSwfScript" style="height: 610px;" class="clusterView">
         <svg id="radial_view" height="610px" width="100%" fill="#999900" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" style="visibility: hidden;"
             viewBox="-10 -20 900 700">
@@ -137,7 +134,8 @@
     </div>
     </div>
 
-<script type="text/javascript">
+<script type="text/javascript">  
+
     jQuery(function () {
         // global scope name for watchdog timer
         // call watchdog.cancel() to prevent error message from showing in HTML
@@ -227,3 +225,5 @@
         });
     });
 </script>
+
+<asp:Literal runat ="server" ID="litJS"></asp:Literal>

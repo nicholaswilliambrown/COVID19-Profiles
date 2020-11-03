@@ -77,16 +77,14 @@ namespace Profiles.Profile.Modules.NetworkRadial
 
             Profiles.Profile.Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
             int personID = data.GetPersonId(Int64.Parse(Request.QueryString["Subject"].ToString()));
-            HtmlGenericControl script = new HtmlGenericControl("script");
-            script.Attributes.Add("type", "text/javascript");
-            script.InnerHtml = "jQuery(document).ready(function() {try{" +
-                " radial_viz = new RadialGraph_Visualization(jQuery('#radial_view')[0], {radius: 100});" +
-                //" radial_viz.loadNetwork('" + Root.Domain + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p=" + Request.QueryString["Subject"].ToString() + "', '" + Request.QueryString["Subject"].ToString() + "'); " +
-                " radial_viz.loadNetwork('" + Root.Domain + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p=" + Request.QueryString["Subject"].ToString() + "', '" + personID + "'); " +
-                "} catch(e){}});";
-            Page.Header.Controls.Add(script);
 
-            //Profiles.Profile.Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
+
+
+            litJS.Text = "<script type=\"text/javascript\"> setTimeout(function(){try{" +
+                " radial_viz = new RadialGraph_Visualization(jQuery('#radial_view')[0], {radius: 100});" +
+                " radial_viz.loadNetwork('" + Root.Domain + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p=" + Request.QueryString["Subject"].ToString() + "', '" + personID + "'); " +
+                "} catch(e){}},300);</script>";
+            
 
             RDFTriple request = new RDFTriple(Convert.ToInt64(Request.QueryString["subject"]));
             XmlDocument x = data.GetProfileNetworkForBrowserXML(request);
@@ -102,6 +100,6 @@ namespace Profiles.Profile.Modules.NetworkRadial
 
             iFrameFlashGraph.Attributes.Add("data-src", Root.Domain + "/profile/Modules/NetworkRadialFlash/Default.aspx?Subject=" + Request.QueryString["subject"] + "&Predicate=" + Request.QueryString["Predicate"]);
 
-        }
+        }       
     }
 }

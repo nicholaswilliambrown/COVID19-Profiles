@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" EnableViewState="true" AutoEventWireup="True" CodeBehind="CustomViewCOVID19Pubs.ascx.cs" Inherits="Profiles.Profile.Modules.CustomViewCOVID19Pubs.CustomViewCOVID19Pubs" %>
 
 <div class="headings">
-    Coronavirus publications
+    COVID-19 related publications
 </div>
 <div class='publicationList'>
     <div style="display:-webkit-inline-box" id="divDisplayType">

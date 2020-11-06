@@ -558,12 +558,12 @@
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         var options = {
-            width: 300,
+            width: 350,
             height: 300,
             fontSize: 12,
             colors: colorArray,
-            legend: { textStyle: { fontSize: 15 }, maxLines:1 }, chartArea: { left: 5, top: 10, width: '90%', height: '90%' }, tooltip: { text: 'percentage' }
-        }
+            legend: { textStyle: { fontSize: 11 }, maxLines: 1 }, chartArea: { left: 5, top: 10, width: '100%', height: '90%' }, tooltip: { text: 'percentage' }
+        }//, position: 'labeled'
         chart.draw(data, options);
 
 

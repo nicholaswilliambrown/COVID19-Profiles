@@ -121,7 +121,16 @@ a.PMC-citations {
 	xcolor:#333;
 	font-weight:bold;
 }
+.timeline-heading {
+	font-size: 16px;
 
+	color: #333;
+	text-align: justify !important;
+	text-justify: inter-word;
+	xline-height: 16px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
 .publications-plain-text-options {
 	color:#333;
     padding-top:4px;

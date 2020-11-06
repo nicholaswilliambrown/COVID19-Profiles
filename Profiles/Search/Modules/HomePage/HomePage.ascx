@@ -79,16 +79,23 @@
 
     <div id="divTimeline" style='display: none; margin-top: 6px;'>
         <div id="publicationTimelineGraph">
-            <div class="details-text" style="margin-bottom: 10px;">
-                This graph shows the total number of publications by year. To see the data as text, <a id="divShowTimelineTable" tabindex="0">click here</a>.
+            <div class="timeline-heading" style="margin-bottom: 3px;">
+                COVID-19 publications
+            </div>
+            <img id='timelineBarCOVID' runat='server' border='0' />
+            <div class="timeline-heading" style="margin-bottom: 3px; margin-top:10px;">
+                All Publications
             </div>
             <img id='timelineBar' runat='server' border='0' />
+            <div class="details-text" style="margin-bottom: 10px;">
+                These graphs show COVID-19 publications by month since August 2019 and all publications written by authors of COVID-19 publications over the past 30 years.<br />To see the data from both graphs as text, <a id="divShowTimelineTable" tabindex="0">click here</a>.
+            </div>
         </div>
         <div id="divTimelineTable" class="listTable" style="display: none; margin-top: 12px; margin-bottom: 8px;">
             <div class="details-text" style="margin-bottom: 10px;">
-                This graph shows the total number of publications by year. To return to the graph, <a id="dirReturnToTimeline" tabindex="0">click here</a>.
+                These graphs show COVID-19 publications by month since August 2019 and all publications written by authors of COVID-19 publications over the past 30 years.<br /> To return to the graphs, <a id="dirReturnToTimeline" tabindex="0">click here</a>.
             </div>
-            <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
+            <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>          
         </div>
     </div>
 

@@ -100,6 +100,9 @@ namespace Profiles.Framework.Modules.HomePage
             if (type == Profiles.Profile.Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
 
             Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vil = data.GetGoogleTimeline(new RDFTriple(Convert.ToInt64(System.Configuration.ConfigurationManager.AppSettings["Search.PublicationsNodeID2"].ToString())), storedproc);
+            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vilCOVID = data.GetGoogleTimelineCOVID(new RDFTriple(Convert.ToInt64(System.Configuration.ConfigurationManager.AppSettings["Search.PublicationsNodeID2"].ToString())), storedproc);
+            timelineBarCOVID.Src = vilCOVID.src;
+            timelineBarCOVID.Alt = vilCOVID.alt;
             timelineBar.Src = vil.src;
             timelineBar.Alt = vil.alt;
             litTimelineTable.Text = vil.asText;

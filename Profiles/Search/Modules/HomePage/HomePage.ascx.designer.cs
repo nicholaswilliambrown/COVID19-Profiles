@@ -51,6 +51,15 @@ namespace Profiles.Framework.Modules.HomePage
         protected global::System.Web.UI.WebControls.Repeater rpPublication;
 
         /// <summary>
+        /// timelineBarCOVID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage timelineBarCOVID;
+
+        /// <summary>
         /// timelineBar control.
         /// </summary>
         /// <remarks>

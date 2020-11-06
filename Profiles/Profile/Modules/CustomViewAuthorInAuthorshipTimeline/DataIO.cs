@@ -64,6 +64,41 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
             return vil;
         }
 
+
+        public VisualizationImageLink GetGoogleTimelineCOVID(RDFTriple request, string storedproc)
+        {
+            VisualizationImageLink vil;
+
+            if (Framework.Utilities.Cache.FetchObject(request.Key + "GetGoogleTimelineCOVID" + storedproc) == null)
+            {
+                SessionManagement sm = new SessionManagement();
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                var db = new SqlConnection(connstr);
+
+                db.Open();
+
+                SqlCommand dbcommand = new SqlCommand(storedproc, db);
+                dbcommand.CommandType = CommandType.StoredProcedure;
+                dbcommand.CommandTimeout = base.GetCommandTimeout();
+                // Add parameters
+                dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+                dbcommand.Parameters.Add(new SqlParameter("@GraphType", "COVID"));
+                using (SqlDataReader reader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    reader.Read();
+                    vil = new VisualizationImageLink(reader["gc"].ToString(), reader["alt"].ToString(), reader["asText"].ToString());
+                    Framework.Utilities.Cache.Set(request.Key + "GetGoogleTimelineCOVID" + storedproc, vil);
+                    reader.Close();
+                }
+            }
+            else
+            {
+                vil = (VisualizationImageLink)Framework.Utilities.Cache.FetchObject(request.Key + "GetGoogleTimelineCOVID" + storedproc);
+            }
+
+            return vil;
+        }
+
         public class VisualizationImageLink
         {
             public VisualizationImageLink(string src, string alt, string asText)

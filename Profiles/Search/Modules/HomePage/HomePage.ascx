@@ -457,7 +457,7 @@
         else if (sortby == "oldest") array.sort(function (a, b) { return b.dateRank - a.dateRank; })
         else if (sortby == "citations") array.sort(function (a, b) { if (b.pmcCitations == a.pmcCitations) return a.dateRank - b.dateRank; else return b.pmcCitations - a.pmcCitations; })
         else if (sortby == "altmetric") array.sort(function (a, b) { if (b.altmetricScore == a.altmetricScore) return a.dateRank - b.dateRank; else return b.altmetricScore - a.altmetricScore; })
-        for (var i = 0; i < /*array.length*/10; i++) {
+        for (var i = 0; i < ((array.length<10) ? array.length : 10); i++) {
             var el = array[i].element.cloneNode(true);
             if (i == 0) el.classList.add("first");
             else el.classList.remove("first");

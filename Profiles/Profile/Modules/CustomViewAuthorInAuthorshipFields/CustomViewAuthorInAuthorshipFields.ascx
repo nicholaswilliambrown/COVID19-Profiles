@@ -39,10 +39,10 @@
         $("#divFieldSummary").show();
     }
 
-    setTimeout(function () {
+    //setTimeout(function () {
 
-        drawChart();
-    }, 800);
+    //    drawChart();
+    //}, 800);
 
 
 </script>

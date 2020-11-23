@@ -264,6 +264,7 @@ body {
     background-image: url("../images/CovidAuthorsHeader.png");
     text-align: left;
     max-width: 995px;
+    cursor:pointer;
 }
 
 #headerLogo {

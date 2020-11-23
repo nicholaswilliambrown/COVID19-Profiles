@@ -916,7 +916,7 @@
 
 
 
-    <td valign="middle" style="width:100px" >
+    <td style="width:100px;text-align:center" >
       <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;showcolumns={$showcolumns}">
         Why?
       </a>

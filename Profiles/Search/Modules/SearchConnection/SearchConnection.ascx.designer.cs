@@ -7,29 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Search.Modules {
-    
-    
-    public partial class SearchConnection {
-        
-        /// <summary>
-        /// litSearchURL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litSearchURL;
-        
-        /// <summary>
-        /// litNodeURI control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNodeURI;
-        
+namespace Profiles.Search.Modules
+{
+
+
+    public partial class SearchConnection
+    {
+
         /// <summary>
         /// pnlDirectConnection control.
         /// </summary>
@@ -38,7 +22,7 @@ namespace Profiles.Search.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlDirectConnection;
-        
+
         /// <summary>
         /// litPersonURI control.
         /// </summary>
@@ -47,7 +31,7 @@ namespace Profiles.Search.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litPersonURI;
-        
+
         /// <summary>
         /// gvConnectionDetails control.
         /// </summary>
@@ -56,7 +40,7 @@ namespace Profiles.Search.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvConnectionDetails;
-        
+
         /// <summary>
         /// pnlIndirectConnection control.
         /// </summary>
@@ -65,7 +49,7 @@ namespace Profiles.Search.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlIndirectConnection;
-        
+
         /// <summary>
         /// litSubjectName control.
         /// </summary>
@@ -74,7 +58,7 @@ namespace Profiles.Search.Modules {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litSubjectName;
-        
+
         /// <summary>
         /// gvIndirectConnectionDetails control.
         /// </summary>

@@ -1,28 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchConnection.ascx.cs"
     Inherits="Profiles.Search.Modules.SearchConnection" %>
 <script> jQuery(document).ready(function (e) { jQuery('.body-page').show(); }) </script>
-<div class="connectionTable">
-    <div class="connectionTableRow">
-        <div class="connectionContainerItem">
-            <asp:Literal runat="server" ID="litSearchURL"></asp:Literal>
-        </div>
-        <div class="connectionContainerLeftArrow">
-            <img style="vertical-align: unset;" src="<%=GetURLDomain()%>/Framework/Images/connection_left.gif" alt="" />
-        </div>
-        <div class="connectionLineToArrow">
-            <hr />
-        </div>
-        <div class="connectionContainerRightArrow">
-            <img style="vertical-align: unset;" src="<%=GetURLDomain()%>/Framework/Images/connection_right.gif" alt="" />
-        </div>
-        <div class="connectionContainerItem">
-            <asp:Literal runat="server" ID="litNodeURI"></asp:Literal>
-        </div>
-    </div>
-</div>
+
 <asp:Panel runat="server" ID="pnlDirectConnection" Visible="false">
     <div style="padding-top: 12px; padding-bottom: 12px;">
-        One or more keywords matched the following properties of
+        One or more keywords in your search matched the following properties of
         <asp:Literal runat="server" ID="litPersonURI"></asp:Literal>
     </div>
     <div>
@@ -49,7 +31,7 @@
 </asp:Panel>
 <asp:Panel runat="server" ID="pnlIndirectConnection" Visible="false">
     <div style="padding-top: 12px; padding-bottom: 12px;">
-        One or more keywords matched the following items that are connected to
+        One or more keywords in your search matched the following properties of
         <asp:Literal runat="server" ID="litSubjectName"></asp:Literal>
     </div>
     <div>

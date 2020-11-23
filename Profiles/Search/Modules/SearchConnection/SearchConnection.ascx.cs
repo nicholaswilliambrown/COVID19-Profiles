@@ -54,11 +54,11 @@ namespace Profiles.Search.Modules
             }
 
             backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'><img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0' alt=''/> Back to Search Results</a>";
-            litSearchURL.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'>Search Results</a>";
+            
 
             litPersonURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
-            litNodeURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
+            
 
             if (node != null)
             {

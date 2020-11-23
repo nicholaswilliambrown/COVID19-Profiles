@@ -4,7 +4,7 @@
   <PageBackLinkName>Back to Search Results</PageBackLinkName>
   <PageBackLinkURL>[[[Root]]]/search/default.aspx?tab=[[[discovertab]]]&amp;searchfor={{{rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchString}}}&amp;action=modify&amp;searchtype=searchform</PageBackLinkURL>
   <PageTitle>Search Result Details</PageTitle>
-  <PageDescription>This page shows the details of why an item matched the keywords from your search.</PageDescription>
+  <PageDescription></PageDescription>
   <PanelList>
     <Panel Type="header"  />
     <Panel Type="page" />

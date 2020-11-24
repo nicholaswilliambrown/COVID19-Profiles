@@ -93,6 +93,52 @@ namespace Profiles.Search.Utilities
 
         }
 
+
+
+        public XmlDocument SearchRequest(string namestring, string offset, string limit)
+        {
+
+            namestring = namestring.Replace(",", "");
+            namestring = namestring.Replace(".", "");
+
+
+            string[] vs = namestring.Split(' ');
+            string fname = "";
+            string lname = "";
+            if (vs.Length > 1)
+            {
+                fname = vs[0];
+                lname = vs[vs.Length-1];
+            }
+            else
+            {
+                lname = vs[0];
+            }
+
+
+            XmlDocument doc = new XmlDocument();
+            string s = "<SearchOptions><MatchOptions><SearchString ExactMatch = 'false'/><SearchFiltersList>" +
+            "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + fname + "</SearchFilter>" +
+            "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + lname + "</SearchFilter>" +
+            "</SearchFiltersList><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI></MatchOptions><OutputOptions>" +
+            "<Offset>" + offset + "</Offset>" +
+            "<Limit>" + limit + "</Limit>" +
+            "<SortByList /></OutputOptions></SearchOptions>";
+
+            doc.LoadXml(s);
+
+            return doc;
+
+
+
+
+        }
+
+
+
+
+
+
         public XmlDocument SearchRequest(string searchstring, string exactphrase, string fname, string lname,
             string institution, string institutionallexcept, string department, string departmentallexcept,
             string division, string divisionallexcept,
@@ -117,14 +163,14 @@ namespace Profiles.Search.Utilities
 
             if (fname.IsNullOrEmpty())
             {
-                if(xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/firstName']")!=null)
-                fname = xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/firstName']").InnerText;
+                if (xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/firstName']") != null)
+                    fname = xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/firstName']").InnerText;
             }
 
             if (lname.IsNullOrEmpty())
             {
-                if(xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/lastName']")!=null)
-                lname = xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/lastName']").InnerText;
+                if (xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/lastName']") != null)
+                    lname = xmlrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property='http://xmlns.com/foaf/0.1/lastName']").InnerText;
             }
 
             if (classuri == null)
@@ -140,10 +186,10 @@ namespace Profiles.Search.Utilities
             search.Append("<SearchOptions>");
             search.Append("<MatchOptions>");
             if (string.IsNullOrEmpty(exactphrase))
-               exactphrase = "false";
+                exactphrase = "false";
 
-           // if (exactphrase.IsNullOrEmpty())
-               // exactphrase = string.Empty;
+            // if (exactphrase.IsNullOrEmpty())
+            // exactphrase = string.Empty;
 
             if (searchstring != string.Empty && exactphrase != string.Empty)
             {
@@ -224,7 +270,7 @@ namespace Profiles.Search.Utilities
                     search.Append("<SearchFilter Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#hasPersonFilter\" MatchType=\"Exact\">" + item.Value + "</SearchFilter>");
                 }
             }
-            else if(searchrequest == string.Empty)
+            else if (searchrequest == string.Empty)
             {
                 foreach (XmlNode node in xmlrequest.SelectNodes("//SearchFiltersList/SearchFilter[@Property='http://profiles.catalyst.harvard.edu/ontology/prns#hasPersonFilter']"))
                 {
@@ -349,7 +395,7 @@ namespace Profiles.Search.Utilities
             {
                 throw new DisallowedSearchException("Search is too broad", searchoptions);
             }
-            else if (classURI != null && !classURI.InnerText.StartsWith("http:")) 
+            else if (classURI != null && !classURI.InnerText.StartsWith("http:"))
             {
                 throw new DisallowedSearchException("Invalid search type :" + classURI, searchoptions);
             }
@@ -483,6 +529,56 @@ namespace Profiles.Search.Utilities
             return xmlrtn;
 
         }
+
+
+
+        public string SearchType(string value)
+        {
+            string rtn = "person";
+
+
+            try
+            {
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+                using (SqlConnection dbconnection = new SqlConnection(connstr))
+                {
+                    SqlCommand dbcommand = new SqlCommand();
+
+                    dbconnection.Open();
+                    dbcommand.CommandType = CommandType.StoredProcedure;
+
+                    dbcommand.CommandText = "[Search.].[UsePersonSearch]";
+                    dbcommand.CommandTimeout = base.GetCommandTimeout();
+
+                    dbcommand.Parameters.Add(new SqlParameter("@SearchString", value));
+
+                    dbcommand.Connection = dbconnection;
+
+                    using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+
+                        dbreader.Read();
+
+                        rtn = dbreader[0].ToString();
+
+                    }
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + " " + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return rtn;
+
+        }
+
+
+
 
         public string EscapeXML(string value)
         {
@@ -638,7 +734,7 @@ namespace Profiles.Search.Utilities
         public string GetConvertedListItem(List<GenericListItem> listitems, string itemtoconvert)
         {
             GenericListItem rtnlistitem = null;
-            rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Text == itemtoconvert; });
+            rtnlistitem = listitems.Find(delegate (GenericListItem module) { return module.Text == itemtoconvert; });
 
             return rtnlistitem.Value;
         }
@@ -646,7 +742,7 @@ namespace Profiles.Search.Utilities
         public string GetConvertedURIListItem(List<GenericListItem> listitems, string itemtoconvert)
         {
             GenericListItem rtnlistitem = null;
-            rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Value == itemtoconvert; });
+            rtnlistitem = listitems.Find(delegate (GenericListItem module) { return module.Value == itemtoconvert; });
 
             return rtnlistitem.Text;
         }
@@ -654,7 +750,7 @@ namespace Profiles.Search.Utilities
         public string GetTextFromListItem(List<GenericListItem> listitems, string itemtoconvert)
         {
             GenericListItem rtnlistitem = null;
-            rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Text == itemtoconvert; });
+            rtnlistitem = listitems.Find(delegate (GenericListItem module) { return module.Text == itemtoconvert; });
 
             return rtnlistitem.Text;
         }
@@ -725,12 +821,12 @@ namespace Profiles.Search.Utilities
                     using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                     {
 
-                    while (sqldr.Read())
-                        institutions.Add(new GenericListItem(sqldr["InstitutionName"].ToString(), sqldr["URI"].ToString()));
+                        while (sqldr.Read())
+                            institutions.Add(new GenericListItem(sqldr["InstitutionName"].ToString(), sqldr["URI"].ToString()));
 
-                    //Always close your readers
-                    if (!sqldr.IsClosed)
-                        sqldr.Close();
+                        //Always close your readers
+                        if (!sqldr.IsClosed)
+                            sqldr.Close();
                     }
                     //Defaulted this to be one hour
                     Framework.Utilities.Cache.SetWithTimeout("GetInstitutions", institutions, 3600);
@@ -916,7 +1012,7 @@ namespace Profiles.Search.Utilities
         {
             List<GenericListItem> ranks = new List<GenericListItem>();
 
-            
+
             rankstrings = rankstrings.Replace(" ,", ",").Replace(", ", ",");
             string[] items = rankstrings.Split(',');
 

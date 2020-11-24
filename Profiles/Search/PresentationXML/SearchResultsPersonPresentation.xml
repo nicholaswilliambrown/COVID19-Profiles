@@ -22,22 +22,14 @@
       </Module>
     </Panel>
     <Panel Type="passive">
-      <Module ID="SearchCriteria"></Module>
-      <Module ID="SearchOptions"></Module>
+      <Module ID="SearchCriteria"></Module>    
       <Module ID="HTMLBlock">
         <ParamList>
           <Param Name="HTML">
             <div id="divItemDetails" class="SearchDetails"></div>
           </Param>          
         </ParamList>        
-      </Module>
-      <Module ID="Gadgets" >
-        <ParamList>
-          <Param Name="HTML">
-            <div id="gadgets-tools" class="gadgets-gadget-parent"></div>
-          </Param>
-        </ParamList>
-      </Module>
+      </Module>     
     </Panel>
     <Panel type="footer" />
   </PanelList>  

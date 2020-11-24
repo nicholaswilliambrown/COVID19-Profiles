@@ -133,7 +133,10 @@ namespace Profiles.Search.Modules.SearchCriteria
             }
             if (base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:overview/SearchDetails/SearchPhraseList", base.Namespaces).Count > 0 && tab == "people")
             {
-                litWhyText.Text = "<div style='margin-top:5px;'>Click \"Why?\" to see why a" + (tab == "people" ? " person" : "n item") + " matched the search.</div>";                
+
+                if(data.SearchType(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchString", base.Namespaces).InnerText)=="keyword")
+                litWhyText.Text = "<div style='margin-top:5px;'>Click \"Why?\" to see why a" + (tab == "people" ? " person" : "n item") + " matched the search.</div>";  
+                
 
             }
             else

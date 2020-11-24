@@ -56,7 +56,7 @@ namespace Profiles.Search
             {
                 masterpage.SearchRequest = Session["DIRECTSEARCHREQUEST"].ToString();
                 string searchrequest = masterpage.SearchRequest;
-                
+
                 Session["DIRECTKEYWORD"] = null;
                 Session["DIRECTSEARCHREQUEST"] = null;
                 Session["DIRECTSEARCHTYPE"] = null;
@@ -183,7 +183,7 @@ namespace Profiles.Search
         //to process the presentation XML
         public void LoadRDFSearchResults()
         {
-           
+
             XmlDocument xml = new XmlDocument();
             Namespace rdfnamespaces = new Namespace();
             Utilities.DataIO data = new Utilities.DataIO();
@@ -244,7 +244,7 @@ namespace Profiles.Search
 
             if (Request.QueryString["division"].IsNullOrEmpty() == false)
                 division = Request.QueryString["division"];
-            
+
             if (Request.QueryString["fname"].IsNullOrEmpty() == false)
                 fname = Request.QueryString["fname"];
 
@@ -309,7 +309,7 @@ namespace Profiles.Search
             if (Request.QueryString["searchrequest"].IsNullOrEmpty() == false)
                 searchrequest = Request.QueryString["searchrequest"];
             else if (Session["searchrequest"] != null)
-                    searchrequest = data.EncryptRequest(Session["searchrequest"].ToString());
+                searchrequest = data.EncryptRequest(Session["searchrequest"].ToString());
             else if (masterpage.SearchRequest.IsNullOrEmpty() == false)
                 searchrequest = masterpage.SearchRequest;
 
@@ -334,22 +334,27 @@ namespace Profiles.Search
                 nodeid = nodeuri.Substring(nodeuri.LastIndexOf("/") + 1);
             }
 
-            switch (searchtype.ToLower())
+
+
+            string keywordOrPerson = "keyword";
+            //added this test for search type so we could split the person keyword search into a split to remove the why col for person
+            keywordOrPerson = data.SearchType(searchfor);
+
+
+
+            
+            if (keywordOrPerson == "person")
             {
-                case "everything":
+                xml = data.SearchRequest(searchfor, offset, perpage);
+            }
+            else
+            {
+                //Person is the default
+                if (searchrequest != string.Empty)
+                    xml.LoadXml(data.DecryptRequest(searchrequest));
+                else
+                    xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, classuri, perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
 
-                    if (searchrequest != string.Empty)
-                        xml.LoadXml(data.DecryptRequest(searchrequest));
-                    else
-                        xml = data.SearchRequest(searchfor, exactphrase, classgroupuri, classuri, perpage, offset);
-
-                    break;
-                default:                //Person is the default
-                    if (searchrequest != string.Empty)
-                        xml.LoadXml(data.DecryptRequest(searchrequest));
-                    else
-                        xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, classuri, perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
-                    break;
             }
 
             searchrequest = xml.OuterXml;
@@ -368,7 +373,7 @@ namespace Profiles.Search
 
         public XmlDocument PresentationXML { get; set; }
 
-        public string SearchType { get; set; }        
+        public string SearchType { get; set; }
 
     }
 }

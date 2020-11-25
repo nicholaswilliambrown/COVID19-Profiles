@@ -119,7 +119,7 @@ namespace Profiles.Search.Utilities
             XmlDocument doc = new XmlDocument();
             string s = "<SearchOptions><MatchOptions><SearchString ExactMatch = 'false'/><SearchFiltersList>" +
             "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + fname + "</SearchFilter>" +
-            "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + lname + "</SearchFilter>" +
+            "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/firstName' ORProperty = 'http://xmlns.com/foaf/0.1/lastName' MatchType = 'Left'>" + lname + "</SearchFilter>" +
             "</SearchFiltersList><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI></MatchOptions><OutputOptions>" +
             "<Offset>" + offset + "</Offset>" +
             "<Limit>" + limit + "</Limit>" +

@@ -169,7 +169,7 @@
   
 	<xsl:template match="ListView/Item">
 		<xsl:choose>
-			<xsl:when test="@Weight= 'small'">
+			<xsl:when test="@Weight= 'small' and  @ConceptInCovidPub='false'">
 				<li class="kwCloud0">
 					<xsl:choose>
 						<xsl:when test="@ItemURL!=''">
@@ -184,7 +184,7 @@
 					</xsl:choose>
 				</li>	
 			</xsl:when>
-      <xsl:when test="@Weight='med'">
+      <xsl:when test="@Weight='med' and  @ConceptInCovidPub='false'">
 				<li class="kwCloud1">
 					<xsl:choose>
 						<xsl:when test="@ItemURL!=''">
@@ -199,7 +199,7 @@
 					</xsl:choose>
 				</li>
 			</xsl:when>
-     <xsl:when test="@Weight='big'">
+     <xsl:when test="@Weight='big' and  @ConceptInCovidPub='false'">
 				<li class="kwCloud2">
 					<xsl:choose>
 						<xsl:when test="@ItemURL!=''">
@@ -214,6 +214,76 @@
 					</xsl:choose>
 				</li>
 			</xsl:when>
+      <xsl:when test="@Weight= 'small' and  @ConceptInCovidPub='true'">
+        <li class="kwCloud0c">
+          <xsl:choose>
+            <xsl:when test="@ItemURL!=''">
+              <a href="{@ItemURL}">
+                <xsl:value-of select="@ItemURLText"/>
+              </a>
+              <xsl:value-of select="."/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="."/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </li>
+      </xsl:when>
+      <xsl:when test="@Weight='med' and  @ConceptInCovidPub='true'">
+        <li class="kwCloud1c">
+          <xsl:choose>
+            <xsl:when test="@ItemURL!=''">
+              <a href="{@ItemURL}">
+                <xsl:value-of select="@ItemURLText"/>
+              </a>
+              <xsl:value-of select="."/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="."/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </li>
+      </xsl:when>
+      <xsl:when test="@Weight='big' and  @ConceptInCovidPub='true'">
+        <li class="kwCloud2c">
+          <xsl:choose>
+            <xsl:when test="@ItemURL!=''">
+              <a href="{@ItemURL}">
+                <xsl:value-of select="@ItemURLText"/>
+              </a>
+              <xsl:value-of select="."/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="."/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </li>
+      </xsl:when>
+      <xsl:when test="@numberOfCOVIDPublications!='0'">
+        <li class="kwCloud1c">
+          <xsl:choose>
+            <xsl:when test="@ItemURL!=''">
+              <a href="{@ItemURL}">
+                <xsl:value-of select="@ItemURLText"/>
+              </a>
+              <xsl:value-of select="."/>
+              <xsl:choose>
+                <xsl:when test="@CoAuthor='true'">
+                  <font color="gray" >*</font>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="."/>
+              <xsl:choose>
+                <xsl:when test="@CoAuthor='true'">
+                  <font color="gray" >*</font>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:otherwise>
+          </xsl:choose>
+        </li>
+      </xsl:when>
 			<xsl:otherwise>
 		<li>
 			<xsl:choose>

@@ -220,6 +220,12 @@ namespace Profiles.Framework.Modules.NetworkList
                                 documentdata.Append(i.sortorder.InnerText);
                                 documentdata.Append("\"");
                             }
+                            if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + i.connectiondetails.InnerText + "']/prns:numberOfCOVIDPublications", base.Namespaces) != null)
+                            {
+                                documentdata.Append(" numberOfCOVIDPublications=\"");
+                                documentdata.Append(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + i.connectiondetails.InnerText + "']/prns:numberOfCOVIDPublications", base.Namespaces).InnerText);
+                                documentdata.Append("\"");
+                            }
                         }
 
                         string itemxpath = i.itemxpath;

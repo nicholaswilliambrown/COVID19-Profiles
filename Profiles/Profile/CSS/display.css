@@ -172,6 +172,20 @@ tr.website-table > td {
     font-size: 14px;
 }
 
+.profiles .profilesContentMain .kwCloud0c a {
+    color: #709070;
+}
+
+.profiles .profilesContentMain .kwCloud1c a {
+    color: #009000
+}
+
+.profiles .profilesContentMain .kwCloud2c a {
+    font-weight: bold;
+    font-size: 14px;
+    color: #009000
+}
+
 .profiles .profilesContentMain .keywordCategories table {
     text-align: left;
     border-collapse: collapse;

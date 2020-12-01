@@ -345,7 +345,8 @@ namespace Profiles.Search
             
             if (keywordOrPerson == "person")
             {
-                xml = data.SearchRequest(searchfor, offset, perpage);
+
+                xml = data.CovidPersonSearchRequest(searchfor, offset, perpage,sortby,sortdirection);
             }
             else
             {

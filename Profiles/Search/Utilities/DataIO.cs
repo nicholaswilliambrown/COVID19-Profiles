@@ -95,8 +95,9 @@ namespace Profiles.Search.Utilities
 
 
 
-        public XmlDocument SearchRequest(string namestring, string offset, string limit)
+        public XmlDocument CovidPersonSearchRequest(string namestring, string offset, string limit,string sortby,string sortdirection)
         {
+         
 
             namestring = namestring.Replace(",", "");
             namestring = namestring.Replace(".", "");
@@ -115,7 +116,13 @@ namespace Profiles.Search.Utilities
                 lname = vs[0];
             }
 
-
+            switch (sortby.ToLower())
+            {
+                case "name":
+                    sortby = this.NameSort(sortdirection);
+                    break;
+              
+            }
             XmlDocument doc = new XmlDocument();
             string s = "<SearchOptions><MatchOptions><SearchString ExactMatch = 'false'/><SearchFiltersList>" +
             "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + fname + "</SearchFilter>" +
@@ -123,7 +130,8 @@ namespace Profiles.Search.Utilities
             "</SearchFiltersList><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI></MatchOptions><OutputOptions>" +
             "<Offset>" + offset + "</Offset>" +
             "<Limit>" + limit + "</Limit>" +
-            "<SortByList /></OutputOptions></SearchOptions>";
+            "<SortByList>" + sortby +
+            "</SortByList></OutputOptions></SearchOptions>";
 
             doc.LoadXml(s);
 
@@ -343,22 +351,7 @@ namespace Profiles.Search.Utilities
             {
                 case "name":
                     sortby = this.NameSort(sortdirection);
-                    break;
-                case "title":
-                    sortby = this.TitleSort(sortdirection);
-                    break;
-                case "institution":
-                    sortby = this.InstitutionSort(sortdirection);
-                    break;
-                case "department":
-                    sortby = this.DepartmentSort(sortdirection);
-                    break;
-                case "division":
-                    sortby = this.DivisionSort(sortdirection);
-                    break;
-                case "facrank":
-                    sortby = this.FacultyRankSort(sortdirection);
-                    break;
+                    break;                
             }
 
             search.Append(sortby);

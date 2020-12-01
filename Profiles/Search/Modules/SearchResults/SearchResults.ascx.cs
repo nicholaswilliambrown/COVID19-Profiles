@@ -338,7 +338,8 @@ namespace Profiles.Search.Modules.SearchResults
 
                 if (keywordOrPerson == "person")
                 {
-                    xmlsearchrequest = data.SearchRequest(searchfor, (startrecord - 1).ToString(), perpage.ToString());
+
+                    xmlsearchrequest = data.CovidPersonSearchRequest(searchfor, (startrecord - 1).ToString(), perpage.ToString(),sort,sortdirection);                   
                 }
                 else
                 {
@@ -404,17 +405,6 @@ namespace Profiles.Search.Modules.SearchResults
                     else
                     {
                         args.AddParam("department", "", "false");
-                    }
-
-
-
-                    if ((showcolumns & 8) == 8)
-                    {
-                        args.AddParam("facrank", "", "true");
-                    }
-                    else
-                    {
-                        args.AddParam("facrank", "", "false");
                     }
 
 

@@ -90,32 +90,9 @@
                 <option value="name_desc">Name (A-Z)</option>
                 <option value="name_asc">Name (Z-A)</option>
               </xsl:otherwise>
-            </xsl:choose>
-
-
-            <xsl:if test="$institution='true'">
-              <xsl:choose>
-                <xsl:when test="$currentsort='institution'">
-                  <xsl:choose>
-                    <xsl:when test="$currentsortdirection='desc'">
-                      <option selected="true" value="institution_desc">Institution (A-Z)</option>
-                      <option value="institution_asc">Institution (Z-A)</option>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <option value="institution_desc">Institution (A-Z)</option>
-                      <option selected="true" value="institution_asc">Institution (Z-A)</option>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                  <option value="institution_desc">Institution (A-Z)</option>
-                  <option value="institution_asc">Institution (Z-A)</option>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:if>
+            </xsl:choose>            
           </select>
         </div>
-
         <div style="float: right;margin-bottom:16px;">
           <input type="hidden" id="hiddenToggle" value="off" />
           Show&#160;
@@ -168,63 +145,16 @@
                         </a>
                       </th>
                       <xsl:if test="$institution='true'">
-                        <th class="alignLeft">
-                          <a href="JavaScript:Sort('institution');">
-                            Institution
-                            <xsl:choose>
-                              <xsl:when test="$currentsort='institution'">
-                                <xsl:choose>
-                                  <xsl:when test="$currentsortdirection='desc'">
-                                    <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
-                                  </xsl:when>
-                                  <xsl:otherwise>
-                                    <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
-                                  </xsl:otherwise>
-                                </xsl:choose>
-                              </xsl:when>
-                            </xsl:choose>
-                          </a>
+                        <th class="alignLeft">                          
+                            Institution       
                         </th>
                       </xsl:if>
                       <xsl:if test="$department='true'">
-                        <th class="alignLeft">
-                          <a href="JavaScript:Sort('department');">
-                            Country
-                            <xsl:choose>
-                              <xsl:when test="$currentsort='department'">
-                                <xsl:choose>
-                                  <xsl:when test="$currentsortdirection='desc'">
-                                    <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
-                                  </xsl:when>
-                                  <xsl:otherwise>
-                                    <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
-                                  </xsl:otherwise>
-                                </xsl:choose>
-                              </xsl:when>
-                            </xsl:choose>
-                          </a>
+                        <th class="alignLeft">                          
+                            Country                          
                         </th>
                       </xsl:if>
-
-                      <xsl:if test="$facrank='true'">
-                        <th class="alignLeft">
-                          <a href="JavaScript:Sort('facrank');">
-                            Faculty Rank
-                            <xsl:choose>
-                              <xsl:when test="$currentsort='facrank'">
-                                <xsl:choose>
-                                  <xsl:when test="$currentsortdirection='desc'">
-                                    <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
-                                  </xsl:when>
-                                  <xsl:otherwise>
-                                    <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
-                                  </xsl:otherwise>
-                                </xsl:choose>
-                              </xsl:when>
-                            </xsl:choose>
-                          </a>
-                        </th>
-                      </xsl:if>
+                    
                       <xsl:choose>
                         <xsl:when test="$why">
                           <th>Why</th>
@@ -461,6 +391,7 @@
 
       }
 
+
       function DropdownSort(){
 
       var dropdown = document.getElementById("selSort");
@@ -468,8 +399,12 @@
 
       if(val!=''){
       this.Sort(val);
+      return true;
       }
-
+      //default is query rev and its blank ''
+      document.getElementById("txtCurrentSort").value = "";
+      GetPageData();
+      NavToPage();
       }
 
       function GetPageData(){

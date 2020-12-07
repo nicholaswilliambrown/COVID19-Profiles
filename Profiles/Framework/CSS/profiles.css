@@ -10,13 +10,13 @@
     margin-bottom: 6px;
 }
 
-
+#search-results {
+    width: 995px;
+}
 
 #publicationJournalHeadings {
     position: relative;
     padding-bottom: 300px;
-    xheight: 0;
-    xoverflow: hidden;
 }
 
 #piechart {
@@ -63,7 +63,9 @@
 
 @media screen and (max-width: 850px) {
 
-
+    #search-results {
+        width: -moz-fit-content !important;
+    }
 
     #publicationJournalHeadings {
         position: relative;
@@ -124,7 +126,7 @@
     }
 
         .listTable table {
-            width: fit-content !important;
+            width: -moz-fit-content !important;
         }
 
     #page-container {

@@ -20,17 +20,7 @@
     <Panel Type="main" TabType="Fixed" TabSort="0" >
       <Module ID="SearchResults">        
       </Module>
-    </Panel>
-    <Panel Type="passive">
-      <Module ID="SearchCriteria"></Module>    
-      <Module ID="HTMLBlock">
-        <ParamList>
-          <Param Name="HTML">
-            <div id="divItemDetails" class="SearchDetails"></div>
-          </Param>          
-        </ParamList>        
-      </Module>     
-    </Panel>
+    </Panel>    
     <Panel type="footer" />
   </PanelList>  
 </Presentation>

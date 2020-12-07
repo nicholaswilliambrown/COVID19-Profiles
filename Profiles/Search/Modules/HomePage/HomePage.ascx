@@ -134,23 +134,13 @@
         <div id="divPlainText"></div>
     </div>
 
-
-
     <div class="SupportText">
         <asp:Literal runat='server' ID='supportText'></asp:Literal>
     </div>
-
 </div>
 
-
-
 <script>
-
-
-
     window.geoStats = window.geoStats || {};
-
-
 
     geoStats.drawGeoChart_World = function drawGeoChart_World() {
 

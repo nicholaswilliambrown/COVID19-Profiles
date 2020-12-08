@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchConnection.ascx.cs"
     Inherits="Profiles.Search.Modules.SearchConnection" %>
 <script> jQuery(document).ready(function (e) { jQuery('.body-page').show(); }) </script>
-
+<div id="search-results">
 <asp:Panel runat="server" ID="pnlDirectConnection" Visible="false">
     <div style="padding-top: 12px; padding-bottom: 12px;">
         One or more keywords in your search matched the following properties of
@@ -56,7 +56,7 @@
         </asp:GridView>
     </div>
 </asp:Panel>
-
+    </div>
 <script type="text/javascript">
     var url = jQuery('.masterpage-backlink').attr('href');
     url = url.replace("[[[discovertab]]]", GetParameterValues('tab'));    

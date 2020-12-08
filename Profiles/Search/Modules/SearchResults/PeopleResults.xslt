@@ -55,7 +55,8 @@
     <input type="hidden" id="txtOffset" value="{$offset}"/>
     <input type="hidden" id="txtTotalPages" value="{$totalpages}"/>
     <input type="hidden" id="txtCurrentSort"  value="{$currentsort}"/>
-    <input type="hidden" id="txtCurrentSortDirection" value="{$currentsortdirection}"/>    
+    <input type="hidden" id="txtCurrentSortDirection" value="{$currentsortdirection}"/>
+    <input type="hidden" id="txtCountry" value="{$country}"/>
 
     <xsl:choose>
       <xsl:when test="number(rdf:RDF/rdf:Description/prns:numberOfConnections)">
@@ -379,6 +380,7 @@
       page = document.getElementById("txtPageNumber").value;
       totalpages = document.getElementById("txtTotalPages").value;
       searchrequest = document.getElementById("txtSearchRequest").value;
+      country =  document.getElementById("txtCountry").value;
 
 
       if(document.getElementById("selSort").value==''){
@@ -506,10 +508,19 @@
       // hide/show event occurs on click of dropdown
       $("#selColSelect").change(function() {
       debugger;
-      country = $("#selColSelect option:selected").val();
+      $("#txtCountry").val($("#selColSelect option:selected").val());
+
+
+
+      $("#ddlPerPage").val("");
+      
+      $("#txtPageNumber").val("1");
+      $("#txtTotalPages").val("");
+      
+      
+
 
       GetPageData();
-      page = 1;
       NavToPage();
 
       });

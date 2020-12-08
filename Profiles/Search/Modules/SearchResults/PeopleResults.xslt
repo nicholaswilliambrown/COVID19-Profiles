@@ -100,12 +100,12 @@
               <xsl:choose>
                 <xsl:when test="$country=@Name">
                   <option selected='true' value='{@Name}'>
-                    <xsl:value-of select="@Name"/>
+                    <xsl:value-of select="@Name"/> (<xsl:value-of select="@Count"/>)
                   </option>
                 </xsl:when>
                 <xsl:otherwise>
                   <option value='{@Name}'>
-                    <xsl:value-of select="@Name"/>
+                    <xsl:value-of select="@Name"/> (<xsl:value-of select="@Count"/>)
                   </option>
                 </xsl:otherwise>
               </xsl:choose>

@@ -16,8 +16,7 @@
   <xsl:param name="root"/>
   <xsl:param name="perpage">15</xsl:param>
   <xsl:param name="page">1</xsl:param>
-  <xsl:param name="totalpages">1</xsl:param>
-  <xsl:param name="searchrequest"/>
+  <xsl:param name="totalpages">1</xsl:param>  
   <xsl:param name="offset"/>
   <xsl:param name="why"  />
   <xsl:param name="currentsort"  />
@@ -48,8 +47,7 @@
   <xsl:template match="/">
 
     <input type="hidden" id="txtSearchFor" value="{$searchfor}"/>
-    <input type="hidden" id="txtExactPhrase" value="{$exactphrase}"/>
-    <input type="hidden" id="txtSearchRequest" name="txtSearchRequest" value="{$searchrequest}"/>
+    <input type="hidden" id="txtExactPhrase" value="{$exactphrase}"/>    
     <input type="hidden" id="txtRoot" value="{$root}"/>
     <input type="hidden" id="txtPerPage" value="{$perpage}"/>
     <input type="hidden" id="txtOffset" value="{$offset}"/>
@@ -202,8 +200,7 @@
                                   <xsl:with-param name="perpage" select ="$perpage"></xsl:with-param>
                                   <xsl:with-param name="offset" select ="$offset"></xsl:with-param>
                                   <xsl:with-param name="page" select ="$page"></xsl:with-param>
-                                  <xsl:with-param name="totalpages" select ="$totalpages"></xsl:with-param>
-                                  <xsl:with-param name="searchrequest" select ="$searchrequest"></xsl:with-param>
+                                  <xsl:with-param name="totalpages" select ="$totalpages"></xsl:with-param>                                  
                                   <xsl:with-param name="sortby" select ="$currentsort"></xsl:with-param>
                                   <xsl:with-param name="sortdirection" select ="$currentsortdirection"></xsl:with-param>
                                   <xsl:with-param name="country" select ="$currentcountry"></xsl:with-param>
@@ -331,8 +328,7 @@
       var classgroupuri = "";
       var classgroup = "";
       var page = 0;
-      var totalpages = 0;
-      var searchrequest = "";
+      var totalpages = 0;      
       var sortby = "";
       var sortdirection = "";
 
@@ -378,8 +374,7 @@
       searchfor = document.getElementById("txtSearchFor").value;
       exactphrase = document.getElementById("txtExactPhrase").value;
       page = document.getElementById("txtPageNumber").value;
-      totalpages = document.getElementById("txtTotalPages").value;
-      searchrequest = document.getElementById("txtSearchRequest").value;
+      totalpages = document.getElementById("txtTotalPages").value;      
       country =  document.getElementById("txtCountry").value;
 
 
@@ -448,7 +443,7 @@
       function NavToPage(){
 
 
-      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>country=' + country;
+      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>country=' + country;
       }
 
       function ChangePerPage(){
@@ -619,8 +614,7 @@
     <xsl:param name="perpage"></xsl:param>
     <xsl:param name="offset"></xsl:param>
     <xsl:param name="page"></xsl:param>
-    <xsl:param name="totalpages"></xsl:param>
-    <xsl:param name="searchrequest"></xsl:param>
+    <xsl:param name="totalpages"></xsl:param>    
     <xsl:param name="sortby"></xsl:param>
     <xsl:param name="sortdirection"></xsl:param>
     <xsl:param name="root"></xsl:param>
@@ -653,7 +647,7 @@
 
 
     <td style="width:100px;text-align:center" >
-      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;country={$country}">
+      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;country={$country}">
         Why?
       </a>
 

@@ -174,7 +174,7 @@ namespace Profiles.Search.Utilities
             string isexclude = "0";
 
             if (searchrequest != string.Empty)
-                xmlrequest.LoadXml(this.DecryptRequest(searchrequest));
+                xmlrequest.LoadXml(searchrequest);
             else
             {
                 if (searchstring == null)

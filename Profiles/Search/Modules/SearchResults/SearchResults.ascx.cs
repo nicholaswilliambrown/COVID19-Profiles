@@ -87,21 +87,21 @@ namespace Profiles.Search.Modules.SearchResults
 
             Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
-            if (String.IsNullOrEmpty(Request.QueryString["searchrequest"]) == false)
-            {
-                searchrequest = data.DecryptRequest(Request.QueryString["searchrequest"]);
-                xmlsearchrequest.LoadXml(searchrequest);
-            }
-            else if (Session["searchrequest"] != null)
-            {
-                searchrequest = Session["searchrequest"].ToString();
-                xmlsearchrequest.LoadXml(searchrequest);
-            }
-            else if (string.IsNullOrEmpty(base.MasterPage.SearchRequest) == false)
-            {
-                searchrequest = data.DecryptRequest(base.MasterPage.SearchRequest);
-                xmlsearchrequest.LoadXml(searchrequest);
-            }
+            //if (String.IsNullOrEmpty(Request.QueryString["searchrequest"]) == false)
+            //{
+            //    searchrequest = data.DecryptRequest(Request.QueryString["searchrequest"]);
+            //    xmlsearchrequest.LoadXml(searchrequest);
+            //}
+            //else if (Session["searchrequest"] != null)
+            //{
+            //    searchrequest = Session["searchrequest"].ToString();
+            //    xmlsearchrequest.LoadXml(searchrequest);
+            //}
+            //else if (string.IsNullOrEmpty(base.MasterPage.SearchRequest) == false)
+            //{
+            //    searchrequest = data.DecryptRequest(base.MasterPage.SearchRequest);
+            //    xmlsearchrequest.LoadXml(searchrequest);
+            //}
 
 
             if (String.IsNullOrEmpty(Request.QueryString["searchtype"]) == false)
@@ -123,17 +123,17 @@ namespace Profiles.Search.Modules.SearchResults
             {
                 searchfor = Request.Form["txtSearchFor"];
             }
-            else if (xmlsearchrequest.ChildNodes.Count > 0)
-            {
-                try
-                {
-                    searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
-                }
-                catch (Exception)
-                {
-                    // Do nothing, leave searchfor = null
-                }
-            }
+            //else if (xmlsearchrequest.ChildNodes.Count > 0)
+            //{
+            //    try
+            //    {
+            //        searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        // Do nothing, leave searchfor = null
+            //    }
+            //}
 
 
 
@@ -296,7 +296,7 @@ namespace Profiles.Search.Modules.SearchResults
                 }
 
                 this.SearchData = data.Search(xmlsearchrequest, false);
-                this.SearchRequest = data.EncryptRequest(xmlsearchrequest.OuterXml);
+                this.SearchRequest = xmlsearchrequest.OuterXml;
                 base.MasterPage.SearchRequest = this.SearchRequest;
                 base.MasterPage.RDFData = this.SearchData;
                 base.MasterPage.RDFNamespaces = this.Namespaces;
@@ -325,8 +325,7 @@ namespace Profiles.Search.Modules.SearchResults
             args.AddParam("searchfor", "", searchfor);
             args.AddParam("exactphrase", "", exactphrase);
             args.AddParam("classGrpURIpassedin", "", classgroupuri);
-            args.AddParam("classURIpassedin", "", classuri);
-            args.AddParam("searchrequest", "", this.SearchRequest);
+            args.AddParam("classURIpassedin", "", classuri);            
 
             switch (searchtype.ToLower())
             {

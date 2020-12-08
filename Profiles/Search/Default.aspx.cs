@@ -306,12 +306,15 @@ namespace Profiles.Search
 
 
 
-            if (Request.QueryString["searchrequest"].IsNullOrEmpty() == false)
-                searchrequest = Request.QueryString["searchrequest"];
-            else if (Session["searchrequest"] != null)
-                searchrequest = data.EncryptRequest(Session["searchrequest"].ToString());
-            else if (masterpage.SearchRequest.IsNullOrEmpty() == false)
-                searchrequest = masterpage.SearchRequest;
+            //if (Request.QueryString["searchrequest"].IsNullOrEmpty() == false)
+            //    searchrequest = Request.QueryString["searchrequest"];
+            //else if (Session["searchrequest"] != null)
+            //    searchrequest = data.EncryptRequest(Session["searchrequest"].ToString());
+            //else if (masterpage.SearchRequest.IsNullOrEmpty() == false)
+            //    searchrequest = masterpage.SearchRequest;
+
+
+
 
             if (Request.QueryString["otherfilters"].IsNullOrEmpty() == false)
                 otherfilters = Request.QueryString["otherfilters"];
@@ -350,10 +353,10 @@ namespace Profiles.Search
             }
             else
             {
-                //Person is the default
-                if (searchrequest != string.Empty)
-                    xml.LoadXml(data.DecryptRequest(searchrequest));
-                else
+                ////Person is the default
+                //if (searchrequest != string.Empty)
+                //    xml.LoadXml(data.DecryptRequest(searchrequest));
+                //else
                     xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, classuri, perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
 
             }

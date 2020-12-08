@@ -212,6 +212,9 @@ namespace Profiles.Search
             string nodeid = string.Empty;
 
 
+            string country = (Request.QueryString["country"].IsNullOrEmpty() ? "(All)" : Request.QueryString["country"]);
+
+            department = country;
 
             if (Request.QueryString["new"] == "true")
             {
@@ -238,9 +241,6 @@ namespace Profiles.Search
 
             if (Request.QueryString["institution"].IsNullOrEmpty() == false)
                 institution = Request.QueryString["institution"];
-
-            if (Request.QueryString["department"].IsNullOrEmpty() == false)
-                department = Request.QueryString["department"];
 
             if (Request.QueryString["division"].IsNullOrEmpty() == false)
                 division = Request.QueryString["division"];
@@ -346,7 +346,7 @@ namespace Profiles.Search
             if (keywordOrPerson == "person")
             {
 
-                xml = data.CovidPersonSearchRequest(searchfor, offset, perpage,sortby,sortdirection);
+                xml = data.CovidPersonSearchRequest(searchfor, offset, perpage,sortby,sortdirection,country);
             }
             else
             {

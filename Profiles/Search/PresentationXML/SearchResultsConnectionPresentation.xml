@@ -14,17 +14,7 @@
     </Panel>
     <Panel Name="" Alias="" Type="main" TabType="Fixed" TabSort="1" >
       <Module ID="SearchConnection" />
-    </Panel>
-    <Panel Type="passive">
-      <Module ID="SearchCriteria"></Module>
-      <Module ID="HTMLBlock">
-        <ParamList>
-          <Param ID="HTML">
-            <script type="text/javascript">  jQuery(window).on("load",function () {$(".pageDescription").css("padding-bottom","16px");$(".passiveSectionBody").find(".passiveSectionLine").remove();});</script>
-          </Param>
-        </ParamList>
-      </Module>
-    </Panel>
+    </Panel>   
   </PanelList>
 </Presentation>
 

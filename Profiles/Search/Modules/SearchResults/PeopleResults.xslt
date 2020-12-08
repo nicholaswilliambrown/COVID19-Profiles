@@ -20,18 +20,9 @@
   <xsl:param name="searchrequest"/>
   <xsl:param name="offset"/>
   <xsl:param name="why"  />
-  <xsl:param name="showcolumns"  />
   <xsl:param name="currentsort"  />
   <xsl:param name="currentsortdirection"  />
-
-  <xsl:param name="facrank"></xsl:param>
-  <xsl:param name="institution"></xsl:param>
-  <xsl:param name="department"></xsl:param>
-
-  <xsl:param name="ShowFacRank"/>
-  <xsl:param name="ShowInstitutions"  />
-
-  <xsl:param name="ShowDepartments"  />
+  <xsl:param name="country"></xsl:param>
 
   <xsl:variable name="totalPages">
 
@@ -64,8 +55,7 @@
     <input type="hidden" id="txtOffset" value="{$offset}"/>
     <input type="hidden" id="txtTotalPages" value="{$totalpages}"/>
     <input type="hidden" id="txtCurrentSort"  value="{$currentsort}"/>
-    <input type="hidden" id="txtCurrentSortDirection" value="{$currentsortdirection}"/>
-    <input type="hidden" name="showcolumns" id="showcolumns" value="{$showcolumns}"/>
+    <input type="hidden" id="txtCurrentSortDirection" value="{$currentsortdirection}"/>    
 
     <xsl:choose>
       <xsl:when test="number(rdf:RDF/rdf:Description/prns:numberOfConnections)">
@@ -90,36 +80,41 @@
                 <option value="name_desc">Name (A-Z)</option>
                 <option value="name_asc">Name (Z-A)</option>
               </xsl:otherwise>
-            </xsl:choose>            
+            </xsl:choose>
           </select>
         </div>
-        <div style="float: right;margin-bottom:16px;">
-          <input type="hidden" id="hiddenToggle" value="off" />
-          Show&#160;
-          <select id="selColSelect" title="choose columns" style="width: 149px">
-            <option value="">(choose columns)</option>
+  
+
+
+        <div style="float: right;margin-bottom:16px;">          
+          Country&#160;
+          <select id="selColSelect" style="width: 149px">
+            <xsl:choose>
+              <xsl:when test="$country='(All)'">                
+                <option selected="true" value="(All)">(All)</option>                
+              </xsl:when>
+              <xsl:otherwise>
+                <option value="(All)">(All)</option>
+              </xsl:otherwise >
+            </xsl:choose>
+            <xsl:for-each select="/rdf:RDF/rdf:Description/Countries/Country">
+              <xsl:choose>
+                <xsl:when test="$country=@Name">
+                  <option selected='true' value='{@Name}'>
+                    <xsl:value-of select="@Name"/>
+                  </option>
+                </xsl:when>
+                <xsl:otherwise>
+                  <option value='{@Name}'>
+                    <xsl:value-of select="@Name"/>
+                  </option>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
           </select>
-          <table>
-            <tr>
-              <td style="padding-left:45px">
-                <div id="divColSelect" style="border-right: solid 1px gray; border-bottom: solid 1px gray;
-                                                border-left: solid 1px silver; padding-left:3px; margin-left: -5px; padding-top: 10px; width: 144px; overflow: auto;
-                                                background-color: #ffffff;z-index:5;position: absolute;">
-                  <xsl:if test="$ShowInstitutions='true'">
-                    <br />
-                    <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox" title="Institution"/>
-                    <span style="margin-left:5px;">Institution</span>
-                  </xsl:if>
-                  <xsl:if test="$ShowDepartments='true'">
-                    <br></br>
-                    <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox" title="Department"/>
-                    <span style="margin-left:5px;">Country</span>
-                  </xsl:if>
-                </div>
-              </td>
-            </tr>
-          </table>
         </div>
+        
+        
         <table>
           <tr>
             <td colspan="3">
@@ -144,17 +139,17 @@
                           </xsl:choose>
                         </a>
                       </th>
-                      <xsl:if test="$institution='true'">
-                        <th class="alignLeft">                          
-                            Institution       
-                        </th>
-                      </xsl:if>
-                      <xsl:if test="$department='true'">
-                        <th class="alignLeft">                          
-                            Country                          
-                        </th>
-                      </xsl:if>
-                    
+
+                      <th class="alignLeft">
+                        Institution
+                      </th>
+
+
+                      <th class="alignLeft">
+                        Country
+                      </th>
+
+
                       <xsl:choose>
                         <xsl:when test="$why">
                           <th>Why</th>
@@ -210,7 +205,7 @@
                                   <xsl:with-param name="searchrequest" select ="$searchrequest"></xsl:with-param>
                                   <xsl:with-param name="sortby" select ="$currentsort"></xsl:with-param>
                                   <xsl:with-param name="sortdirection" select ="$currentsortdirection"></xsl:with-param>
-                                  <xsl:with-param name="showcolumns" select ="$showcolumns"></xsl:with-param>
+                                  <xsl:with-param name="country" select ="$currentcountry"></xsl:with-param>
                                   <xsl:with-param name="root" select ="$root"></xsl:with-param>
 
                                 </xsl:call-template>
@@ -339,15 +334,12 @@
       var searchrequest = "";
       var sortby = "";
       var sortdirection = "";
-      var institution ="";
-      var department ="";
+
+      var country ="";
 
       var facrank = "";
       var offset = "";
       var sortbydropdown = false;
-
-      SetupColCheckboxes();
-
 
 
       function changePage(e) {
@@ -360,36 +352,6 @@
 
 
 
-      function SetupColCheckboxes(){
-
-      if(document.getElementById("chkInstitution")!=null){
-      if((document.getElementById("showcolumns").value <xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text> 1)){
-      document.getElementById("chkInstitution").checked = true;
-      }else{
-      document.getElementById("chkInstitution").checked = false;
-      }
-      }
-
-      if(document.getElementById("chkDepartment")!=null){
-      if((document.getElementById("showcolumns").value <xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text> 2)){
-      document.getElementById("chkDepartment").checked = true;
-      }else{
-      document.getElementById("chkDepartment").checked = false;
-      }
-
-      }
-
-
-      if(document.getElementById("chkFacRank")!=null){
-      if((document.getElementById("showcolumns").value <xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text> 8)){
-      document.getElementById("chkFacRank").checked = true;
-      }else{
-      document.getElementById("chkFacRank").checked = false;
-      }
-      }
-
-
-      }
 
 
       function DropdownSort(){
@@ -418,6 +380,7 @@
       totalpages = document.getElementById("txtTotalPages").value;
       searchrequest = document.getElementById("txtSearchRequest").value;
 
+
       if(document.getElementById("selSort").value==''){
       sortby = document.getElementById("txtCurrentSort").value;
       }else{
@@ -436,23 +399,6 @@
       if(page==0){
       page = 1;
       }
-
-
-      if(document.getElementById("chkInstitution")!=null){
-      institution = document.getElementById("chkInstitution").checked;
-      }
-
-      if(document.getElementById("chkDepartment")!=null){
-      department = document.getElementById("chkDepartment").checked;
-      }
-
-
-
-
-      if(document.getElementById("chkFacRank")!=null){
-      facrank = document.getElementById("chkFacRank").checked;
-      }
-
 
 
       }
@@ -499,22 +445,8 @@
 
       function NavToPage(){
 
-      var showcolumns = 0;
 
-      if(institution){
-      showcolumns = 1;
-      }
-      if(department){
-      showcolumns = showcolumns | 2;
-      }
-
-
-
-      if(facrank){
-      showcolumns = showcolumns | 8;
-      }
-
-      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>showcolumns=' + showcolumns;
+      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>country=' + country;
       }
 
       function ChangePerPage(){
@@ -554,14 +486,12 @@
       function ShowDetails(nodeURI,obj){
 
       doListTableRowOver(obj);
-      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
 
       }
 
       function HideDetails(obj,ord){
-
       doListTableRowOut(obj,ord);
-      document.getElementById('divItemDetails').innerHTML = '';
+
       }
 
 
@@ -570,94 +500,20 @@
       if (undefined==ProfilesRNS) var ProfilesRNS = {};
 
 
-      var $defaultColumns = null;
-
-      <!--Reloads page only if new columns are selected-->
-      function reloadColumns()
-      {
-      var reload = false;
-      var $colToShow = $('#divColSelect input:checked');
-
-      // Check column count first.
-      if ($colToShow.length != $defaultColumns.length)
-      {
-      GetPageData();
-      NavToPage();
-      return;
-      }
-
-      // See if column selection have changed from default
-      $colToShow.each(function(idx, item){
-      if ($defaultColumns.filter("#"+$(this).get(0).id).length != 1)
-      {
-      GetPageData();
-      NavToPage();
-      return false; // exit loop
-      }
-      });
-      }
-
       <!--// <START::SHOW/HIDE OTHER OPTIONS DROPDOWN LIST>-->
       $(document).ready(function() {
 
-      // initially hide the other options DIV
-      $("#divColSelect").hide();
-
       // hide/show event occurs on click of dropdown
-      $("#selColSelect").click(function() {
-      if ($("#divColSelect").is(":visible")) {
-      $("#divColSelect").hide();
+      $("#selColSelect").change(function() {
+      debugger;
+      country = $("#selColSelect option:selected").val();
 
-      reloadColumns();
-
-      $("//*[@id='divSearchSection']/descendant::input[@type='submit']").focus();
-
-      } else {
-      $("#divColSelect").show();
-
-      // Set default columns to show
-      $defaultColumns = $('#divColSelect input:checked');
-
-      $("*[id*=institution]").focus();
-      }
-      });
-
-      // hide the other options DIV when a click occurs outside of the DIV while it's shown
-      $(document).click(function(evt) {
-      if ($("#divColSelect").is(":visible")) {
-      switch (evt.target.id) {
-      case "selColSelect":
-      case "divColSelect":
-      break;
-      default:
-      var tmp = evt.target;
-      while (tmp.parentNode) {
-      tmp = tmp.parentNode;
-      if (tmp.id == "divColSelect") { return true; }
-      }
-      $("#divColSelect").hide();
-
-      reloadColumns()
-      }
-      }
-      });
+      GetPageData();
+      page = 1;
+      NavToPage();
 
       });
-
-
-      $('#divColSelect span')
-      .hover(
-      function(){ // Mouse in
-      $(this).css('cursor', 'pointer');
-      },
-      function(){ // Mouse out
-      $(this).css('cursort', 'default');
-      })
-      .click(function(){ // select checkbox when checkbox label is clicked
-      var $checkbox = $(this).prev('input');
-      $checkbox.attr('checked', !$checkbox.attr('checked'));
       });
-      <!--// <END::SHOW/HIDE OTHER OPTIONS DROPDOWN LIST>-->
 
 
     </script>
@@ -671,7 +527,6 @@
     <xsl:param name="weight"></xsl:param>
     <xsl:variable name="positon" select="prns:personInPrimaryPosition/@rdf:resource"></xsl:variable>
     <xsl:variable name="institutionlabel" select="$doc/rdf:Description[@rdf:about=$positon]/vivo:positionInOrganization/@rdf:resource"></xsl:variable>
-
     <xsl:variable name="titlelink">
       <xsl:choose>
         <xsl:when test="vivo:preferredTitle!=''">
@@ -705,27 +560,6 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:variable name="divisionlink">
-      <xsl:choose>
-        <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDivision/@rdf:resource]/rdfs:label!=''">
-          &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Division&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDivision/@rdf:resource]/rdfs:label"/>
-        </xsl:when>
-        <xsl:otherwise>
-
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:variable name="facranklink">
-      <xsl:choose>
-        <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label">
-          &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Faculty Rank&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
-        </xsl:when>
-        <xsl:otherwise>
-
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
 
     <xsl:variable name="countrylink">
       <xsl:choose>
@@ -739,7 +573,7 @@
     </xsl:variable>
 
 
-    <input type="hidden" id="{$nodeURI}" value="&lt;div style='font-size:13px;font-weight:bold'&gt;{foaf:firstName} {foaf:lastName}&lt;/div&gt;{$institutionlink}{$departmentlink}{$divisionlink}{$countrylink}"></input>
+    <input type="hidden" id="{$nodeURI}" value="&lt;div style='font-size:13px;font-weight:bold'&gt;{foaf:firstName} {foaf:lastName}&lt;/div&gt;{$institutionlink}{$departmentlink}{$countrylink}"></input>
 
 
 
@@ -750,41 +584,17 @@
       </a>
     </td>
 
-    <xsl:if test="$institution='true'">
-
-      <td id="institution-why-col" class="alignLeft" >
-        <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
-      </td>
-    </xsl:if>
-
-    <xsl:if test="$department='true'">
-      <td class="alignLeft" style="width:250px">
-
-        <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
-
-      </td>
-    </xsl:if>
 
 
-    <xsl:if test="$facrank='true'">
-      <td class="alignLeft" style="width:250px;">
-        <xsl:choose>
-          <xsl:when test ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label!=''">
+    <td id="institution-why-col" class="alignLeft" >
+      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
+    </td>
 
-            <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
+    <td class="alignLeft" style="width:250px">
 
-          </xsl:when>
-          <xsl:otherwise>
-            <center>
+      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
 
-              --
-
-            </center>
-          </xsl:otherwise>
-        </xsl:choose>
-      </td>
-    </xsl:if>
-
+    </td>
 
 
   </xsl:template>
@@ -802,7 +612,6 @@
     <xsl:param name="searchrequest"></xsl:param>
     <xsl:param name="sortby"></xsl:param>
     <xsl:param name="sortdirection"></xsl:param>
-    <xsl:param name="showcolumns"></xsl:param>
     <xsl:param name="root"></xsl:param>
 
 
@@ -816,43 +625,24 @@
       </a>
 
     </td>
-    <xsl:if test="$institution='true'">
-      <td id="institution-why-col" class="alignLeft">
 
-        <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
+    <td id="institution-why-col" class="alignLeft">
 
-      </td>
-    </xsl:if>
-    <xsl:if test="$department='true'">
-      <td id="department-why-col" class="alignLeft">
-        <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
-      </td>
-    </xsl:if>
+      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
+
+    </td>
 
 
-    <xsl:if test="$facrank='true'">
-      <td class="alignLeft" style="width:250px">
-        <xsl:choose>
-          <xsl:when test ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label!=''">
+    <td id="department-why-col" class="alignLeft">
+      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
+    </td>
 
-            <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
 
-          </xsl:when>
-          <xsl:otherwise>
-            <center>
-
-              --
-
-            </center>
-          </xsl:otherwise>
-        </xsl:choose>
-      </td>
-    </xsl:if>
 
 
 
     <td style="width:100px;text-align:center" >
-      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;showcolumns={$showcolumns}">
+      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;country={$country}">
         Why?
       </a>
 
@@ -889,29 +679,6 @@
         </xsl:choose>
       </xsl:variable>
 
-      <xsl:variable name="divisionlink">
-        <xsl:choose>
-          <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDivision/@rdf:resource]/rdfs:label!=''">
-            &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Division&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDivision/@rdf:resource]/rdfs:label"/>
-          </xsl:when>
-          <xsl:otherwise>
-
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-
-      <xsl:variable name="facranklink">
-        <xsl:choose>
-          <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label">
-            &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Faculty Rank&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
-          </xsl:when>
-          <xsl:otherwise>
-
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-
-
       <xsl:variable name="countrylink">
         <xsl:choose>
           <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label">
@@ -924,7 +691,7 @@
       </xsl:variable>
 
 
-      <input type="hidden" id="{$nodeURI}" value="&lt;div style='font-size:13px;font-weight:bold'&gt;{foaf:firstName} {foaf:lastName}&lt;/div&gt;{$institutionlink}{$departmentlink}{$divisionlink}{$countrylink}"></input>
+      <input type="hidden" id="{$nodeURI}" value="&lt;div style='font-size:13px;font-weight:bold'&gt;{foaf:firstName} {foaf:lastName}&lt;/div&gt;{$institutionlink}{$departmentlink}{$countrylink}"></input>
 
 
 

@@ -321,31 +321,18 @@ namespace Profiles.Search.Modules.SearchPerson
             string institution = "";
             string institutionallexcept = "";
 
-            string department = "";
+            
             string departmentallexcept = "";
 
             string division = "";
             string divisionallexcept = "";
 
+            //Country and department are the same. we used department as a hack to get the ontology to play nice. 
+            string country = (Request.QueryString["country"].IsNullOrEmpty() ? "" : Request.QueryString["country"]);
+            string department = "";
 
-            if (Request.Form["institution"] != null)
-            {
-                institution = Request.Form["institution"];
-                //institutionallexcept = Request.Form[this.institutionallexcept.UniqueID];//Request.Form["institutionallexcept"];
-            }
+            department = country;
 
-            if (!Request.Form["department"].IsNullOrEmpty())
-            {
-                department = Request.Form["department"];
-                departmentallexcept = "";//Request.Form[this.departmentallexcept.UniqueID];
-            }
-
-
-            if (!Request.Form["division"].IsNullOrEmpty())
-            {
-                division = Request.Form["division"];
-                divisionallexcept = "";//Request.Form[this.divisionallexcept.UniqueID];
-            }
 
             string otherfilters = Request.Form["hdnSelectedText"];
 
@@ -355,12 +342,10 @@ namespace Profiles.Search.Modules.SearchPerson
 
             Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
-
-
             data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept,
                 department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrank, true, ref searchrequest);
 
-            Response.Redirect(Root.Domain + "/search/default.aspx?showcolumns=3&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
+            Response.Redirect(Root.Domain + "/search/default.aspx?searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest + "&country=" + country, true);
 
 
 

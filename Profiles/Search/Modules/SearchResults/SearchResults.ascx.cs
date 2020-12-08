@@ -69,13 +69,18 @@ namespace Profiles.Search.Modules.SearchResults
             XmlDocument xmlsearchrequest;
             xmlsearchrequest = new XmlDocument();
 
-            Int16 showcolumns = 0;
 
             string otherfilters = "";
             string institutionallexcept = string.Empty;
-            string departmentallexcept = string.Empty;
+            string departmentallexcept = "0";
             string divisionallexcept = string.Empty;
             string exactphrase = "false"; // UCSF default value to allow old Mini Search to work
+
+
+            string country = (Request.QueryString["country"].IsNullOrEmpty() ? "(All)" : Request.QueryString["country"]);
+            department = country;
+            string keywordOrPerson = "keyword";
+
 
 
             string searchtype = "";
@@ -151,25 +156,13 @@ namespace Profiles.Search.Modules.SearchResults
             if (fname == null)
                 fname = string.Empty;
 
-            if (String.IsNullOrEmpty(Request.QueryString["institution"]) == false)
-                institution = Request.QueryString["institution"];
-
-            if (String.IsNullOrEmpty(Request.QueryString["department"]) == false)
-                department = Request.QueryString["department"];
-
-            if (String.IsNullOrEmpty(Request.QueryString["division"]) == false)
-                division = Request.QueryString["division"];
+        
 
             if (String.IsNullOrEmpty(Request.QueryString["perpage"]) == false)
             {
                 perpage = Convert.ToInt64(Request.QueryString["perpage"]);
                 if (!(perpage > 0))
-                    perpage = 15;
-
-                //if (String.IsNullOrEmpty(Request.QueryString["perpage"])==false)
-                //    perpage = Convert.ToInt64(Request.QueryString["perpage"]);
-                //else
-                //    perpage = 15;
+                    perpage = 15;                
             }
             else
             {
@@ -178,11 +171,7 @@ namespace Profiles.Search.Modules.SearchResults
 
             if (String.IsNullOrEmpty(Request.QueryString["offset"]) == false)
             {
-                offset = Convert.ToInt64(Request.QueryString["offset"]);
-                //if (Request.QueryString["offset"] != string.Empty)
-                //    offset = Convert.ToInt64(Request.QueryString["offset"]);
-                //else
-                //    offset = 0;
+                offset = Convert.ToInt64(Request.QueryString["offset"]);                
             }
             else
             {
@@ -193,11 +182,7 @@ namespace Profiles.Search.Modules.SearchResults
             {
                 page = Convert.ToInt64(Request.QueryString["page"]);
                 if (!(page > 0))
-                    page = 1;
-                //if (Request.QueryString["page"] != string.Empty)
-                //    page = Convert.ToInt64(Request.QueryString["page"]);
-                //else
-                //    page = 1;
+                    page = 1;             
             }
             else
             {
@@ -243,49 +228,12 @@ namespace Profiles.Search.Modules.SearchResults
                 sortdirection = Request.QueryString["sortdirection"];
 
 
-            if (String.IsNullOrEmpty(Request.QueryString["showcolumns"]) == false)
-            {
-                showcolumns = Convert.ToInt16(Request.QueryString["showcolumns"]);
-            }
-            else
-            {
-                showcolumns = 3;
-            }
+
 
 
             if (String.IsNullOrEmpty(Request.QueryString["otherfilters"]) == false)
             {
                 otherfilters = Request.QueryString["otherfilters"];
-
-            }
-
-
-
-
-
-
-            if (String.IsNullOrEmpty(Request.QueryString["institutionallexcept"]) == false)
-            {
-                institutionallexcept = Request.QueryString["institutionallexcept"];
-
-            }
-
-
-            if (String.IsNullOrEmpty(Request.QueryString["departmentallexcept"]) == false)
-            {
-                departmentallexcept = Request.QueryString["departmentallexcept"];
-
-            }
-
-            if (String.IsNullOrEmpty(Request.QueryString["divisionallexcept"]) == false)
-            {
-                divisionallexcept = Request.QueryString["divisionallexcept"];
-
-            }
-
-            if (String.IsNullOrEmpty(Request.QueryString["exactphrase"]) == false)
-            {
-                exactphrase = Request.QueryString["exactphrase"];
 
             }
 
@@ -331,7 +279,7 @@ namespace Profiles.Search.Modules.SearchResults
                 }
 
 
-                string keywordOrPerson = "keyword";
+               
                 //added this test for search type so we could split the person keyword search into a split to remove the why col for person
                 keywordOrPerson = data.SearchType(searchfor);
 
@@ -339,7 +287,7 @@ namespace Profiles.Search.Modules.SearchResults
                 if (keywordOrPerson == "person")
                 {
 
-                    xmlsearchrequest = data.CovidPersonSearchRequest(searchfor, (startrecord - 1).ToString(), perpage.ToString(),sort,sortdirection);                   
+                    xmlsearchrequest = data.CovidPersonSearchRequest(searchfor, (startrecord - 1).ToString(), perpage.ToString(), sort, sortdirection,country);
                 }
                 else
                 {
@@ -386,57 +334,15 @@ namespace Profiles.Search.Modules.SearchResults
                     litEverythingResults.Text = XslHelper.TransformInMemory(Server.MapPath("~/Search/Modules/SearchResults/EverythingResults.xslt"), args, this.SearchData.OuterXml);
                     break;
                 case "people":
+       
 
-                    args.AddParam("showcolumns", "", showcolumns.ToString());
-
-                    if ((showcolumns & 1) == 1)
-                    {
-                        args.AddParam("institution", "", "true");
-                    }
-                    else
-                    {
-                        args.AddParam("institution", "", "false");
-                    }
-
-                    if ((showcolumns & 2) == 2)
-                    {
-                        args.AddParam("department", "", "true");
-                    }
-                    else
-                    {
-                        args.AddParam("department", "", "false");
-                    }
-
-
-
-                    //Profiles.Search.Utilities.DataIO dropdowns = new Profiles.Search.Utilities.DataIO();
-                    if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowInstitutions"]) == true)
-                    {
-
-                        args.AddParam("ShowInstitutions", "", "true");
-                    }
-                    else
-                    {
-                        args.AddParam("ShowInstitutions", "", "false");
-                    }
-
-
-                    if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDepartments"]) == true)
-                    {
-                        args.AddParam("ShowDepartments", "", "true");
-                    }
-                    else
-                    {
-                        args.AddParam("ShowDepartments", "", "false");
-                    }
-
-                    //Faculty Rank always shows
-                    args.AddParam("ShowFacRank", "", "true");
+                    args.AddParam("country", "", country);
 
                     args.AddParam("currentsort", "", sort);
                     args.AddParam("currentsortdirection", "", sortdirection);
 
-                    if (base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:overview/SearchDetails/SearchPhraseList", base.Namespaces).Count > 0)
+                   // if (base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:overview/SearchDetails/SearchPhraseList", base.Namespaces).Count > 0)
+                   if(keywordOrPerson== "keyword")
                         args.AddParam("why", "", true);
                     else
                         args.AddParam("why", "", false);
@@ -449,7 +355,7 @@ namespace Profiles.Search.Modules.SearchResults
 
         private string SearchRequest { get; set; }
 
-        // OpenSocial 
+        // OpenSocial http://localhost:55956/Search/Modules/SearchResults/SearchResults.ascx.cs
         public class ORNGSearchRPCService : PeopleListRPCService
         {
             private static int searchLimit;
@@ -500,38 +406,38 @@ namespace Profiles.Search.Modules.SearchResults
 
             public override List<string> getPeople()
             {
-                try
-                {
-                    List<string> peopleURIs = new List<string>();
-                    int offSet = 0;
-                    Boolean hasMorePeople = true;
-                    while (peopleURIs.Count < searchLimit && hasMorePeople)
-                    {
-                        searchRequest.SelectSingleNode("/SearchOptions/OutputOptions/Offset").InnerText = "" + offSet;
-                        searchRequest.SelectSingleNode("/SearchOptions/OutputOptions/Limit").InnerText = "" + searchLimit;
-                        XmlDocument searchData = new Profiles.Search.Utilities.DataIO().Search(searchRequest, false, false);
+                //try
+                //{
+                //    List<string> peopleURIs = new List<string>();
+                //    int offSet = 0;
+                //    Boolean hasMorePeople = true;
+                //    while (peopleURIs.Count < searchLimit && hasMorePeople)
+                //    {
+                //        searchRequest.SelectSingleNode("/SearchOptions/OutputOptions/Offset").InnerText = "" + offSet;
+                //        searchRequest.SelectSingleNode("/SearchOptions/OutputOptions/Limit").InnerText = "" + searchLimit;
+                //        XmlDocument searchData = new Profiles.Search.Utilities.DataIO().Search(searchRequest, false, false);
 
-                        DebugLogging.Log("SeachCallbackResponse :" + searchRequest.ToString());
+                //        DebugLogging.Log("SeachCallbackResponse :" + searchRequest.ToString());
 
-                        XmlNodeList people = searchData.GetElementsByTagName("rdf:object");
-                        for (int i = 0; i < people.Count; i++)
-                        {
-                            peopleURIs.Add(people[i].Attributes["rdf:resource"].Value);
-                        }
-                        // increase offset by amount found
-                        XmlNode node = searchData.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaceManager);
-                        offSet += people.Count;
-                        hasMorePeople = Convert.ToInt32(node.InnerText) > peopleURIs.Count;
-                    }
-                    if (peopleURIs.Count > 0)
-                    {
-                        return peopleURIs;
-                    }
-                }
-                catch (Exception e)
-                {
-                    DebugLogging.Log(e.Message);
-                }
+                //        XmlNodeList people = searchData.GetElementsByTagName("rdf:object");
+                //        for (int i = 0; i < people.Count; i++)
+                //        {
+                //            peopleURIs.Add(people[i].Attributes["rdf:resource"].Value);
+                //        }
+                //        // increase offset by amount found
+                //        XmlNode node = searchData.SelectSingleNode("rdf:RDF/rdf:Description/prns:numberOfConnections", namespaceManager);
+                //        offSet += people.Count;
+                //        hasMorePeople = Convert.ToInt32(node.InnerText) > peopleURIs.Count;
+                //    }
+                //    if (peopleURIs.Count > 0)
+                //    {
+                //        return peopleURIs;
+                //    }
+                //}
+                //catch (Exception e)
+                //{
+                //    DebugLogging.Log(e.Message);
+                //}
 
                 return null;
             }

@@ -24,7 +24,7 @@ namespace Profiles.Framework.Utilities
             XslCompiledTransform xsl = null;
             try
             {
-                xsl = (XslCompiledTransform)Framework.Utilities.Cache.FetchObject("Transform in memory" + xsltpath);
+                //xsl = (XslCompiledTransform)Framework.Utilities.Cache.FetchObject("Transform in memory" + xsltpath);
             }
             catch (System.Exception e) { }
             if (xsl == null)

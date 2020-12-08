@@ -95,9 +95,11 @@ namespace Profiles.Search.Utilities
 
 
 
-        public XmlDocument CovidPersonSearchRequest(string namestring, string offset, string limit,string sortby,string sortdirection)
+        public XmlDocument CovidPersonSearchRequest(string namestring, string offset, string limit, string sortby, string sortdirection, string country)
         {
-         
+
+            if (country == "(All)")
+                country = "";
 
             namestring = namestring.Replace(",", "");
             namestring = namestring.Replace(".", "");
@@ -109,7 +111,7 @@ namespace Profiles.Search.Utilities
             if (vs.Length > 1)
             {
                 fname = vs[0];
-                lname = vs[vs.Length-1];
+                lname = vs[vs.Length - 1];
             }
             else
             {
@@ -121,19 +123,26 @@ namespace Profiles.Search.Utilities
                 case "name":
                     sortby = this.NameSort(sortdirection);
                     break;
-              
+
             }
             XmlDocument doc = new XmlDocument();
-            string s = "<SearchOptions><MatchOptions><SearchString ExactMatch = 'false'/><SearchFiltersList>" +
-            (fname == "" ? "" : ("<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + fname + "</SearchFilter>")) +
-            "<SearchFilter Property = 'http://xmlns.com/foaf/0.1/firstName' ORProperty = 'http://xmlns.com/foaf/0.1/lastName' MatchType = 'Left'>" + lname + "</SearchFilter>" +
-            "</SearchFiltersList><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI></MatchOptions><OutputOptions>" +
-            "<Offset>" + offset + "</Offset>" +
-            "<Limit>" + limit + "</Limit>" +
-            "<SortByList>" + sortby +
-            "</SortByList></OutputOptions></SearchOptions>";
+            StringBuilder s = new StringBuilder();
 
-            doc.LoadXml(s);
+            s.Append("<SearchOptions><MatchOptions><SearchString ExactMatch = 'false'/><SearchFiltersList>");
+            s.Append((fname == "" ? "" : ("<SearchFilter Property = 'http://xmlns.com/foaf/0.1/lastName' ORProperty = 'http://xmlns.com/foaf/0.1/firstName' MatchType = 'Left'>" + fname + "</SearchFilter>")));
+            s.Append("<SearchFilter Property = 'http://xmlns.com/foaf/0.1/firstName' ORProperty = 'http://xmlns.com/foaf/0.1/lastName' MatchType = 'Left'>" + lname + "</SearchFilter>");
+
+            if (!country.IsNullOrEmpty())
+                s.Append("<SearchFilter IsExclude=\"0\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment\"   MatchType=\"Exact\">" + country + "</SearchFilter>");
+
+
+            s.Append("</SearchFiltersList><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI></MatchOptions><OutputOptions>");
+            s.Append("<Offset>" + offset + "</Offset>");
+            s.Append("<Limit>" + limit + "</Limit>");
+            s.Append("<SortByList>" + sortby);
+            s.Append("</SortByList></OutputOptions></SearchOptions>");
+
+            doc.LoadXml(s.ToString());
 
             return doc;
 
@@ -143,10 +152,6 @@ namespace Profiles.Search.Utilities
         }
 
 
-
-
-
-
         public XmlDocument SearchRequest(string searchstring, string exactphrase, string fname, string lname,
             string institution, string institutionallexcept, string department, string departmentallexcept,
             string division, string divisionallexcept,
@@ -154,6 +159,12 @@ namespace Profiles.Search.Utilities
             string sortby, string sortdirection,
             string otherfilters, string facrank, bool cacheinsession, ref string searchrequest)
         {
+
+            if (department == "(All)")
+                department = "";
+
+
+
 
             System.Text.StringBuilder search = new System.Text.StringBuilder();
             XmlDocument xmlrequest = new XmlDocument();
@@ -214,55 +225,56 @@ namespace Profiles.Search.Utilities
             search.Append("<SearchFiltersList>");
 
 
-            if (searchrequest == string.Empty)
+            //if (searchrequest == string.Empty)
+            //{
+
+            if (fname != string.Empty)
             {
-
-                if (fname != string.Empty)
-                {
-                    search.Append(" <SearchFilter Property=\"http://xmlns.com/foaf/0.1/firstName\" MatchType=\"Left\">" + fname + "</SearchFilter>");
-                }
-
-                if (lname != string.Empty)
-                {
-                    search.Append("<SearchFilter Property=\"http://xmlns.com/foaf/0.1/lastName\" MatchType=\"Left\">" + lname + "</SearchFilter>");
-                }
-
-
-                if (institution != string.Empty)
-                {
-                    if (institutionallexcept == "on")
-                        isexclude = "1";
-
-                    search.Append("<SearchFilter IsExclude=\"" + isexclude + "\" Property=\"http://vivoweb.org/ontology/core#mailingAddress\"  Property2=\"http://vivoweb.org/ontology/core#address3\"  MatchType=\"Exact\">" + institution + "</SearchFilter>");
-                    isexclude = "0";
-                }
-
-                if (department != string.Empty)
-                {
-                    if (departmentallexcept == "on")
-                        isexclude = "1";
-
-                    search.Append("<SearchFilter IsExclude=\"" + isexclude + "\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment\"   MatchType=\"Exact\">" + department + "</SearchFilter>");
-                    isexclude = "0";
-                }
-
-                if (division != string.Empty)
-                {
-                    if (divisionallexcept == "on")
-                        isexclude = "1";
-
-                    search.Append("<SearchFilter IsExclude=\"" + isexclude + "\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision\"   MatchType=\"Exact\">" + division + "</SearchFilter>");
-                    isexclude = "0";
-                }
-
+                search.Append(" <SearchFilter Property=\"http://xmlns.com/foaf/0.1/firstName\" MatchType=\"Left\">" + fname + "</SearchFilter>");
             }
-            else
+
+            if (lname != string.Empty)
             {
-                foreach (XmlNode searchfilter in xmlrequest.SelectNodes("//SearchFiltersList/SearchFilter"))
-                {
-                    search.Append(searchfilter.OuterXml);
-                }
+                search.Append("<SearchFilter Property=\"http://xmlns.com/foaf/0.1/lastName\" MatchType=\"Left\">" + lname + "</SearchFilter>");
             }
+
+
+            if (institution != string.Empty)
+            {
+                if (institutionallexcept == "on")
+                    isexclude = "1";
+
+                search.Append("<SearchFilter IsExclude=\"" + isexclude + "\" Property=\"http://vivoweb.org/ontology/core#mailingAddress\"  Property2=\"http://vivoweb.org/ontology/core#address3\"  MatchType=\"Exact\">" + institution + "</SearchFilter>");
+                isexclude = "0";
+            }
+
+            if (department != string.Empty)
+            {
+                if (departmentallexcept == "on")
+                    isexclude = "1";
+                search.Append("<SearchFilter IsExclude=\"" + isexclude + "\" Property=\"http://vivoweb.org/ontology/core#mailingAddress\"  Property2=\"http://vivoweb.org/ontology/core#address3\"  MatchType=\"Exact\">" + department + "</SearchFilter>");
+
+//                search.Append("<SearchFilter IsExclude=\"" + isexclude + "\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment\"   MatchType=\"Exact\">" + department + "</SearchFilter>");
+                isexclude = "0";
+            }
+
+            //    if (division != string.Empty)
+            //    {
+            //        if (divisionallexcept == "on")
+            //            isexclude = "1";
+
+            //        search.Append("<SearchFilter IsExclude=\"" + isexclude + "\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision\"   MatchType=\"Exact\">" + division + "</SearchFilter>");
+            //        isexclude = "0";
+            //    }
+
+            //}
+            //else
+            //{
+            //    foreach (XmlNode searchfilter in xmlrequest.SelectNodes("//SearchFiltersList/SearchFilter"))
+            //    {
+            //        search.Append(searchfilter.OuterXml);
+            //    }
+            //}
 
             List<GenericListItem> filters = new List<GenericListItem>();
 
@@ -351,7 +363,7 @@ namespace Profiles.Search.Utilities
             {
                 case "name":
                     sortby = this.NameSort(sortdirection);
-                    break;                
+                    break;
             }
 
             search.Append(sortby);
@@ -368,6 +380,7 @@ namespace Profiles.Search.Utilities
                 HttpContext.Current.Session["searchrequest"] = search.ToString();
 
             return searchxml;
+
 
         }
 
@@ -532,6 +545,7 @@ namespace Profiles.Search.Utilities
 
             try
             {
+
                 string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
                 using (SqlConnection dbconnection = new SqlConnection(connstr))

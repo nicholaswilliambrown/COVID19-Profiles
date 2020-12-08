@@ -2,8 +2,8 @@
   <PageOptions Columns="3"/>
   <WindowName>Search Results ({{{rdf:RDF/rdf:Description/prns:numberOfConnections}}})</WindowName>  
   <PageTitle>Search Results ({{{rdf:RDF/rdf:Description/prns:numberOfConnections}}})</PageTitle>   
-   <PageBackLinkName>More Search Options</PageBackLinkName>
-  <PageBackLinkURL>~/search/people</PageBackLinkURL>
+   <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
   <PageDescription></PageDescription> 
   <PanelList>

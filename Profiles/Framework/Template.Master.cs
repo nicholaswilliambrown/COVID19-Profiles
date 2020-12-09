@@ -514,7 +514,8 @@ namespace Profiles.Framework
 
             }
         }
-        public XmlDocument RDFData { get; set; }
+        public XmlDocument RDFData { get;
+            set; }
         public XmlNamespaceManager RDFNamespaces { get; set; }
         public string SearchRequest { get; set; }
 

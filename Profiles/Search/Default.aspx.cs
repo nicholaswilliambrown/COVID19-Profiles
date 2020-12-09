@@ -357,7 +357,7 @@ namespace Profiles.Search
                 //if (searchrequest != string.Empty)
                 //    xml.LoadXml(data.DecryptRequest(searchrequest));
                 //else
-                    xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, classuri, perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
+                    xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, "http://xmlns.com/foaf/0.1/Person", perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
 
             }
 
@@ -367,7 +367,7 @@ namespace Profiles.Search
             if (nodeuri != string.Empty && nodeid != string.Empty)
                 masterpage.RDFData = data.WhySearch(xml, nodeuri, Convert.ToInt64(nodeid));
             else
-                masterpage.RDFData = data.Search(xml, false);
+                masterpage.RDFData = data.Search(xml, false,false);
 
             Framework.Utilities.DebugLogging.Log(masterpage.RDFData.OuterXml);
             masterpage.RDFNamespaces = rdfnamespaces.LoadNamespaces(masterpage.RDFData);

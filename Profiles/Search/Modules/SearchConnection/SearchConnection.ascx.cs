@@ -20,45 +20,38 @@ namespace Profiles.Search.Modules
 
         }
         private void DrawProfilesModule()
-        { 
-            
+        {
+
             Literal backlink = (Literal)base.MasterPage.FindControl("litBackLink");
-            
-                                   
+
+
             List<DirectConnection> directconnections = new List<DirectConnection>();
             List<IndirectConnection> indirectconnections = new List<IndirectConnection>();
 
             string nodeuri = Request.QueryString["nodeuri"].ToString();
             string url = Request.RawUrl.Split('?')[1];
-            bool person = false;
+            bool person = true;
 
             XmlNode node = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + nodeuri + "']", base.Namespaces);
 
-            if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:nodeID='SearchResults']/vivo:overview/SearchOptions/MatchOptions/ClassURI",base.Namespaces)!=null)
-            {
-                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:nodeID='SearchResults']/vivo:overview/SearchOptions/MatchOptions/ClassURI", base.Namespaces).InnerText == "http://xmlns.com/foaf/0.1/Person")
-                    person = true;
-            }
+            //if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:nodeID='SearchResults']/vivo:overview/SearchOptions/MatchOptions/ClassURI",base.Namespaces)!=null)
+            //{
+            //    if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:nodeID='SearchResults']/vivo:overview/SearchOptions/MatchOptions/ClassURI", base.Namespaces).InnerText == "http://xmlns.com/foaf/0.1/Person")
+            //        person = true;
+            //}
 
             //Need to strip the two querystring params so they fall out of the search process in the SearchResults.ascx and search/default.aspx processes.
             url = url.Replace("nodeuri=", "_nodeuri=");
             url = url.Replace("nodeid=", "_nodeid=");
 
-            if (person)
-            {
-                url = url.Replace("searchtype=whypeople", "searchtype=people");
-            }
-            else
-            {
-                url = url.Replace("searchtype=whyeverything", "searchtype=everything");
-            }
+            url = url.Replace("searchtype=whypeople", "searchtype=people");
 
             backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'><img src='" + Root.Domain + "/framework/images/arrowLeft.png' border='0' alt=''/> Back to Search Results</a>";
-            
+
 
             litPersonURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
-            
+
 
             if (node != null)
             {
@@ -66,8 +59,8 @@ namespace Profiles.Search.Modules
                 {
                     foreach (XmlNode n in base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:overview/DirectMatchList/Match/PropertyList/Property", base.Namespaces))
                     {
-                       // if (n.SelectSingleNode("Name", base.Namespaces).InnerText == "fullName" || n.SelectSingleNode("Name", base.Namespaces).InnerText == "perferredTitle" || n.SelectSingleNode("Name", base.Namespaces).InnerText == "overview")
-                            directconnections.Add(new DirectConnection(n.SelectSingleNode("Name", base.Namespaces).InnerText, n.SelectSingleNode("Value", base.Namespaces).InnerText, nodeuri));
+                        // if (n.SelectSingleNode("Name", base.Namespaces).InnerText == "fullName" || n.SelectSingleNode("Name", base.Namespaces).InnerText == "perferredTitle" || n.SelectSingleNode("Name", base.Namespaces).InnerText == "overview")
+                        directconnections.Add(new DirectConnection(n.SelectSingleNode("Name", base.Namespaces).InnerText, n.SelectSingleNode("Value", base.Namespaces).InnerText, nodeuri));
                     }
                 }
                 else
@@ -91,12 +84,12 @@ namespace Profiles.Search.Modules
             {
                 pnlIndirectConnection.Visible = true;
 
-                litSubjectName.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";                   
+                litSubjectName.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
-                    foreach (XmlNode item in base.BaseData.SelectNodes("rdf:RDF/rdf:Description[@rdf:NodeID='ConnectionDetails']/vivo:overview/IndirectMatchList/Match", base.Namespaces))
-                    {
-                        indirectconnections.Add(new IndirectConnection(item.SelectSingleNode("ClassName").InnerText, item.SelectSingleNode("Label").InnerText, item.SelectSingleNode("URI").InnerText));
-                    }
+                foreach (XmlNode item in base.BaseData.SelectNodes("rdf:RDF/rdf:Description[@rdf:NodeID='ConnectionDetails']/vivo:overview/IndirectMatchList/Match", base.Namespaces))
+                {
+                    indirectconnections.Add(new IndirectConnection(item.SelectSingleNode("ClassName").InnerText, item.SelectSingleNode("Label").InnerText, item.SelectSingleNode("URI").InnerText));
+                }
 
                 gvIndirectConnectionDetails.DataSource = indirectconnections;
                 gvIndirectConnectionDetails.DataBind();
@@ -113,7 +106,7 @@ namespace Profiles.Search.Modules
                 DirectConnection dc = (DirectConnection)e.Row.DataItem;
 
                 string urlproperty = dc.Property;
-                string urlvalue =  dc.Value;
+                string urlvalue = dc.Value;
 
                 litProperty.Text = urlproperty;
                 litValue.Text = urlvalue;
@@ -154,10 +147,10 @@ namespace Profiles.Search.Modules
                 IndirectConnection dc = (IndirectConnection)e.Row.DataItem;
 
                 string urlproperty = dc.ItemType;
-                string urlvalue =  dc.Name;
+                string urlvalue = dc.Name;
 
                 litProperty.Text = urlproperty;
-                litValue.Text = "<a class=\"listTableLink\" href=\""+ dc.URI + "\">" + urlvalue + "</a>";
+                litValue.Text = "<a class=\"listTableLink\" href=\"" + dc.URI + "\">" + urlvalue + "</a>";
 
 
                 if (e.Row.RowState == DataControlRowState.Alternate)

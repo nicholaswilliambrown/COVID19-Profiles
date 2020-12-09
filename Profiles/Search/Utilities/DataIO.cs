@@ -331,7 +331,7 @@ namespace Profiles.Search.Utilities
                 }
             }
 
-
+          //  search.Append("<ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI>");
 
             search.Append("</SearchFiltersList>");
 

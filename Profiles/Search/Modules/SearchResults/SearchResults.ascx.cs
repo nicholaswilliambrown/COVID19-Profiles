@@ -295,7 +295,7 @@ namespace Profiles.Search.Modules.SearchResults
                     HttpContext.Current.Session["PERSON-SEARCH-ADD"] = "true";
                 }
 
-                this.SearchData = data.Search(xmlsearchrequest, false);
+                this.SearchData = data.Search(xmlsearchrequest, false, false);
                 this.SearchRequest = xmlsearchrequest.OuterXml;
                 base.MasterPage.SearchRequest = this.SearchRequest;
                 base.MasterPage.RDFData = this.SearchData;

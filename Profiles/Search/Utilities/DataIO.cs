@@ -662,8 +662,8 @@ namespace Profiles.Search.Utilities
 
         private string NameSort(string direction)
         {
-            string sort = "<SortBy IsDesc=\"" + (direction == "desc" ? "0" : "1") + "\" Property=\"http://xmlns.com/foaf/0.1/lastName\" />";
-            sort += "<SortBy IsDesc=\"0\" Property=\"http://xmlns.com/foaf/0.1/firstName\" />";
+            string sort = "<SortBy IsDesc=\"" + (direction == "desc" ? "1" : "0") + "\" Property=\"http://xmlns.com/foaf/0.1/lastName\" />";
+            sort += "<SortBy IsDesc=\"" + (direction == "desc" ? "1" : "0") + "\" Property=\"http://xmlns.com/foaf/0.1/firstName\" />";
 
             return sort;
         }

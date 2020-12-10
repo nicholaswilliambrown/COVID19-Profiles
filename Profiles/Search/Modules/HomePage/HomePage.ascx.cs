@@ -215,7 +215,7 @@ namespace Profiles.Framework.Modules.HomePage
                 if (ConfigurationManager.AppSettings["GoogleMapsKey"] != null)
                 {
                     if (ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim().Length > 0)
-                        return "?key=" + ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim();
+                        return ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim();
                 }
                 return "";
             }

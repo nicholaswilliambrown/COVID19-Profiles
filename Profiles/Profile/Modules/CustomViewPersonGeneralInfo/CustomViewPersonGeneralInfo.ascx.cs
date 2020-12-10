@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Web;
 using System.Web.ModelBinding;
@@ -137,7 +138,19 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                        }
             */
         }
+        protected string googleKey
+        {
+            get
+            {
+                if (ConfigurationManager.AppSettings["GoogleMapsKey"] != null)
+                {
+                    if (ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim().Length > 0)
+                        return  ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim();
+                }
+                return "";
+            }
 
+        }
     }
 
     public class ORNGProfileRPCService : PeopleListRPCService

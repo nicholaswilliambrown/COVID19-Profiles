@@ -18,13 +18,15 @@
 <script type="text/javascript">
     //import { Script } from "vm";
 
-    google.charts.load('current', {
-        'packages': ['geochart'],
-        // Note: you will need to get a mapsApiKey for your project.
-        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-        'mapsApiKey': ''
+    $(document).ready(function () {
+        google.charts.load('current', {
+            'packages': ['geochart'],          
+            'mapsApiKey': '<%=googleKey%>'
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
     });
-    google.charts.setOnLoadCallback(drawRegionsMap);
+
 
     function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([['Country', ''], ['<%= mapCountry %>', 82]]);
@@ -33,8 +35,9 @@
         var options = {
               <%= mapRegion %>
             legend: 'none',
-            tooltip: { trigger: 'none' },
-            colorAxis: { colors: ['#B23F45', '#B23F45'] }
+            tooltip: { trigger: 'none' }, colorAxis: {
+                colors: ["#cbdcf2", "#77a3e0"]
+            }           
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));

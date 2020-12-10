@@ -57,12 +57,12 @@
         <xsl:variable name="document" select="rdf:RDF"></xsl:variable>        
         <xsl:choose>
           <xsl:when test="$why">
-            <div style="float:right;margin-bottom:5px;">
+            <div style="float:right;margin-bottom:5px;margin-top:15px;">
               Click "Why?" to see why a person matched the search.
             </div>
           </xsl:when>
         </xsl:choose>        
-        <div style="margin-bottom:5px;">
+        <div style="margin-bottom:5px;margin-top:15px;">
           Country&#160;
           <select id="selColSelect" style="width: 149px">
             <xsl:choose>
@@ -268,7 +268,7 @@
         </div>
       </xsl:when>
       <xsl:otherwise>
-        <div style="margin-top:100px;margin-bottom:200px;text-align:center">No matching results.</div>
+        <div style="margin-top:100px;margin-bottom:200px;text-align:center">No people match your search.</div>
       </xsl:otherwise>
     </xsl:choose>
 

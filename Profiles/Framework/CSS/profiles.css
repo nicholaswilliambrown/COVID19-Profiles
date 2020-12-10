@@ -63,6 +63,10 @@
 
 @media screen and (max-width: 850px) {
 
+    .personal-photo{
+        display:none;
+    }
+
     #search-results {
         width: -moz-fit-content !important;
         width: fit-content !important;

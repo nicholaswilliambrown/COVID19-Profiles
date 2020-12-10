@@ -94,18 +94,8 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             {
                 string addressURI = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:mailingAddress", base.Namespaces).Attributes["rdf:resource"].Value;
                 mapCountry = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=\"" + addressURI + "\"]/vivo:address3", base.Namespaces).InnerText;
-                
-
-                List<Search.Utilities.Country> countrycodes;
-                using (StreamReader sr = new StreamReader(Server.MapPath("~/Search/Modules/SearchMap/countries.json")))
-                {
-                    string tmp = sr.ReadToEnd();
-                    countrycodes = JsonConvert.DeserializeObject<List<Search.Utilities.Country>>(tmp);
-                }
-
-                string code = countrycodes.Find(x => x.name == mapCountry).code;
-                
-                mapRegion = "region: '" + code + "',";
+                string mr = data.GetMapData(mapCountry);
+                if (mr != "-1") mapRegion = "region: '" + mr + "',";
             }
             catch (Exception) { }
             /*

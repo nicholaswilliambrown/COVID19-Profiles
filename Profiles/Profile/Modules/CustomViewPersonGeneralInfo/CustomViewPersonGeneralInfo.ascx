@@ -37,7 +37,8 @@
             legend: 'none',
             tooltip: { trigger: 'none' }, colorAxis: {
                 colors: ["#cbdcf2", "#77a3e0"]
-            }           
+            },
+            width: 200
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));

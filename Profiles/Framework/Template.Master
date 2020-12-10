@@ -61,7 +61,7 @@
                             <a href="<%=GetURLDomain()%>">
                                 <img src="<%=GetURLDomain()%>/Framework/Images/CovidAuthorsLogo.png" /></a>
                         </div>
-                        <div id="headerTitle" onclick="window.location.href='http://covidauthors.org'">
+                        <div id="headerTitle" onclick="window.location.href='<%=GetURLDomain()%>'">
                             <div id="headerTitle-1">
                                 <h1>COVID A</h1>
                                 <h2>UTHORS</h2>

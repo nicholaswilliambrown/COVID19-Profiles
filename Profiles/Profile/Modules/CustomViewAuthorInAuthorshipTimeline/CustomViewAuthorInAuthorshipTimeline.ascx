@@ -6,10 +6,12 @@
     <div id="divTimeline" style='margin-top: 6px;'>
         
 		<div id="publicationTimelineGraph">
-            <div class="timeline-heading" style="margin-bottom: 3px;">
-                COVID-19 publications
+            <div id="covidTimelineGraph" runat="server">
+                <div class="timeline-heading" style="margin-bottom: 3px;">
+                    COVID-19 publications
+                </div>
+                <img id='covidTimelineBar' runat='server' border='0' />
             </div>
-            <img id='covidTimelineBar' runat='server' border='0' />
             <div class="timeline-heading" style="margin-bottom: 3px; margin-top:10px;">
                 All Publications
             </div>

@@ -42,12 +42,19 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline
             // Get timeline bar chart
             string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetCovidData]";
             if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
+            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vil;
+            try
+            {
+                vil = data.GetGoogleTimeline(base.RDFTriple, storedproc);
+                covidTimelineBar.Src = vil.src;
+                covidTimelineBar.Alt = vil.alt;
+                litTimelineTable.Text = vil.asText;
+            }
+            catch (Exception)
+            {
 
-            Profiles.Profile.Modules.CustomViewAuthorInAuthorshipTimeline.DataIO.VisualizationImageLink vil = data.GetGoogleTimeline(base.RDFTriple, storedproc);
-            covidTimelineBar.Src = vil.src;
-            covidTimelineBar.Alt = vil.alt;
-            litTimelineTable.Text = vil.asText;
-
+                covidTimelineGraph.Visible = false;
+            }
 
             storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
             if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";

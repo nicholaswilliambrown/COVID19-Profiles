@@ -148,7 +148,7 @@ namespace Profiles.Search.Utilities
         public XmlDocument SearchRequest(string searchstring, string exactphrase, string fname, string lname,
             string institution, string institutionallexcept, string department, string departmentallexcept,
             string division, string divisionallexcept,
-            string classuri, string limit, string offset,            
+            string classuri, string limit, string offset,
             string otherfilters, string facrank, bool cacheinsession, ref string searchrequest)
         {
 
@@ -199,26 +199,11 @@ namespace Profiles.Search.Utilities
             if (string.IsNullOrEmpty(exactphrase))
                 exactphrase = "false";
 
-            // if (exactphrase.IsNullOrEmpty())
-            // exactphrase = string.Empty;
-
-            if (searchstring != string.Empty && exactphrase != string.Empty)
-            {
-                search.Append("<SearchString ExactMatch=\"" + exactphrase.ToLower() + "\">");
-
-                search.Append(searchstring);
-                search.Append("</SearchString>");
-            }
-            else if (xmlrequest.SelectSingleNode("//SearchString") != null)
-            {
-                search.Append(xmlrequest.SelectSingleNode("//SearchString").OuterXml);
-            }
+            search.Append("<SearchString ExactMatch=\"" + exactphrase.ToLower() + "\">");
+            search.Append(searchstring.Trim());
+            search.Append("</SearchString>");
 
             search.Append("<SearchFiltersList>");
-
-
-            //if (searchrequest == string.Empty)
-            //{
 
             if (fname != string.Empty)
             {
@@ -246,11 +231,11 @@ namespace Profiles.Search.Utilities
                     isexclude = "1";
                 search.Append("<SearchFilter IsExclude=\"" + isexclude + "\" Property=\"http://vivoweb.org/ontology/core#mailingAddress\"  Property2=\"http://vivoweb.org/ontology/core#address3\"  MatchType=\"Exact\">" + department + "</SearchFilter>");
 
-//                search.Append("<SearchFilter IsExclude=\"" + isexclude + "\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment\"   MatchType=\"Exact\">" + department + "</SearchFilter>");
+                //                search.Append("<SearchFilter IsExclude=\"" + isexclude + "\"  Property=\"http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition\"  Property2=\"http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment\"   MatchType=\"Exact\">" + department + "</SearchFilter>");
                 isexclude = "0";
             }
 
-         
+
             List<GenericListItem> filters = new List<GenericListItem>();
 
             if (!otherfilters.IsNullOrEmpty())
@@ -271,7 +256,7 @@ namespace Profiles.Search.Utilities
                 {
                     search.Append(node.OuterXml);
                 }
-            }                     
+            }
 
             search.Append("</SearchFiltersList>");
 
@@ -298,7 +283,7 @@ namespace Profiles.Search.Utilities
             search.Append(limit.ToString());
             search.Append("</Limit>");
 
-            search.Append("<SortByList>");  
+            search.Append("<SortByList>");
             search.Append("</SortByList>");
 
             search.Append("</OutputOptions>");

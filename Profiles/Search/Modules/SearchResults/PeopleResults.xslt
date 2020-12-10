@@ -18,9 +18,7 @@
   <xsl:param name="page">1</xsl:param>
   <xsl:param name="totalpages">1</xsl:param>  
   <xsl:param name="offset"/>
-  <xsl:param name="why"  />
-  <xsl:param name="currentsort"  />
-  <xsl:param name="currentsortdirection"  />
+  <xsl:param name="why"  />  
   <xsl:param name="country"></xsl:param>
 
   <xsl:variable name="totalPages">
@@ -51,46 +49,25 @@
     <input type="hidden" id="txtRoot" value="{$root}"/>
     <input type="hidden" id="txtPerPage" value="{$perpage}"/>
     <input type="hidden" id="txtOffset" value="{$offset}"/>
-    <input type="hidden" id="txtTotalPages" value="{$totalpages}"/>
-    <input type="hidden" id="txtCurrentSort"  value="{$currentsort}"/>
-    <input type="hidden" id="txtCurrentSortDirection" value="{$currentsortdirection}"/>
+    <input type="hidden" id="txtTotalPages" value="{$totalpages}"/>    
     <input type="hidden" id="txtCountry" value="{$country}"/>
 
     <xsl:choose>
       <xsl:when test="number(rdf:RDF/rdf:Description/prns:numberOfConnections)">
-        <xsl:variable name="document" select="rdf:RDF"></xsl:variable>
-        <div style="float:right;margin-left:6px;">
-          Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
-            <option value="">Query Relevance</option>
-            <xsl:choose>
-              <xsl:when test="$currentsort='name'">
-                <xsl:choose>
-                  <xsl:when test="$currentsortdirection='desc'">
-                    <option selected="true" value="name_desc">Name (A-Z)</option>
-                    <option value="name_asc">Name (Z-A)</option>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <option value="name_desc">Name (A-Z)</option>
-                    <option selected="true" value="name_asc">Name (Z-A)</option>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:when>
-              <xsl:otherwise>
-                <option value="name_desc">Name (A-Z)</option>
-                <option value="name_asc">Name (Z-A)</option>
-              </xsl:otherwise>
-            </xsl:choose>
-          </select>
-        </div>
-  
-
-
-        <div style="float: right;margin-bottom:16px;">          
+        <xsl:variable name="document" select="rdf:RDF"></xsl:variable>        
+        <xsl:choose>
+          <xsl:when test="$why">
+            <div style="float:right;margin-bottom:5px;">
+              Click "Why?" to see why a person matched the search.
+            </div>
+          </xsl:when>
+        </xsl:choose>        
+        <div style="margin-bottom:5px;">
           Country&#160;
           <select id="selColSelect" style="width: 149px">
             <xsl:choose>
-              <xsl:when test="$country='(All)'">                
-                <option selected="true" value="(All)">(All)</option>                
+              <xsl:when test="$country='(All)'">
+                <option selected="true" value="(All)">(All)</option>
               </xsl:when>
               <xsl:otherwise>
                 <option value="(All)">(All)</option>
@@ -112,8 +89,6 @@
             </xsl:for-each>
           </select>
         </div>
-        
-        
         <table>
           <tr>
             <td colspan="3">
@@ -121,34 +96,15 @@
                 <table id="tblSearchResults" class="SearchResults">
                   <tbody>
                     <tr>
-                      <th class="alignLeft">
-                        <a href="JavaScript:Sort('name');">
-                          Name
-                          <xsl:choose>
-                            <xsl:when test="$currentsort='name'">
-                              <xsl:choose>
-                                <xsl:when test="$currentsortdirection='desc'">
-                                  <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                  <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
-                                </xsl:otherwise>
-                              </xsl:choose>
-                            </xsl:when>
-                          </xsl:choose>
-                        </a>
-                      </th>
-
-                      <th class="alignLeft">
-                        Institution
-                      </th>
-
-
-                      <th class="alignLeft">
+                      <th class="name-col">                  
+                          Name                  
+                      </th>                    
+                      <th class="country-col">
                         Country
                       </th>
-
-
+                      <th class="institution-col">
+                        Institution
+                      </th>
                       <xsl:choose>
                         <xsl:when test="$why">
                           <th>Why</th>
@@ -200,9 +156,7 @@
                                   <xsl:with-param name="perpage" select ="$perpage"></xsl:with-param>
                                   <xsl:with-param name="offset" select ="$offset"></xsl:with-param>
                                   <xsl:with-param name="page" select ="$page"></xsl:with-param>
-                                  <xsl:with-param name="totalpages" select ="$totalpages"></xsl:with-param>                                  
-                                  <xsl:with-param name="sortby" select ="$currentsort"></xsl:with-param>
-                                  <xsl:with-param name="sortdirection" select ="$currentsortdirection"></xsl:with-param>
+                                  <xsl:with-param name="totalpages" select ="$totalpages"></xsl:with-param>                                                                    
                                   <xsl:with-param name="country" select ="$currentcountry"></xsl:with-param>
                                   <xsl:with-param name="root" select ="$root"></xsl:with-param>
 
@@ -227,7 +181,7 @@
           </tr>
         </table>
 
-        <div class="listTablePagination" style="float: left; margin-left: 1px;">
+        <div class="listTablePagination" style="float: left">
           <table>
             <tbody>
               <tr>
@@ -329,14 +283,13 @@
       var classgroup = "";
       var page = 0;
       var totalpages = 0;      
-      var sortby = "";
-      var sortdirection = "";
+      
 
       var country ="";
 
       var facrank = "";
       var offset = "";
-      var sortbydropdown = false;
+      
 
 
       function changePage(e) {
@@ -351,104 +304,34 @@
 
 
 
-      function DropdownSort(){
-
-      var dropdown = document.getElementById("selSort");
-      var val = dropdown.options[dropdown.selectedIndex].value;
-
-      if(val!=''){
-      this.Sort(val);
-      return true;
-      }
-      //default is query rev and its blank ''
-      document.getElementById("txtCurrentSort").value = "";
-      GetPageData();
-      NavToPage();
-      }
 
       function GetPageData(){
 
 
-      perpage = document.getElementById("ddlPerPage").value;
-      root = document.getElementById("txtRoot").value;
-      searchfor = document.getElementById("txtSearchFor").value;
-      exactphrase = document.getElementById("txtExactPhrase").value;
-      page = document.getElementById("txtPageNumber").value;
-      totalpages = document.getElementById("txtTotalPages").value;      
-      country =  document.getElementById("txtCountry").value;
+          perpage = document.getElementById("ddlPerPage").value;
+          root = document.getElementById("txtRoot").value;
+          searchfor = document.getElementById("txtSearchFor").value;
+          exactphrase = document.getElementById("txtExactPhrase").value;
+          page = document.getElementById("txtPageNumber").value;
+          totalpages = document.getElementById("txtTotalPages").value;      
+          country =  document.getElementById("txtCountry").value;     
+          offset = document.getElementById("txtOffset").value;
+
+          if(page==0){
+            page = 1;
+          }
 
 
-      if(document.getElementById("selSort").value==''){
-      sortby = document.getElementById("txtCurrentSort").value;
-      }else{
-      sortby = document.getElementById("selSort").value;
-
-      if(sortby.indexOf("_")!=-1){
-      var mySplitResult = sortby.split("_");
-      sortby = mySplitResult[0];
-      }
-
-      }
-
-      sortdirection = document.getElementById("txtCurrentSortDirection").value;
-      offset = document.getElementById("txtOffset").value;
-
-      if(page==0){
-      page = 1;
-      }
-
-
-      }
-
-      function Sort(sort){
-
-      GetPageData();
-
-      if(sort.indexOf("_")==-1){
-
-      if(sortby.indexOf("_")!=-1){
-      var mySplitResult = sortby.split("_");
-      sortby = mySplitResult[0];
-      }
-
-      if(sort==sortby){
-
-      if(sortdirection=="desc"){
-      sortdirection = "asc";
-      }else{
-      sortdirection = "desc";
-      }
-
-      }else{
-
-      sortdirection = "desc";
-      sortby = sort;
-      }
-
-      }else{
-
-      var items = sort.split("_");
-
-      sortby = items[0];
-      sortdirection = items[1];
-
-
-      }
-
-
-      NavToPage();
-
-      }
+      }      
 
       function NavToPage(){
 
 
-      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>country=' + country;
+      window.location = root + '/search/default.aspx?searchtype=people<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>country=' + country;
       }
 
       function ChangePerPage(){
-      GetPageData();
-      //always reset the starting page to 1 if the sort or per page count changes
+      GetPageData();      
       page = 1;
       NavToPage();
 
@@ -543,7 +426,16 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="departmentlink">
+      <xsl:choose>
+        <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDepartment/@rdf:resource]/rdfs:label!=''">
+          &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Department&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDepartment/@rdf:resource]/rdfs:label"/>
+        </xsl:when>
+        <xsl:otherwise>
 
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="institutionlink">
       <xsl:choose>
         <xsl:when test="$doc/rdf:Description[@rdf:about=$institutionlabel]!=''">
@@ -555,16 +447,7 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:variable name="departmentlink">
-      <xsl:choose>
-        <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDepartment/@rdf:resource]/rdfs:label!=''">
-          &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Department&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDepartment/@rdf:resource]/rdfs:label"/>
-        </xsl:when>
-        <xsl:otherwise>
 
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
 
 
     <xsl:variable name="countrylink">
@@ -581,28 +464,17 @@
 
     <input type="hidden" id="{$nodeURI}" value="&lt;div style='font-size:13px;font-weight:bold'&gt;{foaf:firstName} {foaf:lastName}&lt;/div&gt;{$institutionlink}{$departmentlink}{$countrylink}"></input>
 
-
-
-
-    <td class="alignLeft" style="width:200px">
+    <td class="name-col">
       <a class="listTableLink" href="{$nodeURI}">
         <xsl:value-of select="prns:fullName"/>
       </a>
     </td>
-
-
-
-    <td id="institution-why-col" class="alignLeft" >
+    <td class="country-col">
+      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
+    </td>
+    <td class="institution-col" >
       <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
     </td>
-
-    <td class="alignLeft" style="width:250px">
-
-      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
-
-    </td>
-
-
   </xsl:template>
 
   <xsl:template name="whyColumn">
@@ -614,9 +486,7 @@
     <xsl:param name="perpage"></xsl:param>
     <xsl:param name="offset"></xsl:param>
     <xsl:param name="page"></xsl:param>
-    <xsl:param name="totalpages"></xsl:param>    
-    <xsl:param name="sortby"></xsl:param>
-    <xsl:param name="sortdirection"></xsl:param>
+    <xsl:param name="totalpages"></xsl:param>        
     <xsl:param name="root"></xsl:param>
 
 
@@ -624,33 +494,21 @@
     <xsl:variable name="bpositon" select="$doc/rdf:Description[@rdf:about=$positon]/vivo:positionInOrganization/@rdf:resource"></xsl:variable>
 
     <xsl:variable name="institutionlabel" select="$doc/rdf:Description[@rdf:about=$positon]/vivo:positionInOrganization/@rdf:resource"></xsl:variable>
-    <td class="alignLeft" style="width:200px">
+    <td class="name-col">
       <a class="listTableLink" href="{$nodeURI}">
         <xsl:value-of select="prns:fullName"/>
       </a>
-
     </td>
-
-    <td id="institution-why-col" class="alignLeft">
-
-      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
-
-    </td>
-
-
-    <td id="department-why-col" class="alignLeft">
+    <td class="country-col">
       <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/vivo:mailingAddress/@rdf:resource]/rdfs:label"/>
     </td>
-
-
-
-
-
+    <td class="institution-col">
+      <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
+    </td>    
     <td style="width:100px;text-align:center" >
-      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;country={$country}">
+      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;country={$country}">
         Why?
       </a>
-
       <xsl:variable name="titlelink">
         <xsl:choose>
           <xsl:when test="vivo:preferredTitle!=''">

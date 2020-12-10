@@ -111,7 +111,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
             //ctcFirst.SearchRequest = new XmlDocument();
 
-            SearchRequest.LoadXml(data.DecryptRequest(searchrequest));
+            SearchRequest.LoadXml(searchrequest);
 
             //ctcFirst.SearchRequest = this.SearchRequest;
             
@@ -343,7 +343,7 @@ namespace Profiles.Search.Modules.SearchPerson
             Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
             data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept,
-                department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrank, true, ref searchrequest);
+                department, departmentallexcept, division, divisionallexcept, classuri, "15", "0",otherfilters, facrank, true, ref searchrequest);
 
             Response.Redirect(Root.Domain + "/search/default.aspx?searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest + "&country=" + country, true);
 

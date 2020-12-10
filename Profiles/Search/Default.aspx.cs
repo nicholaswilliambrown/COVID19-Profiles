@@ -35,8 +35,7 @@ namespace Profiles.Search
             masterpage = (Framework.Template)base.Master;
 
             if (Request.UrlReferrer == null || !Request.UrlReferrer.ToString().ToLower().Contains("/search"))
-            {
-                Session["DIRECTSEARCHTYPE"] = null;
+            {                
                 Session["SEARCHREQUEST"] = null;
                 masterpage.SearchRequest = null;
             }
@@ -44,30 +43,12 @@ namespace Profiles.Search
             string tab = string.Empty;
 
 
-            if (Request.QueryString["searchtype"] == null && Request.Form["searchtype"] == null && Session["DIRECTSEARCHTYPE"] != null)
-                this.SearchType = Session["DIRECTSEARCHTYPE"].ToString();
-            else if (Request.QueryString["searchtype"] == null && Request.Form["searchtype"] != null && Session["DIRECTSEARCHTYPE"] == null)
+            if (Request.QueryString["searchtype"] == null && Request.Form["searchtype"] != null )
                 this.SearchType = Request.Form["searchtype"];
-            else if (Request.QueryString["searchtype"] != null && Request.Form["searchtype"] == null && Session["DIRECTSEARCHTYPE"] == null)
+            else if (Request.QueryString["searchtype"] != null && Request.Form["searchtype"] == null)
                 this.SearchType = Request.QueryString["searchtype"];
 
-
-            if (Session["DIRECTSEARCHREQUEST"] != null)
-            {
-                masterpage.SearchRequest = Session["DIRECTSEARCHREQUEST"].ToString();
-                string searchrequest = masterpage.SearchRequest;
-
-                Session["DIRECTKEYWORD"] = null;
-                Session["DIRECTSEARCHREQUEST"] = null;
-                Session["DIRECTSEARCHTYPE"] = null;
-
-                Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-
-                data.SearchRequest("", "", "", "", "", "", "", "", "", "", "", "15", "0", "", "", "", "", true, ref searchrequest);
-
-                Response.Redirect(Root.Domain + "/search/default.aspx?searchtype=" + this.SearchType + "&searchrequest=" + searchrequest, true);
-
-            }
+                      
 
             if (this.SearchType.IsNullOrEmpty())
             {
@@ -200,8 +181,6 @@ namespace Profiles.Search
             string classuri = string.Empty;
             string perpage = string.Empty;
             string offset = string.Empty;
-            string sortby = string.Empty;
-            string sortdirection = string.Empty;
             string searchrequest = string.Empty;
             string otherfilters = string.Empty;
             string institutionallexcept = string.Empty;
@@ -293,26 +272,7 @@ namespace Profiles.Search
                 offset = Request.Form["offset"];
 
             if (offset.IsNullOrEmpty())
-                offset = "0";
-
-            //if (offset == null)
-            //    offset = "0";
-
-            if (Request.QueryString["sortby"].IsNullOrEmpty() == false)
-                sortby = Request.QueryString["sortby"];
-
-            if (Request.QueryString["sortdirection"].IsNullOrEmpty() == false)
-                sortdirection = Request.QueryString["sortdirection"];
-
-
-
-            //if (Request.QueryString["searchrequest"].IsNullOrEmpty() == false)
-            //    searchrequest = Request.QueryString["searchrequest"];
-            //else if (Session["searchrequest"] != null)
-            //    searchrequest = data.EncryptRequest(Session["searchrequest"].ToString());
-            //else if (masterpage.SearchRequest.IsNullOrEmpty() == false)
-            //    searchrequest = masterpage.SearchRequest;
-
+                offset = "0";        
 
 
 
@@ -349,15 +309,12 @@ namespace Profiles.Search
             if (keywordOrPerson == "person")
             {
 
-                xml = data.CovidPersonSearchRequest(searchfor, offset, perpage,sortby,sortdirection,country);
+                xml = data.CovidPersonSearchRequest(searchfor, offset, perpage,country);
             }
             else
             {
-                ////Person is the default
-                //if (searchrequest != string.Empty)
-                //    xml.LoadXml(data.DecryptRequest(searchrequest));
-                //else
-                    xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, "http://xmlns.com/foaf/0.1/Person", perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
+               
+                    xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, "http://xmlns.com/foaf/0.1/Person", perpage, offset, otherfilters, "", true, ref searchrequest);
 
             }
 

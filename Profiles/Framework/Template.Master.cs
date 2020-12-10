@@ -61,7 +61,9 @@ namespace Profiles.Framework
                 }
 
                 if (!Framework.Utilities.Root.AbsolutePath.Contains("/search"))
-                    litJS.Text += "jQuery(document).ready(function(e) { jQuery('.body-page').show();});"; 
+                    litJS.Text += "jQuery(document).ready(function(e) { jQuery('.body-page').show();});";
+                else
+                    litJS.Text += "jQuery(document).ready(function(e) { jQuery('#menu-search').val('" + (Request.QueryString["searchfor"].IsNullOrEmpty() ? "" : Request.QueryString["searchfor"].ToString()) + "');});";
 
             }
             catch (Exception ex)

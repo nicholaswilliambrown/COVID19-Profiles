@@ -97,13 +97,21 @@
         padding-top: 25px !important;
         margin-top: 0 !important;
     }
-
-    #institution-why-col {
+    .name-col {
+        width: 200px;
+        text-align: left !important;
+        padding-left: 5px !important;
+    }
+    .institution-col {
         width: 150px;
+        text-align: left !important;
+        padding-left: 5px !important;
     }
 
-    #department-why-col {
+    .country-col {
         width: 150px;
+        text-align: left !important;
+        padding-left: 5px !important;
     }
 
     .connectionLineToArrow {

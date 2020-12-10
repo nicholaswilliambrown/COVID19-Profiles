@@ -62,9 +62,7 @@ namespace Profiles.Search.Modules.SearchResults
             string lname = "";
             string institution = "";
             string department = "";
-            string division = "";
-            string sort = "";
-            string sortdirection = "";
+            string division = "";            
             string searchrequest = "";
             XmlDocument xmlsearchrequest;
             xmlsearchrequest = new XmlDocument();
@@ -86,23 +84,7 @@ namespace Profiles.Search.Modules.SearchResults
             string searchtype = "";
 
             Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-
-            //if (String.IsNullOrEmpty(Request.QueryString["searchrequest"]) == false)
-            //{
-            //    searchrequest = data.DecryptRequest(Request.QueryString["searchrequest"]);
-            //    xmlsearchrequest.LoadXml(searchrequest);
-            //}
-            //else if (Session["searchrequest"] != null)
-            //{
-            //    searchrequest = Session["searchrequest"].ToString();
-            //    xmlsearchrequest.LoadXml(searchrequest);
-            //}
-            //else if (string.IsNullOrEmpty(base.MasterPage.SearchRequest) == false)
-            //{
-            //    searchrequest = data.DecryptRequest(base.MasterPage.SearchRequest);
-            //    xmlsearchrequest.LoadXml(searchrequest);
-            //}
-
+                        
 
             if (String.IsNullOrEmpty(Request.QueryString["searchtype"]) == false)
             {
@@ -123,19 +105,7 @@ namespace Profiles.Search.Modules.SearchResults
             {
                 searchfor = Request.Form["txtSearchFor"];
             }
-            //else if (xmlsearchrequest.ChildNodes.Count > 0)
-            //{
-            //    try
-            //    {
-            //        searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
-            //    }
-            //    catch (Exception)
-            //    {
-            //        // Do nothing, leave searchfor = null
-            //    }
-            //}
-
-
+            
 
             if (searchfor == null)
                 searchfor = string.Empty;
@@ -221,16 +191,6 @@ namespace Profiles.Search.Modules.SearchResults
             }
 
 
-            if (String.IsNullOrEmpty(Request.QueryString["sortby"]) == false)
-                sort = Request.QueryString["sortby"];
-
-            if (String.IsNullOrEmpty(Request.QueryString["sortdirection"]) == false)
-                sortdirection = Request.QueryString["sortdirection"];
-
-
-
-
-
             if (String.IsNullOrEmpty(Request.QueryString["otherfilters"]) == false)
             {
                 otherfilters = Request.QueryString["otherfilters"];
@@ -259,10 +219,7 @@ namespace Profiles.Search.Modules.SearchResults
                 startrecord = ((Convert.ToInt32(page) * Convert.ToInt32(perpage)) + 1) - Convert.ToInt32(perpage);
 
                 if (startrecord < 0)
-                    startrecord = 1;
-
-                if (searchrequest.Trim() != string.Empty)
-                    searchrequest = data.EncryptRequest(searchrequest);
+                    startrecord = 1;                
 
                 List<GenericListItem> g = new List<GenericListItem>();
                 g = data.GetListOfFilters();
@@ -287,11 +244,11 @@ namespace Profiles.Search.Modules.SearchResults
                 if (keywordOrPerson == "person")
                 {
 
-                    xmlsearchrequest = data.CovidPersonSearchRequest(searchfor, (startrecord - 1).ToString(), perpage.ToString(), sort, sortdirection,country);
+                    xmlsearchrequest = data.CovidPersonSearchRequest(searchfor, (startrecord - 1).ToString(), perpage.ToString(),country);
                 }
                 else
                 {
-                    xmlsearchrequest = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, "http://xmlns.com/foaf/0.1/Person", perpage.ToString(), (startrecord - 1).ToString(), sort, sortdirection, otherfilters, "", true, ref searchrequest);
+                    xmlsearchrequest = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, "http://xmlns.com/foaf/0.1/Person", perpage.ToString(), (startrecord - 1).ToString(), otherfilters, "", true, ref searchrequest);
                     HttpContext.Current.Session["PERSON-SEARCH-ADD"] = "true";
                 }
 
@@ -310,7 +267,7 @@ namespace Profiles.Search.Modules.SearchResults
             catch (Exception ex)
             {
                 ex = ex;
-                DebugLogging.Log("ERROR" + ex.Message);
+                DebugLogging.Log("ERROR " + ex.Message);
                 //for now just flip it back to the defaults. This is if someone keys some funky divide by zero stuff in the URL
                 // to try and break the system.
                 startrecord = 1;
@@ -335,12 +292,9 @@ namespace Profiles.Search.Modules.SearchResults
                 case "people":
        
 
-                    args.AddParam("country", "", country);
+                    args.AddParam("country", "", country);              
 
-                    args.AddParam("currentsort", "", sort);
-                    args.AddParam("currentsortdirection", "", sortdirection);
-
-                   // if (base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:overview/SearchDetails/SearchPhraseList", base.Namespaces).Count > 0)
+                   
                    if(keywordOrPerson== "keyword")
                         args.AddParam("why", "", true);
                     else

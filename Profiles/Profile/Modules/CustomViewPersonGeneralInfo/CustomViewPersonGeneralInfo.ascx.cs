@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Xml;
 using System.Xml.Xsl;
-
+using Newtonsoft.Json;
 using Profiles.Framework.Utilities;
 using Profiles.ORNG.Utilities;
 
@@ -45,7 +46,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 imageemailurl = string.Format(Root.Domain + "/profile/modules/CustomViewPersonGeneralInfo/" + "EmailHandler.ashx?msg={0}", HttpUtility.UrlEncode(email));
                 audioemailurl = string.Format(Root.Domain + "/profile/modules/CustomViewPersonGeneralInfo/" + "EmailAudioHandler.ashx?msg={0}", HttpUtility.UrlEncode(email));
             }
-            
+
             args.AddParam("root", "", Root.Domain);
             if (email != string.Empty)
             {
@@ -71,7 +72,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             }
             else if (Profiles.ORCID.Utilities.config.ShowNoORCIDMessage && Profiles.ORCID.Utilities.config.Enabled)
             {
-                    // Check for an ORCID
+                // Check for an ORCID
                 string internalUsername = new Profiles.ORCID.Utilities.ProfilesRNSDLL.BLL.Profile.Data.Person().GetInternalUsername(Convert.ToInt64(Request.QueryString["Subject"]));
                 Profiles.ORCID.Utilities.ProfilesRNSDLL.BO.ORCID.Person orcidPerson = new Profiles.ORCID.Utilities.ProfilesRNSDLL.BLL.ORCID.Person().GetByInternalUsername(internalUsername);
                 if (!orcidPerson.Exists || orcidPerson.ORCIDIsNull)
@@ -83,7 +84,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                     args.AddParam("orcidurl", "", Root.Domain + "/login/default.aspx?method=login&edit=true&editparams=" + qs);
                     args.AddParam("orcidimage", "", Root.Domain + "/Framework/Images/orcid_16x16(1).gif");
                     args.AddParam("orcidimageguid", "", Guid.NewGuid().ToString());
-                   }
+                }
             }
             args.AddParam("nodeid", "", Request.QueryString["Subject"]);
             litPersonalInfo.Text = XslHelper.TransformInMemory(Server.MapPath("~/Profile/Modules/CustomViewPersonGeneralInfo/CustomViewPersonGeneralInfo.xslt"), args, base.BaseData.OuterXml);
@@ -91,41 +92,51 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             try
             {
                 string addressURI = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:mailingAddress", base.Namespaces).Attributes["rdf:resource"].Value;
-                mapCountry = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=\""+addressURI+"\"]/vivo:address3", base.Namespaces).InnerText;
-                string mr = data.GetMapData(mapCountry);
-                if (mr != "-1") mapRegion = "region: '" + mr + "',";
+                mapCountry = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=\"" + addressURI + "\"]/vivo:address3", base.Namespaces).InnerText;
+                
+
+                List<Search.Utilities.Country> countrycodes;
+                using (StreamReader sr = new StreamReader(Server.MapPath("~/Search/Modules/SearchMap/countries.json")))
+                {
+                    string tmp = sr.ReadToEnd();
+                    countrycodes = JsonConvert.DeserializeObject<List<Search.Utilities.Country>>(tmp);
+                }
+
+                string code = countrycodes.Find(x => x.name == mapCountry).code;
+                
+                mapRegion = "region: '" + code + "',";
             }
             catch (Exception) { }
-/*
-            if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces) != null)
-            {
-                string imageurl = base.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces).Value;
-                imgPhoto.ImageUrl = imageurl;// + "&cachekey=" + Guid.NewGuid().ToString();
-            }
-            else
-            {
-                imgPhoto.Visible = false;
-            }
-*/
-                // OpenSocial.  Allows gadget developers to show test gadgets if you have them installed
-                /*           string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
-                           OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page);
-                           if (om.IsVisible() && om.GetUnrecognizedGadgets().Count > 0) 
+            /*
+                        if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces) != null)
+                        {
+                            string imageurl = base.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces).Value;
+                            imgPhoto.ImageUrl = imageurl;// + "&cachekey=" + Guid.NewGuid().ToString();
+                        }
+                        else
+                        {
+                            imgPhoto.Visible = false;
+                        }
+            */
+            // OpenSocial.  Allows gadget developers to show test gadgets if you have them installed
+            /*           string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
+                       OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page);
+                       if (om.IsVisible() && om.GetUnrecognizedGadgets().Count > 0) 
+                       {
+                           pnlSandboxGadgets.Visible = true;
+                           litSandboxGadgets.Visible = true;
+                           string sandboxDivs = "" ;
+                           foreach (PreparedGadget gadget in om.GetUnrecognizedGadgets())
                            {
-                               pnlSandboxGadgets.Visible = true;
-                               litSandboxGadgets.Visible = true;
-                               string sandboxDivs = "" ;
-                               foreach (PreparedGadget gadget in om.GetUnrecognizedGadgets())
-                               {
-                                   sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
-                               }
-                               litSandboxGadgets.Text = sandboxDivs;
-                               om.LoadAssets();
-                               // Add this just in case it is needed.
-                               new ORNGProfileRPCService(Page, this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces).InnerText, uri);
+                               sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
                            }
-                */
-          }
+                           litSandboxGadgets.Text = sandboxDivs;
+                           om.LoadAssets();
+                           // Add this just in case it is needed.
+                           new ORNGProfileRPCService(Page, this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces).InnerText, uri);
+                       }
+            */
+        }
 
     }
 

@@ -1992,6 +1992,7 @@
       <DependentUpon>TopText.ascx</DependentUpon>
     </Compile>
     <Compile Include="Search\Utilities\CacheWrapper.cs" />
+    <Compile Include="Search\Utilities\Country.cs" />
     <Compile Include="Search\Utilities\CountryViz.cs" />
     <Compile Include="Search\Utilities\DataIOMap.cs" />
     <Compile Include="Search\Utilities\DisallowedSearchException.cs" />

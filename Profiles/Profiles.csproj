@@ -606,9 +606,9 @@
     <Content Include="Search\Modules\SearchMap\Flags\zw.gif" />
     <Content Include="Search\Modules\SearchMap\SearchMap.ascx" />
     <Content Include="Search\Modules\TopText\TopText.ascx" />
-    <Content Include="Web.config">
+    <None Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\Default.aspx.cs">
@@ -2272,7 +2272,9 @@
     <Content Include="Search\JavaScript\comboTreeCheck.js" />
     <Content Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.ascx" />
     <Content Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.xslt" />
-    <Content Include="Search\Modules\SearchResults\PeopleResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\PeopleResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\Modules\SearchResults\SearchResults.ascx" />
     <Content Include="Search\Modules\TopSearchPhrase\TopSearchPhrase.ascx" />
     <Content Include="Search\Modules\MiniSearch\MiniSearch.ascx" />

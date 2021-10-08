@@ -23,7 +23,7 @@ network_browser = {
     over_edge: false,
     _cfg: {
         height: 485,
-        width: 600,
+        width: 800,
         targetEl: ".clusterView"
     },
     Init: function (network_browser_URL) {

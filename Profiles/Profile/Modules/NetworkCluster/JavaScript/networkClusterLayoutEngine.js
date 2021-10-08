@@ -35,7 +35,7 @@ ProfilesRNS_ClusterView = {
     cfg: {
         centerID: false,
         baseURL: false,
-        width: 600,
+        width: 800,
         height: 485,
         svg_container: false,
         forces: {

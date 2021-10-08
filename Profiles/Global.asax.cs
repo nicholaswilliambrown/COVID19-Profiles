@@ -168,6 +168,13 @@ namespace Profiles
             {
                 //get reference to the source of the exception chain
                 Exception ex = Server.GetLastError().GetBaseException();
+                if (Request.RawUrl.ToLower().Contains("parent"))
+                {
+                    Response.Redirect($"{Root.Domain}/display/{Request.RawUrl.Split('=')[1]}");
+                    Response.End();
+                    return;
+                }
+
 
                 // Catch errors that occur by design not true Application errors
                 // and handle them without logging as a system error.

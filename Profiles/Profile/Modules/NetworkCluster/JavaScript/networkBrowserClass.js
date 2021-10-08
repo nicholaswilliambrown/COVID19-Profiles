@@ -60,7 +60,13 @@ network_browser = {
                 window.open(dataObject.uri, "_self");
                 break;
             case "NODE_CTRL_CLICK":
-                window.open(dataObject.uri + "/network/coauthors/cluster", "_self");
+
+                if (dataObject.hasCoauthorPage == 1) {
+                    window.open(dataObject.uri + "/network/coauthors/cluster", "_self");
+                } else {
+                    window.open(dataObject.uri, "_empty");
+                    ProfilesRNS_ClusterView.data.active = true;
+                }
                 break;
             case "NODE_CLICK":
             case "NODE_SHIFT_CLICK":
